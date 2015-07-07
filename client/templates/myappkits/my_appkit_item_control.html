@@ -1,0 +1,13 @@
+<template name="myAppKitControl">
+    <div class="appkit {{gray}}">
+        <div class="appkit-title">
+            <h4>Control</h4>
+            <!--{{ my_app_kit_id }}-->
+        </div>
+        <div class="appkit-desc">
+            {{#each controlpoints}}
+                {{> controlBoard }}
+            {{/each }}
+        </div>
+    </div>
+</template>

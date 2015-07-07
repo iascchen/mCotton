@@ -1,0 +1,45 @@
+<template name="appKitItem">
+    <div class="appkit">
+        <div class="appkit-title">
+            <h3>{{name}}</h3>
+        </div>
+        <div class="appkit-title">
+            <!--<h4>ID : {{_id}}</h4>-->
+
+            <p>{{desc}}</p>
+
+            {{#if currentUser}}
+                <a href="{{pathFor 'myAppKitSubmit'}}" class="btn btn-primary assemble">Assemble to My Devices</a>
+            {{/if}}
+            <!--<a href="{{pathFor 'buyAppKit'}}" class="discuss btn btn-primary buy">Buy</a>-->
+        </div>
+        <div class="appkit">
+            <div class="col-sm-12 bootcards-cards">
+                <h4>Used Modules</h4>
+                {{#each module_ids}}
+                    {{> appKitModuleItem id=this}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="appkit">
+            <div class="col-sm-12 bootcards-cards">
+                <h4>Data Points</h4>
+                {{#if show_chart}}
+                    <p><b>Chart : </b>{{ show_chart }}</p>
+                {{/if}}
+
+                {{#each datapoints}}
+                    {{> dataPoint}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="appkit">
+            <div class="col-sm-12 bootcards-cards">
+                <h4>Control Points</h4>
+                {{#each controlpoints}}
+                    {{> controlPoint}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</template>

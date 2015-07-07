@@ -1,0 +1,17 @@
+<template name="myAppKitsList">
+    <h3>My Devices </h3>
+    <div class="appkits">
+        {{#each my_appkits}}
+            {{> myAppKitItem}}
+        {{/each}}
+
+        {{#if currentUser}}
+            <div class="appkit">
+                <div class="appkit-title">
+                    <!--<a href="{{pathFor 'appKitsList'}}"><h4>Browse more from Appkits ...</h4></a>-->
+                </div>
+            </div>
+        {{/if}}
+    </div>
+
+</template>

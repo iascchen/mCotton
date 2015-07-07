@@ -1,0 +1,14 @@
+<template name="appKitsList">
+    <h3>AppKits </h3>
+
+    <div class="appkits">
+        {{#each appkits}}
+            {{> appKitItem}}
+        {{/each}}
+    </div>
+    {{#if currentUser}}
+        <div class="col-sm-12 bootcards-cards appkit">
+            <!--<a href="{{pathFor 'appKitSubmit'}}"><h4>Add</h4></a>-->
+        </div>
+    {{/if}}
+</template>

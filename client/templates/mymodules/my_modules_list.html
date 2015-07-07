@@ -1,0 +1,17 @@
+<template name="myModulesList">
+    <h3>My Modules</h3>
+
+    <div class="modules">
+        {{#each my_modules}}
+            {{> myModuleItem}}
+        {{/each}}
+
+        {{#if currentUser}}
+            <div class="col-sm-12 bootcards-cards module">
+                <div class="module-title">
+                    <a href="{{pathFor 'modulesList'}}"><h4>Browse more from modules store...</h4></a>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</template>

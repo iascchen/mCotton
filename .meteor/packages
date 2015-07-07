@@ -1,0 +1,31 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+twbs:bootstrap
+underscore
+iron:router
+aldeed:collection2
+ian:accounts-ui-bootstrap-3
+sacha:spin
+pcuci:bootcards
+accounts-password
+nimble:restivus
+meteorhacks:npm
+
+
+momentjs:moment
+jparker:crypto-hmac
+jparker:crypto-sha256
+npm-container
+d3
+mrt:nvd3js
+accounts-facebook
+accounts-twitter
+accounts-weibo
+accounts-github
+accounts-google
+accounts-base

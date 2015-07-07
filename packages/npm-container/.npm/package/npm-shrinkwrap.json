@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "buffalo": {
+      "version": "0.1.3",
+      "dependencies": {
+        "tosource": {
+          "version": "0.1.1"
+        }
+      }
+    }
+  }
+}

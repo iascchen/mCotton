@@ -1,0 +1,16 @@
+<template name="controlNone">
+</template>
+
+<template name="controlBoardChange">
+    <p><img src='{{ showControlTypeIcon control_type control_value}}' alt='{{ control_type }}'/> <b>{{control_name}}</b> </p>
+
+    <p><a href="" class="btn btn-default changeBtn"> Change </a>
+        {{formatDate control_submit_time}} </p>
+</template>
+
+<template name="controlBoardClick">
+    <p><img src='{{ showControlTypeIcon control_type control_value }}' alt='{{ control_type }}'/> <b>{{control_name}}</b> </p>
+
+    <p><a href="" class="btn btn-default clickBtn"> Click </a>
+        {{formatDate control_submit_time}} </p>
+</template>

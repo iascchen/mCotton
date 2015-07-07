@@ -1,0 +1,15 @@
+<template name="modulesList">
+    <h3>Modules</h3>
+
+    <div class="modules">
+        {{#each modules}}
+            {{> moduleItem}}
+        {{/each}}
+    </div>
+
+    {{#if currentUser}}
+        <div class="col-sm-12 bootcards-cards module">
+            <a href="{{pathFor 'moduleSubmit'}}"><h4>Create New Module</h4></a>
+        </div>
+    {{/if}}
+</template>

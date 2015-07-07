@@ -1,0 +1,49 @@
+<template name="appKitSubmit">
+    <h3>AppKits</h3>
+
+    <form class="main form">
+        <div class="form-group {{errorClass 'name'}}">
+            <label class="control-label" for="name">Name</label>
+
+            <div class="controls">
+                <input name="name" id="name" type="text" value="" placeholder="Name" class="form-control"/>
+                <span class="help-block">{{errorMessage 'name'}}</span>
+            </div>
+        </div>
+        <div class="form-group {{errorClass 'desc'}}">
+            <label class="control-label" for="desc">Description</label>
+
+            <div class="controls">
+                <input name="desc" id="desc" type="text" value="" placeholder="Description" class="form-control"/>
+                <span class="help-block">{{errorMessage 'desc'}}</span>
+            </div>
+        </div>
+        <!--<div class="form-group {{errorClass 'pku'}}">-->
+            <!--<label class="control-label" for="pku">PKU</label>-->
+
+            <!--<div class="controls">-->
+                <!--<input name="pku" id="pku" type="text" value="" placeholder="PKU" class="form-control"/>-->
+                <!--<span class="help-block">{{errorMessage 'pku'}}</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group {{errorClass 'picture_url'}}">-->
+            <!--<label class="control-label" for="picture_url">picture_url</label>-->
+
+            <!--<div class="controls">-->
+                <!--<input name="picture_url" id="picture_url" type="text" value="" placeholder="Picture_url"-->
+                       <!--class="form-control"/>-->
+                <!--<span class="help-block">{{errorMessage 'picture_url'}}</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group {{errorClass 'store_url'}}">-->
+            <!--<label class="control-label" for="store_url">store_url</label>-->
+
+            <!--<div class="controls">-->
+                <!--<input name="store_url" id="store_url" type="text" value="" placeholder="Store_url"-->
+                       <!--class="form-control"/>-->
+                <!--<span class="help-block">{{errorMessage 'store_url'}}</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <input type="submit" value="Submit" class="btn btn-primary"/>
+    </form>
+</template>
