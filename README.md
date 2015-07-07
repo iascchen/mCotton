@@ -6,18 +6,18 @@ mCotton 是 server ， httpclient*.js 是访问他的Node.js客户端
 
 ## 快速安装 mCotton Server（Develop Mode）
 
-1， 安装 meteor， 命令为： 
+1. 安装 meteor， 命令为： 
 
-	curl https://install.meteor.com | sh
+		curl https://install.meteor.com | sh
 
 2. 展开 mCotton.zip ，并 进入 mCotton 目录
 3. 更新meteor， 执行:  
 
-	meteor update
+		meteor update
 
 4. 启动Server， 命令为 ： 
 
-	meteor
+		meteor
 
 ## 创建 mCotton 的账号
 

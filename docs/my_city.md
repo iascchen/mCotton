@@ -8,7 +8,7 @@ My city data upload is batch process, so should follow this spec.
 	
 ## Create A My City instance （on mCotton）
 
-1. Please Click the menu if “AppKits”, and look for “Smart City” , then click the Button “Assemble to My Devices”. Give your new device a name.
+1. Please Click the menu of “AppKits”, and look for “Smart City” , then click the Button “Assemble to My Devices”. Give your new device a name.
 
 	![city_01.png](city_01.png)
 	![city_02.png](city_02.png)
