@@ -97,7 +97,8 @@ D : Other Cell id of east, west, south, north.
 	
 ### Upload Demo Data
 
-详情参见 Demo数据创建 示例： httpclient_cotton_city_data.js
+详情参见 Demo数据创建 示例： 
+[httpclient_cotton_city_data.js](https://github.com/iascchen/mCotton_client/tree/master/my_city/httpclient_cotton_city_data.js)
 
 修改以下内容跟你的服务器和 DeviceID 一致：
 
@@ -109,7 +110,8 @@ D : Other Cell id of east, west, south, north.
 
 ## Get City Info from Server (from App)
 
-详情参见 API 示例： httpclient_cotton_city.js
+详情参见 API 示例： 
+[httpclient_cotton_city.js](https://github.com/iascchen/mCotton_client/tree/master/my_city/httpclient_cotton_city.js)
 
 修改以下内容跟你的服务器和用户账号一致：
 
@@ -130,6 +132,8 @@ D : Other Cell id of east, west, south, north.
 	getCityDataEvents(my_app_kit_id); // 获得最近一次城市状态上传数据
     getCityVisualization(my_app_kit_id);	// 讲最近一次城市状态上传数据处理成二元图形式，用于在 Web 端用力导向图显示
      
-返回数据示例：city_api_resp.text
+返回数据示例：
+[city_api_resp.text](https://github.com/iascchen/mCotton_client/tree/master/my_city/city_api_resp.text)
+
 
 ![city_08.png](city_08.png)
