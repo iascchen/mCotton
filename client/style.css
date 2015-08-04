@@ -1,3 +1,9 @@
+.container {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
 .grid-block, .main, .post, .comments li, .comment-form {
     border: 1px solid #AAA;
     border-bottom: 3px solid #BBB;
@@ -45,6 +51,8 @@
 body {
     background: #eee;
     color: #666666;
+    margin: 0;
+    padding: 0;
 }
 
 #main {

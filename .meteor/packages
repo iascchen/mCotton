@@ -12,12 +12,12 @@ iron:router
 nimble:restivus
 
 # mqtt
-mkarliner:mqtt
-mkarliner:mqtt-regex
-mkarliner:mosca
+# mkarliner:mqtt
+# mkarliner:mqtt-regex
+# mkarliner:mosca
 
 # CoAP
-enteye:coap
+# enteye:coap
 
 alanning:roles
 
@@ -28,7 +28,7 @@ ian:accounts-ui-bootstrap-3
 pcuci:bootcards
 copleykj:livestamp
 ajduke:bootstrap-tagsinput
-materialize:materialize
+# materialize:materialize
 
 sacha:spin
 
