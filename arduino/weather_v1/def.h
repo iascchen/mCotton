@@ -9,22 +9,16 @@
 //
 //String my_app_kit_id="YourDeviceID";      // Please change it. 
 
-//#define WLAN_SSID       "Makermodule"        // Please change it. cannot be longer than 32 characters!
-//#define WLAN_PASS       "microduino"    // Please change it. 
+#define WLAN_SSID       "Makermodule"        // Please change it. cannot be longer than 32 characters!
+#define WLAN_PASS       "microduino"    // Please change it.  
 
-#define WLAN_SSID       "HaoiPhone6p"        // Please change it. cannot be longer than 32 characters!
-#define WLAN_PASS       "t60prf7far293"    // Please change it. 
+String my_app_kit_id="sctepumxLP7i6mh5g";      // Please change it. 
 
-//#define WLAN_SSID       "zte"        // Please change it. cannot be longer than 32 characters!
-//#define WLAN_PASS       "BJzxxl2015"    // Please change it.
+//#define WEBSITE "mcotton-01.chinacloudapp.cn"
+//#define WEBSITEPORT 80
 
-String my_app_kit_id="YGjNRuXNxZyTTKJaL";      // Please change it. 
-
-#define WEBSITE "mcotton-01.chinacloudapp.cn"
-#define WEBSITEPORT 80
-
-// #define WEBSITE "192.168.1.15"
-// #define WEBSITEPORT 3000
+#define WEBSITE "192.168.190.140"
+#define WEBSITEPORT 3000
 
 uint32_t ip;
 

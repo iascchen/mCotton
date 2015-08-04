@@ -7,7 +7,7 @@
 #include <AM2321.h>
 AM2321 am2321;
 
-#include"AirQuality.h"
+//#include"AirQuality.h"
 #include"Arduino.h"
 
 #include <SoftwareSerial.h>

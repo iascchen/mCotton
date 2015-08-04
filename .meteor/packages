@@ -5,27 +5,49 @@
 # but you can also edit it by hand.
 
 meteor-platform
-twbs:bootstrap
+
 underscore
+
 iron:router
-aldeed:collection2
-ian:accounts-ui-bootstrap-3
-sacha:spin
-pcuci:bootcards
-accounts-password
 nimble:restivus
+
+# mqtt
+mkarliner:mqtt
+mkarliner:mqtt-regex
+mkarliner:mosca
+
+# CoAP
+enteye:coap
+
+alanning:roles
+
+aldeed:collection2
+
+twbs:bootstrap
+ian:accounts-ui-bootstrap-3
+pcuci:bootcards
+copleykj:livestamp
+ajduke:bootstrap-tagsinput
+materialize:materialize
+
+sacha:spin
+
+npm-container
 meteorhacks:npm
-
-
 momentjs:moment
+
+accounts-password
+# accounts-facebook
+# accounts-twitter
+# accounts-weibo
+# accounts-github
+# accounts-google
+accounts-base
+
 jparker:crypto-hmac
 jparker:crypto-sha256
-npm-container
+
+tsega:skrollr
+
 d3
 mrt:nvd3js
-accounts-facebook
-accounts-twitter
-accounts-weibo
-accounts-github
-accounts-google
-accounts-base

@@ -1,16 +1,18 @@
 <template name="myAppKitItem">
     <div class="appkit {{gray}}">
+        <a name="{{_id}}" ></a>
         <div class="appkit-title">
             <h3>{{name}}</h3>
         </div>
         <div class="appkit-desc">
             <h4>ID : {{_id}}</h4>
+
             {{#if status }}
                 <p>Status : {{status}}</p>
             {{/if}}
 
-            <!--<p>owner : {{ formatDate owner_user_id}}</p>-->
-            <p>Create at : {{ formatDate create_time}} , Update at : {{ formatDate last_update_time}}</p>
+            <!--<p>owner : {{ owner_user_id}}</p>-->
+            <p>Create at : {{ livestamp create_time}} , Update at : {{ livestamp last_update_time}}</p>
 
             {{#unless status }}
                 <a href="" class="btn btn-danger disassemble">Disassemble</a>

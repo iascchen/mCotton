@@ -12,3 +12,7 @@ Template.myAppKitsList.helpers({
         return JSON.stringify(Meteor.user());
     },
 });
+
+Template.myAppKitsList.rendered = function (){
+    anchorScroll();
+};

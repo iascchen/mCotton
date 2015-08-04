@@ -138,7 +138,7 @@ bool voCC3000_ping(int a) {
     dataToSend+=",\"Light\":";
     dtostrf(sensor_light,1,2,buf); 
     dataToSend+="\""+String(buf)+"\"";
-    dataToSend+=",\"PM 2.5\":";
+    dataToSend+=",\"PM\":";
     dtostrf(sensor_cal,1,2,buf); 
     dataToSend+="\""+String(buf)+"\"";
     dataToSend+=",\"Air Pollution\":";

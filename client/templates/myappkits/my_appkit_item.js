@@ -68,4 +68,3 @@ Template.myAppKitItem.events({
         Router.go('myAppKitsList');
     }
 });
-

@@ -12,11 +12,9 @@
 #define WLAN_SSID       "Makermodule"        // Please change it. cannot be longer than 32 characters!
 #define WLAN_PASS       "microduino"    // Please change it. 
 
-String my_app_kit_id="qwaBFu7se48GNAD3q";
+String my_app_kit_id="yoCEDvQB3xN8h9zdo";
 
-//#include"AirQuality.h"
 #include"Arduino.h"
-//AirQuality airqualitysensor;
 
 SoftwareSerial mySerial(4, 5); //RX,TX
 
@@ -27,8 +25,11 @@ uint32_t ip;
 
 Adafruit_CC3000_Client www;
 
-#define WEBSITE "mcotton-01.chinacloudapp.cn"
-#define WEBSITEPORT 80
+//#define WEBSITE "mcotton-01.chinacloudapp.cn"
+//#define WEBSITEPORT 80
+
+#define WEBSITE "192.168.190.140"
+#define WEBSITEPORT 3000
 
 #define WEBPAGE "/api/v1.0/d"
 #define WEBUTTONPAGE "/api/v1.0/ce"

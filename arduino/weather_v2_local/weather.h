@@ -1,6 +1,6 @@
-#include"AirQuality.h"
+//#include"AirQuality.h"
 #include"Arduino.h"
-AirQuality airqualitysensor;
+//AirQuality airqualitysensor;
 
 #include <SoftwareSerial.h>
 SoftwareSerial mySerial(4, 5); //RX,TX

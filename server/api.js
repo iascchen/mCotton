@@ -6,15 +6,14 @@ CONTROL_EVENT_RESEND_INTERVAL = 2 * 60000;
 DATA_EVENT_RESEND_INTERVAL = 2 * 60000;
 DEVICE_ID_REQ_TIMEOUT = 1 * 60000;
 
-// Global API configuration
-Restivus.configure({
-    useAuth: true,
+var Api = new Restivus({
+    useDefaultAuth: true,
     prettyJson: false,
     enableCors: true
 });
 
 // Fetch Batch Data Upload SessionID
-Restivus.addRoute(':version/sid', {authRequired: false}, {
+Api.addRoute(':version/sid', {authRequired: false}, {
     get: function () {
         var now = new Date();
         return {
@@ -24,7 +23,7 @@ Restivus.addRoute(':version/sid', {authRequired: false}, {
 });
 
 // Upload Data Message
-Restivus.addRoute(':version/d', {authRequired: false}, {
+Api.addRoute(':version/d', {authRequired: false}, {
     post: function () {
         // console.log("request", this.request.body);
         var msg = _.clone(this.request.body);
@@ -48,7 +47,7 @@ Restivus.addRoute(':version/d', {authRequired: false}, {
 });
 
 // Upload Control Event
-Restivus.addRoute(':version/ce', {authRequired: false}, {
+Api.addRoute(':version/ce', {authRequired: false}, {
     post: function () {
         // console.log("request", this.request.body);
         var msg = _.clone(this.request.body);
@@ -67,7 +66,7 @@ Restivus.addRoute(':version/ce', {authRequired: false}, {
 });
 
 // Get Latest Control Event
-Restivus.addRoute(':version/ce/:my_app_kit_id', {authRequired: false}, {
+Api.addRoute(':version/ce/:my_app_kit_id', {authRequired: false}, {
     get: function () {
         var my_app_kit_id = this.params.my_app_kit_id;
         //console.log("ce/:my_app_kit_id", my_app_kit_id);
@@ -85,7 +84,7 @@ Restivus.addRoute(':version/ce/:my_app_kit_id', {authRequired: false}, {
 });
 
 // Get Latest Data Event
-Restivus.addRoute(':version/de/:my_app_kit_id', {authRequired: false}, {
+Api.addRoute(':version/de/:my_app_kit_id', {authRequired: false}, {
     get: function () {
         var my_app_kit_id = this.params.my_app_kit_id;
         //console.log("ce/:my_app_kit_id", my_app_kit_id);
@@ -103,7 +102,7 @@ Restivus.addRoute(':version/de/:my_app_kit_id', {authRequired: false}, {
 });
 
 // Get AppKit
-Restivus.addRoute(':version/appkits', {authRequired: false}, {
+Api.addRoute(':version/appkits', {authRequired: false}, {
     get: function () {
         var ret = AppKits.find({'status': {$ne: "retired"}}).fetch();
 
@@ -119,7 +118,7 @@ Restivus.addRoute(':version/appkits', {authRequired: false}, {
 });
 
 // Create MyDevice
-Restivus.addRoute(':version/myappkits', {authRequired: true}, {
+Api.addRoute(':version/myappkits', {authRequired: true}, {
     put: function () {
         var body = _.clone(this.request.body);
         console.log("user_id", this.userId);
@@ -154,7 +153,7 @@ Restivus.addRoute(':version/myappkits', {authRequired: true}, {
 });
 
 // Get Line Data Chart
-Restivus.addRoute(':version/vis/:my_app_kit_id/:period', {authRequired: true}, {
+Api.addRoute(':version/vis/:my_app_kit_id/:period', {authRequired: true}, {
     get: function () {
         // console.log("In Visualization");
 
@@ -227,8 +226,8 @@ Restivus.addRoute(':version/vis/:my_app_kit_id/:period', {authRequired: true}, {
  * REST API Communicate with Arduino device
  **************************************/
 
-// Reg Device to Server for generate Device ID
-Restivus.addRoute(':version/regDevId', {authRequired: false}, {
+    // Reg Device to Server for generate Device ID
+Api.addRoute(':version/regDevId', {authRequired: false}, {
     post: function () {
         var entity = _.clone(this.request.body);
         var deviceIp = this.request.headers["x-forwarded-for"];
@@ -240,7 +239,7 @@ Restivus.addRoute(':version/regDevId', {authRequired: false}, {
 });
 
 // Reg Device to Server for generate Device ID
-Restivus.addRoute(':version/genDevId', {authRequired: false}, {
+Api.addRoute(':version/genDevId', {authRequired: false}, {
     post: function () {
         var entity = _.clone(this.request.body);
         var deviceIp = this.request.headers["x-forwarded-for"];
@@ -256,7 +255,7 @@ Restivus.addRoute(':version/genDevId', {authRequired: false}, {
  **************************************/
 
 // On Mobile Wait Device send genDeviceID request
-Restivus.addRoute(':version/waitDevId', {authRequired: true}, {
+Api.addRoute(':version/waitDevId', {authRequired: true}, {
     post: function () {
         var clientIp = "" + this.request.connection.remoteAddress;
         console.log("clientIp", clientIp);
@@ -274,7 +273,7 @@ Restivus.addRoute(':version/waitDevId', {authRequired: true}, {
  * REST API for test Client Ip Address
  **************************************/
 
-Restivus.addRoute(':version/clientIp', {authRequired: false}, {
+Api.addRoute(':version/clientIp', {authRequired: false}, {
     get: function () {
         var xForward = this.request.headers["x-forwarded-for"];
         console.log("x-forwarded-for:", xForward);
@@ -290,7 +289,7 @@ Restivus.addRoute(':version/clientIp', {authRequired: false}, {
 });
 
 /*
- Restivus.addRoute(':version/testRegexFilter', {authRequired: false}, {
+ Api.addRoute(':version/testRegexFilter', {authRequired: false}, {
  get: function () {
  var genreqs = GenDeviceIDReqs.find({
  dev_ip: {$regex: "(^192\.168\.)|(^127\.0\.0\.1$)"}
@@ -302,7 +301,7 @@ Restivus.addRoute(':version/clientIp', {authRequired: false}, {
  */
 
 // Get Latest Data Event
-Restivus.addRoute(':version/de_city/:my_app_kit_id', {authRequired: false}, {
+Api.addRoute(':version/de_city/:my_app_kit_id', {authRequired: false}, {
     get: function () {
         var my_app_kit_id = this.params.my_app_kit_id;
 
@@ -319,7 +318,7 @@ Restivus.addRoute(':version/de_city/:my_app_kit_id', {authRequired: false}, {
 });
 
 // Get Line Data Chart
-Restivus.addRoute(':version/vis_city/:my_app_kit_id', {authRequired: true}, {
+Api.addRoute(':version/vis_city/:my_app_kit_id', {authRequired: true}, {
     get: function () {
         // console.log("In Visualization");
 

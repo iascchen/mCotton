@@ -28,3 +28,12 @@ Template.dataVisual.helpers({
         return Template.dataVisualLine;
     }
 });
+
+Template.dataVisual.events({
+    'click .raw-data':function(e,tmpl) {
+        //e.preventDefault();
+        //$('html, body').animate({
+        //    scrollTop: $("#item_id").offset().top
+        //}, 600);
+    }
+});
