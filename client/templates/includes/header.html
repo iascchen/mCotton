@@ -9,14 +9,14 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{pathFor 'home'}}">MicroCotton</a>
+                <a class="navbar-brand" href="{{pathFor 'appKitsList'}}">Projects</a>
+                <!--<a class="navbar-brand" href="{{pathFor 'modulesList'}}">Modules</a>-->
 
                 {{#if currentUser}}
-                    <a class="navbar-brand" href="{{pathFor 'myAppKitsList'}}">My Devices</a>
-                    <a class="navbar-brand" href="{{pathFor 'myModulesList'}}">My Modules</a>
+                    <a class="navbar-brand" href="{{pathFor 'myAppKitsList'}}">My Garage</a>
+                    <!--<a class="navbar-brand" href="{{pathFor 'myModulesList'}}">My Modules</a>-->
                 {{/if}}
 
-                <a class="navbar-brand" href="{{pathFor 'appKitsList'}}">AppKits</a>
-                <a class="navbar-brand" href="{{pathFor 'modulesList'}}">Modules</a>
             </div>
 
             <div class="collapse navbar-collapse" id="navigation">
