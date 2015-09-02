@@ -5,12 +5,12 @@
     <p><img src='{{ showControlTypeIcon control_type control_value}}' alt='{{ control_type }}'/> <b>{{control_name}}</b> </p>
 
     <p><a href="" class="btn btn-raised changeBtn"> Change </a>
-        {{livestamp control_submit_time}} </p>
+        {{formatDate control_submit_time}} </p>
 </template>
 
 <template name="controlBoardClick">
     <p><img src='{{ showControlTypeIcon control_type control_value }}' alt='{{ control_type }}'/> <b>{{control_name}}</b> </p>
 
     <p><a href="" class="btn btn-raised clickBtn"> Click </a>
-        {{livestamp control_submit_time}} </p>
+        {{formatDate control_submit_time}} </p>
 </template>

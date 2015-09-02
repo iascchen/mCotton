@@ -5,7 +5,7 @@
     <div class="col-sm-5 bootcards-cards appkit-data">
         <p><img src='{{ showDataTypeIcon data_type }}' alt='{{ data_type }}'/> <b>{{ data_name }}</b>
             , {{ data_value }} {{ data_unit }}</p>
-        <p>{{ livestamp data_submit_time }}</p>
+        <p>{{ formatDate data_submit_time }}</p>
     </div>
 </template>
 
@@ -13,7 +13,7 @@
 <!-- dataEventList -->
 
 <template name="dataEventList_Item">
-    <p>{{ livestamp data_submit_time }}  {{ obj2String data_value }} {{ data_unit }}</p>
+    <p>{{ formatDate data_submit_time }}  {{ obj2String data_value }} {{ data_unit }}</p>
 </template>
 
 <template name="dataEventList">
@@ -29,12 +29,12 @@
 <!-- dataEventPictures -->
 
 <template name="dataEventList_Picture">
-    <p><img src='{{ data_value }}' height="200"/> {{ livestamp data_submit_time }}</p>
+    <p><img src='{{ data_value }}' height="200"/> {{ formatDate data_submit_time }}</p>
 </template>
 
 <template name="dataEventPictures">
     dataEventPictures
-    <p>{{ livestamp data_submit_time }}</p>
+    <p>{{ formatDate data_submit_time }}</p>
 
     <div class="col-sm-3 bootcards-cards appkit-data">
         <p><img src='{{ showDataTypeIcon data_type }}' alt='{{ data_type }}'/> <b>{{ data_name }}</b></p>
