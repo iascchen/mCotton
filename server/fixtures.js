@@ -157,4 +157,69 @@ if (Modules.find().count() === 0) {
 
     ControlPoints.insert({app_kit_id: _app_kit_id, control_name: "Water", control_type: "SWT",});
     ControlPoints.insert({app_kit_id: _app_kit_id, control_name: "Light", control_type: "LED",});
+
+    //==========================================
+
+    _app_kit_id = AppKits.insert({
+        name: 'Smart Flower Pot', desc: 'Smart Flower Pot with ',
+        // show_chart: "MY_CITY",
+        module_ids: [
+            Modules.findOne({name: 'Microduino-Core+'})._id,
+        ],
+    });
+
+    DataPoints.insert({app_kit_id: _app_kit_id, data_name: "Temperature", data_type: "TEM", data_unit: "℃",});
+    DataPoints.insert({app_kit_id: _app_kit_id, data_name: "Humidity", data_type: "HUM", data_unit: "%",});
+    DataPoints.insert({app_kit_id: _app_kit_id, data_name: "Soil Humidity", data_type: "SHM", data_unit: "%",});
+    DataPoints.insert({app_kit_id: _app_kit_id, data_name: "Light", data_type: "LUX", data_unit: "Lux",});
+
+    ControlPoints.insert({app_kit_id: _app_kit_id, control_name: "Water On", control_type: "TXT",
+        control_desc: "Begin water when earth humidity less than this threshold"});
+    ControlPoints.insert({app_kit_id: _app_kit_id, control_name: "Water Off", control_type: "TXT",
+        control_desc: "Stop water when earth humidity great than this threshold"});
+    ControlPoints.insert({app_kit_id: _app_kit_id, control_name: "Light", control_type: "TXT",
+        control_desc: "Adjust light with this lux threshold"});
+
+    //==========================================
+
+    _app_kit_id = AppKits.insert({
+        name: 'THU Sensors', desc: 'Sensor of IOT',
+        // show_chart: "MY_CITY",
+        module_ids: [
+            Modules.findOne({name: 'Microduino-Core+'})._id,
+        ],
+    });
+
+    DataPoints.insert({app_kit_id: _app_kit_id, data_name: "Temperature", data_type: "TEM", data_unit: "℃",});
+    DataPoints.insert({app_kit_id: _app_kit_id, data_name: "Humidity", data_type: "HUM", data_unit: "%",});
+    DataPoints.insert({app_kit_id: _app_kit_id, data_name: "Light", data_type: "LUX", data_unit: "Lux",});
+    DataPoints.insert({app_kit_id: _app_kit_id, data_name: "PIR", data_type: "PIR", data_unit: "",});
+
+    //==========================================
+
+    _app_kit_id = AppKits.insert({
+        name: 'THU Monitor', desc: 'Monitor of IOT',
+        // show_chart: "MY_CITY",
+        module_ids: [
+            Modules.findOne({name: 'Microduino-Core+'})._id,
+        ],
+    });
+
+    ControlPoints.insert({app_kit_id: _app_kit_id, control_name: "Message", control_type: "TXT"});
+    ControlPoints.insert({app_kit_id: _app_kit_id, control_name: "Buzz", control_type: "SWT"});
+    ControlPoints.insert({app_kit_id: _app_kit_id, control_name: "Light", control_type: "LED"});
+
+    //==========================================
+
+    _app_kit_id = AppKits.insert({
+        name: 'mRace', desc: 'mRace',
+        module_ids: [
+            Modules.findOne({name: 'Microduino-Core+'})._id,
+        ],
+    });
+
+    DataPoints.insert({app_kit_id: _app_kit_id, data_name: "Max Speed", data_type: "SPD", data_unit: "km/h"});
+    DataPoints.insert({app_kit_id: _app_kit_id, data_name: "Running Time", data_type: "SEC", data_unit: "s"});
+    DataPoints.insert({app_kit_id: _app_kit_id, data_name: "Best Single lap", data_type: "SEC", data_unit: "s"});
+    DataPoints.insert({app_kit_id: _app_kit_id, data_name: "Best Acceleration", data_type: "SEC", data_unit: "1-100km/s"});
 }

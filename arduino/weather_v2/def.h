@@ -9,10 +9,10 @@
 //
 //String my_app_kit_id="YourDeviceID";      // Please change it. 
 
-#define WLAN_SSID       "Makermodule"        // Please change it. cannot be longer than 32 characters!
+#define WLAN_SSID       "Maker_HWF"        // Please change it. cannot be longer than 32 characters!
 #define WLAN_PASS       "microduino"    // Please change it. 
 
-String my_app_kit_id="yoCEDvQB3xN8h9zdo";
+String my_app_kit_id="bBsmAgYaYTayhKwJT";
 
 #include"Arduino.h"
 
@@ -25,11 +25,11 @@ uint32_t ip;
 
 Adafruit_CC3000_Client www;
 
-//#define WEBSITE "mcotton-01.chinacloudapp.cn"
-//#define WEBSITEPORT 80
+#define WEBSITE "mcotton.microduino.cn"
+#define WEBSITEPORT 8080
 
-#define WEBSITE "192.168.190.140"
-#define WEBSITEPORT 3000
+//#define WEBSITE "192.168.199.240"
+//#define WEBSITEPORT 3000
 
 #define WEBPAGE "/api/v1.0/d"
 #define WEBUTTONPAGE "/api/v1.0/ce"
@@ -39,9 +39,9 @@ bool stopFlag=false;
 
 int lastButtonState = 1;         // variable for reading the pushbutton status
 
-const int buttonPin = 6;     // the number of the pushbutton pin
+//const int buttonPin = 6;     // the number of the pushbutton pin
 //const int ledPin =  5;      //7,8,11,12,13// the number of the LED pin
-const int ledPin =  7;
+const int ledPin =  6;
 
 bool buttonState = false;         // variable for reading the pushbutton status
 

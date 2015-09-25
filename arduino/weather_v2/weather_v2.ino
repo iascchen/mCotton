@@ -34,7 +34,7 @@ void setup(void) {
   // initialize the LED pin as an output:
   pinMode(ledPin, OUTPUT);
   // initialize the pushbutton pin as an input:
-  pinMode(buttonPin, INPUT);
+  // pinMode(buttonPin, INPUT);
 
   setup_wifi();
   //initWeatherSensor();

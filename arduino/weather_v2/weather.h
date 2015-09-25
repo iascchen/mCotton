@@ -101,11 +101,11 @@ void updateWeatherData() {
 }
 
 void updateButton() {
-  if(keyButton_get(buttonPin,0))
-  {
-    delay(200);
-    buttonState=!buttonState;
-  }
+//  if(keyButton_get(buttonPin,0))
+//  {
+//    delay(200);
+//    buttonState=!buttonState;
+//  }
   if(statusChange!=buttonState)
   {
     statusChange=buttonState;

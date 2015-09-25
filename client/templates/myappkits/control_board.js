@@ -12,6 +12,8 @@ Template.controlBoard.helpers({
                 return Template.controlBoardChange;
             case 'BTN':
                 return Template.controlBoardClick;
+            case 'TXT':
+                return Template.controlBoardInput;
         }
         return Template.controlNone;
     }

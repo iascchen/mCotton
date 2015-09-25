@@ -226,7 +226,7 @@ Api.addRoute(':version/vis/:my_app_kit_id/:period', {authRequired: true}, {
  * REST API Communicate with Arduino device
  **************************************/
 
-    // Reg Device to Server for generate Device ID
+// Reg Device to Server for generate Device ID
 Api.addRoute(':version/regDevId', {authRequired: false}, {
     post: function () {
         var entity = _.clone(this.request.body);
