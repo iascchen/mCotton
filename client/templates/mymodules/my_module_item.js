@@ -2,21 +2,21 @@
 
 Template.myModuleItem.helpers({
     gray: function () {
-        if ((this.status == "used") || (this.status == "retired")) {
+        if (this.status >= STATUS_DISABLE) {
             return "gray";
         }
     },
 });
 
 Template.myModuleItem.events({
-    'click .retire': function (e) {
+    'click .remove': function (e) {
         e.preventDefault();
 
         var currentId = this._id;
 
-        if (confirm("Retire this module?")) {
+        if (confirm("Remove this module?")) {
             var now = new Date();
-            MyModules.update(currentId, {$set: {status: 'retired', last_update_time: now}}, function (error) {
+            MyModules.update(currentId, {$set: {status: 'removed', last_update_time: now}}, function (error) {
                 if (error) {
                     throwError(error.reason);
                 } else {

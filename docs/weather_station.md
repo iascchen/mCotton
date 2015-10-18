@@ -21,7 +21,7 @@ http://mcotton-01.chinacloudapp.cn
       #define WLAN_SSID       "YourSSID"        // Please change it. cannot be longer than 32 characters!
       #define WLAN_PASS       "YourPassword"    // Please change it. 
 
-      String my_app_kit_id="YourDeviceID";      // Please change it. 
+      String device_id="YourDeviceID";      // Please change it. 
 
 8. Connect your PC and weather station by USB line, in this step you need USBTTL/R232 module.
 9. Build and upload program to Microduino.

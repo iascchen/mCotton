@@ -1,0 +1,16 @@
+<template name="deviceEdit">
+    {{#autoForm id="deviceEdit" collection=Collections.Devices doc=this class="main form project-detail"}}
+        <h3>Edit Project</h3>
+
+        {{> afQuickField name='_id' type="hidden"}}
+        {{> afQuickField name='name'}}
+        {{> afQuickField name='desc' type="textarea"}}
+        {{> afQuickField name='share'}}
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save
+            </button>
+        </div>
+    {{/autoForm}}
+</template>

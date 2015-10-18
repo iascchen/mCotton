@@ -1,0 +1,20 @@
+<template name="projectSubmit">
+    {{errorMessage}}
+    {{#autoForm id="projectSubmit" collection=Collections.Projects class="main form project-detail"}}
+        <h3>Create New Project</h3>
+
+        {{> afQuickField name='name'}}
+        {{> afQuickField name='desc' type="textarea"}}
+        {{> afQuickField name='show_chart'}}
+
+        <div class="form-group">
+            <a class="btn btn-info cancel">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
+            </a>
+
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save
+            </button>
+        </div>
+    {{/autoForm}}
+</template>

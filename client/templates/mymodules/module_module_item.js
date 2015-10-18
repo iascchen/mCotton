@@ -1,5 +1,5 @@
 Template.moduleModuleItem.helpers({
     _: function () {
-        return Modules.findOne({_id: this._id});
+        return Collections.Modules.findOne({_id: this._id});
     },
 });

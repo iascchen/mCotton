@@ -30,15 +30,36 @@ Meteor.startup(function () {
     });
 
     UI.registerHelper('obj2String', function (obj) {
-        if( typeof obj != 'object' )
+        if (typeof obj != 'object')
             return obj;
 
         return JSON.stringify(obj);
     });
 
-    UI.registerHelper('autherOfEntity', function () {
-        var userId = Meteor.userId();
-        return this && this.author_user_id === userId;
-    });
-});
+    UI.registerHelper('isAutherOrGrantedRole', function (role) {
+        var user = Meteor.user();
+        var isAuthor = this && this.author_user_id === user._Id;
+        var isGranted = (user && role) ? _.contains(user.roles, role) : false;
 
+        return isAuthor || isGranted;
+    });
+
+    UI.registerHelper('isOwnerOrGrantedRole', function (role) {
+        var user = Meteor.user();
+        var isAuthor = this && this.owner_user_id === user._Id;
+        var isGranted = (user && role) ? _.contains(user.roles, role) : false;
+
+        return isAuthor || isGranted;
+    });
+
+    UI.registerHelper('isGranted', function (role) {
+        var user = Meteor.user();
+        return (user && role) ? _.contains(user.roles, role) : false;
+    });
+
+    Template.registerHelper('log', function () {
+        console.log(this, arguments);
+    });
+
+    //Uploader.uploadUrl = Meteor.absoluteUrl("upload"); // Cordova needs absolute URL
+});

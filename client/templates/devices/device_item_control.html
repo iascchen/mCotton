@@ -1,0 +1,13 @@
+<template name="deviceControl">
+    <div class="device-detail {{gray}}">
+        <div class="device-title">
+            <h4>Control</h4>
+            <!--{{ device_id }}-->
+        </div>
+        <div class="device-desc">
+            {{#each control_events}}
+                {{> controlBoard }}
+            {{/each }}
+        </div>
+    </div>
+</template>

@@ -1,47 +1,38 @@
 <template name="moduleEdit">
-    <h3>Module</h3>
-
-    <!--<div class="form-group">-->
-        <!--<label class="control-label" for="pku">PKU</label>-->
-
-        <!--<div class="controls">-->
-            <!--<input name="pku" id="pku" type="text" value="{{pku}}" placeholder="PKU" class="form-control" readonly/>-->
-        <!--</div>-->
-    <!--</div>-->
-    <form class="main form">
-        <div class="form-group">
-            <label class="control-label" for="name">Name</label>
-
-            <div class="controls">
-                <input name="name" id="name" type="text" value="{{name}}" placeholder="Name" class="form-control"/>
-            </div>
+    {{#autoForm id="moduleEdit" collection=Collections.Modules doc=this class="main form module-detail"}}
+        <div class="module-title">
+            <h3>Edit Module</h3>
         </div>
-        <div class="form-group">
-            <label class="control-label" for="desc">Description</label>
+        <div class="module-desc">
 
-            <div class="controls">
-                <input name="desc" id="desc" type="text" value="{{desc}}" placeholder="Description"
-                       class="form-control"/>
+            {{> afQuickField name='_id' type='hidden'}}
+            {{> afQuickField name='name'}}
+            {{> afQuickField name='desc' type="textarea"}}
+
+            <div class="form-group {{#if afFieldIsInvalid name='img_id'}}has-error{{/if}}">
+                <label class="control-label">{{afFieldLabelText name='img_id'}}</label>
+                {{> afFieldInput name='img_id' value=image_val type='hidden' }}
+                {{#if afFieldIsInvalid name='img_id'}}
+                    <span class="help-block">{{{afFieldMessage name='img_id'}}}</span>
+                {{/if}}
             </div>
+            {{> imagesArea multi=false}}
+
+            {{# if image}}
+                <a href="{{image.url}}" target="_blank">
+                    <img src="{{image.url store='thumbs' uploading='/images/uploading.gif' storing='/images/storing.gif'}}"
+                         class="thumbnail"/>
+                </a>
+            {{/if}}
+
+            <a class="btn btn-info cancel">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
+            </a>
+
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Update
+            </button>
+
         </div>
-        <!--<div class="form-group">-->
-            <!--<label class="control-label" for="picture_url">picture_url</label>-->
-
-            <!--<div class="controls">-->
-                <!--<input name="picture_url" id="picture_url" type="text" value="{{picture_url}}" placeholder="Picture_url"-->
-                       <!--class="form-control"/>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label class="control-label" for="store_url">store_url</label>-->
-
-            <!--<div class="controls">-->
-                <!--<input name="store_url" id="store_url" type="text" value="{{store_url}}" placeholder="Store_url"-->
-                       <!--class="form-control"/>-->
-            <!--</div>-->
-        <!--</div>-->
-        <input type="submit" value="Submit" class="btn btn-primary submit"/>
-        <hr/>
-        <a class="btn btn-danger delete" href="#">Delete module</a>
-    </form>
+    {{/autoForm}}
 </template>

@@ -1,0 +1,16 @@
+<template name="projectItemSimple">
+    <div class="project">
+        <div class="project-title">
+            <h4>{{project.name}}</h4>
+        </div>
+        <div class="project-desc">
+            <p>ID : {{project._id}}</p>
+
+            <p>{{project.desc}}</p>
+
+            {{#each project.img_ids}}
+                {{> thumbnail id=this}}
+            {{/each}}
+        </div>
+    </div>
+</template>

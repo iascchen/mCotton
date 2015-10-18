@@ -1,4 +1,4 @@
-# README
+# README (V0.2)
 
 # mCotton 安装使用方法
 

@@ -7,12 +7,12 @@
 //#define WLAN_SSID       "YourSSID"        // Please change it. cannot be longer than 32 characters!
 //#define WLAN_PASS       "YourPassword"    // Please change it. 
 //
-//String my_app_kit_id="YourDeviceID";      // Please change it. 
+//String device_id="YourDeviceID";      // Please change it.
 
 #define WLAN_SSID       "Maker_HWF"        // Please change it. cannot be longer than 32 characters!
 #define WLAN_PASS       "microduino"    // Please change it. 
 
-String my_app_kit_id="bBsmAgYaYTayhKwJT";
+String device_id="bBsmAgYaYTayhKwJT";
 
 #include"Arduino.h"
 

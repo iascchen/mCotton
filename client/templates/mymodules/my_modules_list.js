@@ -6,6 +6,6 @@ Meteor.subscribe('mymodules', Meteor.userId());
 
 Template.myModulesList.helpers({
     my_modules: function () {
-        return MyModules.find({'status': {$ne : "retired"}}, {sort: {name: 1}});
+        return MyModules.find({'status': {$lt: STATUS_DISABLE}}, {sort: {name: 1}});
     }
 });

@@ -1,0 +1,24 @@
+<template name="deviceSummary">
+    <div class="col-sm-3 device-summary {{gray}}">
+        <a name="{{_id}}" ></a>
+        <div class="appkit-title">
+            <h3>{{name}}</h3>
+        </div>
+        <div class="appkit-desc">
+            <h4>ID : {{_id}}</h4>
+
+            <a href="{{pathFor 'deviceDetail'}}" class="btn btn-info detail">
+                <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span> Details </a>
+
+            <p>Project ID : {{project_id}}</p>
+            <p>{{desc}}</p>
+
+            {{#if status }}
+                <p>Status : {{status}}</p>
+            {{/if}}
+
+            <!--<p>owner : {{ owner_user_id}}</p>-->
+            <p>Create at : {{ livestamp create_time}} , Update at : {{ livestamp last_update_time}}</p>
+        </div>
+    </div>
+</template>

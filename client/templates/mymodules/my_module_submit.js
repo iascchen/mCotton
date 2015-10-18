@@ -12,7 +12,7 @@ Template.myModuleSubmit.events({
 
         console.log(entity);
 
-        var errors = validateMyAppKit(entity);
+        var errors = validateDevice(entity);
         if (errors.name || errors.module_id)
             return Session.set('myModuleSubmitErrors', errors);
 

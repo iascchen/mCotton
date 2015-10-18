@@ -4,6 +4,12 @@
     padding: 0px;
 }
 
+.home-card {
+    height: 240px;
+    margin: 0px;
+    padding: 40px;
+}
+
 .grid-block, .main, .post, .comments li, .comment-form {
     border: 1px solid #AAA;
     border-bottom: 3px solid #BBB;
@@ -17,15 +23,53 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
 
-.appkit-module, .appkit-data, .appkit-control, .module-module {
+.array-editor{
+    border-left: 3px solid #BBB;
+    margin: 10px;
+    overflow: hidden;
+    background: #fff;
+    padding: 10px;
+}
+
+.project-module, .project-data, .project-control, .module-module {
     border-bottom: 1px solid #BBB;
     border-right: 1px solid #BBB;
     border-radius: 10px;
     margin: 10px;
 }
 
-.appkit {
+.project, .project-summary {
     border-left: 10px solid #0B0;
+    border-bottom: 3px solid #BBB;
+    margin: 10px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.project-detail {
+    border-left: 10px solid #0B0;
+    border-bottom: 3px solid #BBB;
+    margin: 10px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.device, .device-summary {
+    border-left: 10px solid #00B;
+    border-bottom: 3px solid #BBB;
+    margin: 10px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.device-detail {
+    border-left: 10px solid #00B;
     border-bottom: 3px solid #BBB;
     margin: 10px;
     overflow: hidden;
@@ -37,6 +81,25 @@
 .module {
     border-left: 10px solid #BB0;
     border-bottom: 3px solid #BBB;
+    margin: 10px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.module-detail {
+    border-left: 10px solid #BB0;
+    border-bottom: 3px solid #BBB;
+    margin: 10px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.image-box {
+    border: 2px solid #BBB;
     margin: 10px;
     overflow: hidden;
     background: #fff;
@@ -76,6 +139,39 @@ body {
 
 #spinner {
     height: 300px;
+}
+
+.imageArea {
+    margin-bottom: 70px;
+}
+
+.imageArea .media {
+    margin-top: 0;
+    margin-right: 10px;
+    width: 300px;
+    max-width: 300px;
+}
+
+.scorll-item {
+    height: auto;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    padding: 80px 0 150px 0;
+    background-size: 100% auto;
+}
+
+.mtitle {
+    font-size: 18px;
+    color: #000;
+}
+
+.mdesc {
+    font-size: 16px;
+    color: #000;
+    padding: 10px 80px 0 80px;
+    text-align: left;
 }
 
 .post {

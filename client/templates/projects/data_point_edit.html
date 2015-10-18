@@ -1,0 +1,38 @@
+<template name="dataPointEdit">
+    <div class="row project">
+        <div class="col-md-12">
+            <a href="{{pathFor 'projectDetail'}}" class="btn btn-info">
+                <h3> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> {{name}} </h3>
+            </a>
+        </div>
+        <div class="col-md-12 project">
+            <div class="col-md-5">
+                <h3>Data Points</h3>
+                <!--{{ json }}-->
+                {{#each data_points}}
+                    <div class="col-md-5 bootcards-cards image-box">
+                        <p><img src='{{ showDataTypeIcon data_type }}' alt='{{ data_type }}'/>
+                            <b>{{data_name}} </b></p>
+
+                        <p>
+                            <p>{{ data_desc }}</p>
+                            <b>Unit : </b>{{ unit }}
+                            {{#if data_show_list}}
+                                <b>Listshow : </b>{{ data_show_list }}
+                            {{/if}}
+                        </p>
+                        <span class="pull-right">
+                            <a href="#" name="{{../_id}}" class="btn btn-danger delete">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
+                        </span>
+                    </div>
+                {{/each}}
+            </div>
+
+            <div class="col-md-5 array-editor">
+                <h4>New Data Point</h4>
+                {{> quickForm id="dataPointEdit" type="update-pushArray" collection=Collections.Projects doc=this scope="data_points"}}
+            </div>
+        </div>
+    </div>
+</template>

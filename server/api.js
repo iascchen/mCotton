@@ -2,6 +2,8 @@
  * Created by chenhao on 15/4/16.
  */
 
+REST_API_VER = "v1.0";
+
 CONTROL_EVENT_RESEND_INTERVAL = 2 * 60000;
 DATA_EVENT_RESEND_INTERVAL = 2 * 60000;
 DEVICE_ID_REQ_TIMEOUT = 1 * 60000;
@@ -27,11 +29,11 @@ Api.addRoute(':version/d', {authRequired: false}, {
     post: function () {
         // console.log("request", this.request.body);
         var msg = _.clone(this.request.body);
-        var my_app_kit_id = msg.my_app_kit_id;
+        var device_id = msg.device_id;
 
         var ret = Meteor.call('dataMessageInsert', msg);
         if (ret) {
-            var ctrl_ret = Meteor.call('controlEventsQuerySmall', {my_app_kit_id: my_app_kit_id});
+            var ctrl_ret = Meteor.call('controlEventsQuerySmall', {device_id: device_id});
             if (ctrl_ret) {
                 _.extend(ret, ctrl_ret);
             }
@@ -66,14 +68,14 @@ Api.addRoute(':version/ce', {authRequired: false}, {
 });
 
 // Get Latest Control Event
-Api.addRoute(':version/ce/:my_app_kit_id', {authRequired: false}, {
+Api.addRoute(':version/ce/:device_id', {authRequired: false}, {
     get: function () {
-        var my_app_kit_id = this.params.my_app_kit_id;
-        //console.log("ce/:my_app_kit_id", my_app_kit_id);
+        var device_id = this.params.device_id;
+        //console.log("ce/:device_id", device_id);
 
-        var ret = Meteor.call('controlEventsQuery', {my_app_kit_id: my_app_kit_id});
+        var ret = Meteor.call('controlEventsQuery', {device_id: device_id});
         if (ret) {
-            console.log("ce/" + my_app_kit_id, ret);
+            console.log("ce/" + device_id, ret);
             return ret;
         }
         return {
@@ -84,14 +86,14 @@ Api.addRoute(':version/ce/:my_app_kit_id', {authRequired: false}, {
 });
 
 // Get Latest Data Event
-Api.addRoute(':version/de/:my_app_kit_id', {authRequired: false}, {
+Api.addRoute(':version/de/:device_id', {authRequired: false}, {
     get: function () {
-        var my_app_kit_id = this.params.my_app_kit_id;
-        //console.log("ce/:my_app_kit_id", my_app_kit_id);
+        var device_id = this.params.device_id;
+        //console.log("ce/:device_id", device_id);
 
-        var ret = Meteor.call('dataEventsQuery', {my_app_kit_id: my_app_kit_id});
+        var ret = Meteor.call('dataEventsQuery', {device_id: device_id});
         if (ret) {
-            console.log("de/" + my_app_kit_id, ret);
+            console.log("de/" + device_id, ret);
             return ret;
         }
         return {
@@ -101,24 +103,24 @@ Api.addRoute(':version/de/:my_app_kit_id', {authRequired: false}, {
     }
 });
 
-// Get AppKit
-Api.addRoute(':version/appkits', {authRequired: false}, {
+// Get Project
+Api.addRoute(':version/projects', {authRequired: false}, {
     get: function () {
-        var ret = AppKits.find({'status': {$ne: "retired"}}).fetch();
+        var ret = Collections.Projects.find({'status': {$lt: STATUS_DISABLE}}).fetch();
 
         if (ret) {
-            //console.log("appkits/", ret);
+            //console.log("projects/", ret);
             return ret;
         }
         return {
             statusCode: 400,
-            body: {status: "fail", message: "Unable to get AppKits"}
+            body: {status: "fail", message: "Unable to get Projects"}
         };
     }
 });
 
-// Create MyDevice
-Api.addRoute(':version/myappkits', {authRequired: true}, {
+// Create Device
+Api.addRoute(':version/devices', {authRequired: true}, {
     put: function () {
         var body = _.clone(this.request.body);
         console.log("user_id", this.userId);
@@ -126,41 +128,41 @@ Api.addRoute(':version/myappkits', {authRequired: true}, {
         var entity = _.extend(body, {owner_user_id: this.userId});
         console.log("body:", entity);
 
-        var ret = Meteor.call('myAppKitInsert', entity);
+        var ret = Meteor.call('deviceInsert', entity);
         if (ret) {
             // return {status: "excused", data: ret};
-            console.log("myAppKitInsert", ret);
+            console.log("deviceInsert", ret);
             return ret;
         }
         return {
             statusCode: 400,
-            body: {status: "fail", message: "Unable to create MyDevice"}
+            body: {status: "fail", message: "Unable to create Device"}
         };
     },
     get: function () {
         // console.log("user_id", this.userId);
-        var ret = MyAppKits.find({owner_user_id: this.userId, 'status': {$ne: "retired"}}).fetch();
+        var ret = Collections.Devices.find({owner_user_id: this.userId, 'status': {$lt: STATUS_DISABLE}}).fetch();
 
         if (ret) {
-            //console.log("myappkits/", ret);
+            //console.log("devices/", ret);
             return ret;
         }
         return {
             statusCode: 400,
-            body: {status: "fail", message: "Unable to get MyDevice"}
+            body: {status: "fail", message: "Unable to get Device"}
         };
     }
 });
 
 // Get Line Data Chart
-Api.addRoute(':version/vis/:my_app_kit_id/:period', {authRequired: true}, {
+Api.addRoute(':version/vis/:device_id/:period', {authRequired: true}, {
     get: function () {
         // console.log("In Visualization");
 
-        var my_app_kit_id = this.params.my_app_kit_id;
+        var device_id = this.params.device_id;
         var period = this.params.period;
 
-        // console.log("my_app_kit_id / period : ", my_app_kit_id+ " / "+ period);
+        // console.log("device_id / period : ", device_id+ " / "+ period);
 
         var timeStart, timeinfo;
 
@@ -175,8 +177,8 @@ Api.addRoute(':version/vis/:my_app_kit_id/:period', {authRequired: true}, {
             timeStart = moment(timeinfo - 1, "WW");
         }
 
-        var events = DataEvents.find({
-                my_app_kit_id: my_app_kit_id,
+        var events = Collections.DataEvents.find({
+                device_id: device_id,
                 data_submit_time: {$gte: timeStart.toDate()}
             },
             {sort: {data_name: 1, data_submit_time: 1}}).fetch();
@@ -187,10 +189,11 @@ Api.addRoute(':version/vis/:my_app_kit_id/:period', {authRequired: true}, {
         var retjson = [], values = [];
         var currentSerial;
         var nm, vl, dt;
-        for (var i = 0; i < events.length; i++) {
-            nm = events[i].data_name;
-            vl = parseFloat(events[i].data_value);
-            dt = events[i].data_submit_time.getTime();
+
+        _.forEach( events , function(event){
+            nm = event.data_name;
+            vl = parseFloat(event.data_value);
+            dt = event.data_submit_time.getTime();
 
             //console.log("getDataEvent", nm, vl, dt);
 
@@ -209,7 +212,31 @@ Api.addRoute(':version/vis/:my_app_kit_id/:period', {authRequired: true}, {
 
             if (vl != 0)
                 values.push({x: dt, y: vl});
-        }
+        } );
+
+        //for (var i = 0; i < events.length; i++) {
+        //    nm = events[i].data_name;
+        //    vl = parseFloat(events[i].data_value);
+        //    dt = events[i].data_submit_time.getTime();
+        //
+        //    //console.log("getDataEvent", nm, vl, dt);
+        //
+        //    if (nm != currentKey) {
+        //        if (currentKey) {
+        //            currentSerial = {
+        //                key: currentKey,
+        //                values: values
+        //            };
+        //            retjson.push(currentSerial);
+        //        }
+        //
+        //        currentKey = nm;
+        //        values = [];
+        //    }
+        //
+        //    if (vl != 0)
+        //        values.push({x: dt, y: vl});
+        //}
 
         currentSerial = {
             key: currentKey,
@@ -217,7 +244,7 @@ Api.addRoute(':version/vis/:my_app_kit_id/:period', {authRequired: true}, {
         };
         retjson.push(currentSerial);
 
-        //console.log("vis/" + my_app_kit_id, retjson);
+        //console.log("vis/" + device_id, retjson);
         return retjson;
     }
 });
@@ -301,13 +328,13 @@ Api.addRoute(':version/clientIp', {authRequired: false}, {
  */
 
 // Get Latest Data Event
-Api.addRoute(':version/de_city/:my_app_kit_id', {authRequired: false}, {
+Api.addRoute(':version/de_city/:device_id', {authRequired: false}, {
     get: function () {
-        var my_app_kit_id = this.params.my_app_kit_id;
+        var device_id = this.params.device_id;
 
-        var ret = Meteor.call('cityDataEventsQuery', {my_app_kit_id: my_app_kit_id});
+        var ret = Meteor.call('cityDataEventsQuery', {device_id: device_id});
         if (ret) {
-            console.log("de_city/" + my_app_kit_id, ret);
+            console.log("de_city/" + device_id, ret);
             return ret;
         }
         return {
@@ -318,13 +345,13 @@ Api.addRoute(':version/de_city/:my_app_kit_id', {authRequired: false}, {
 });
 
 // Get Line Data Chart
-Api.addRoute(':version/vis_city/:my_app_kit_id', {authRequired: true}, {
+Api.addRoute(':version/vis_city/:device_id', {authRequired: true}, {
     get: function () {
         // console.log("In Visualization");
 
-        var my_app_kit_id = this.params.my_app_kit_id;
+        var device_id = this.params.device_id;
 
-        var events = Meteor.call('cityDataEventsQuery', {my_app_kit_id: my_app_kit_id});
+        var events = Meteor.call('cityDataEventsQuery', {device_id: device_id});
 
         if (events) {
             var nodes_map = {}, nodes = [], links = [];
@@ -332,8 +359,9 @@ Api.addRoute(':version/vis_city/:my_app_kit_id', {authRequired: true}, {
 
             // handle nodes
             var node_length = 0;
-            for (var i = 0; i < events.length; i++) {
-                cell = events[i].data_value;
+            _.forEach( events , function(event){
+            // for (var i = 0; i < events.length; i++) {
+                cell = event.data_value;
 
                 if (!nodes_map[cell.ID]) {
                     nodes_map[cell.ID] = {
@@ -347,12 +375,13 @@ Api.addRoute(':version/vis_city/:my_app_kit_id', {authRequired: true}, {
 
                     node_length++;
                 }
-            }
+            });
             // console.log("nodes", nodes);
 
             // handle links
-            for (var i = 0; i < events.length; i++) {
-                cell = events[i].data_value;
+            _.forEach( events , function(event){
+            //for (var i = 0; i < events.length; i++) {
+                cell = event.data_value;
 
                 from_node_id = nodes_map[cell.ID]._id;
 
@@ -374,7 +403,7 @@ Api.addRoute(':version/vis_city/:my_app_kit_id', {authRequired: true}, {
                         }
                     }
                 }
-            }
+            });
             // console.log("links", links);
 
             var retjson = {

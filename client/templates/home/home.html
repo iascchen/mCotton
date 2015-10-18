@@ -1,3 +1,39 @@
 <template name="home">
-    Home
+    <div class="row col-sm-12">
+        {{#each ultraVisualData}}
+            {{> scroll_item}}
+        {{/each}}
+    </div>
 </template>
+
+<template name="scroll_item">
+    <!--<div class="anchor" name="{{paragraph}}"></div>-->
+    {{#if title}}
+        <div class="col-sm-4 home-card">
+            <section data-speed="4" data-type="background">
+                <div class="mtitle text-center">
+                    <div data-0="left:100%;" data-1000="left:100%;" data-top="color:rgb(255,0,0);"
+                         data-bottom="color:rgb(0,0,0);">
+                        <h1>{{safe 'title'}}</h1>
+                    </div>
+                </div>
+
+                <!--<div class="text-center">-->
+                <!--<a class="btn btn-success btn-large" href="/devices">Play My Devices &raquo;</a>-->
+                <!--<a class="btn btn-success btn-large" href="/projects">Something Cool &raquo;</a>-->
+                <!--</div>-->
+
+                <div class="mdesc text-center">
+                    <p>{{description}}</p>
+                </div>
+            </section>
+        </div>
+    {{/if}}
+
+    {{#unless title}}
+        <div class="col-sm-4 home-card"
+             style="background: url({{background}}) 50% 0 fixed no-repeat;">
+        </div>
+    {{/unless}}
+</template>
+

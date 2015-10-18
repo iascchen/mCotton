@@ -1,0 +1,55 @@
+<template name="projectImagesSelect">
+    <div class="row project">
+        <div class="col-md-12">
+            <a href="{{pathFor 'projectDetail'}}" class="btn btn-info">
+                <h3><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> {{name}} </h3>
+            </a>
+        </div>
+        <div class="col-md-12 project">
+            <div class="col-md-5">
+                <h3>Selected Images</h3>
+                <!--{{ json }}-->
+                {{#each img_ids}}
+                    <!--{{this}}-->
+                    <div class="col-md-5 bootcards-cards image-box">
+                        {{> projectImagesSelected id=this}}
+                    </div>
+                {{/each}}
+            </div>
+
+            <div class="col-md-5 array-editor">
+                <h4>Images</h4>
+                {{> imagesArea multi=true}}
+
+                {{#each all_images_ids}}
+                    <!--{{this._id}}-->
+                    <div class="col-md-5 bootcards-cards image-box">
+                        {{> projectImagesAll id=this._id}}
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="projectImagesAll">
+    <div class="bootcards-cards">
+        <b>{{_.name}}</b>
+        {{> thumbnail id=_._id }}
+        <span class="pull-right">
+            <a href="#" name="{{../../_id}}" class="btn btn-success select">
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> </a>
+        </span>
+    </div>
+</template>
+
+<template name="projectImagesSelected">
+    <div class="bootcards-cards">
+        <b>{{_.name}}</b>
+        {{> thumbnail id=_._id }}
+        <span class="pull-right">
+            <a href="#" name="{{../../_id}}" class="btn btn-info delete">
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </a>
+        </span>
+    </div>
+</template>

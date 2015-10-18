@@ -1,0 +1,13 @@
+<template name="deviceData">
+    <div class="device-detail {{gray}}">
+        <div class="device-title">
+            <h4>Data <a href="{{pathFor 'deviceDataVisual'}}" class="btn btn-info history">
+                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></a> </h4>
+        </div>
+        <div class="device-desc">
+            {{#each data_events}}
+                {{> dataEvent }}
+            {{/each }}
+        </div>
+    </div>
+</template>

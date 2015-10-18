@@ -4,24 +4,55 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
-
 underscore
 
 iron:router
+
+#####
+# RESTful API
+#####
 nimble:restivus
 
-# mqtt
-# mkarliner:mqtt
-# mkarliner:mqtt-regex
-# mkarliner:mosca
+#####
+# MQTT
+#####
 
+mkarliner:mqtt
+mkarliner:mosca
+
+#####
 # CoAP
+#####
 # enteye:coap
 
 alanning:roles
 
+#####
+# schemas
+#####
+
 aldeed:collection2
+
+#####
+# File & images uplaod
+#####
+
+cfs:standard-packages
+cfs:gridfs
+cfs:ui
+# cfs:autoform
+raix:ui-dropped-event
+cfs:graphicsmagick
+mrt:numeral
+
+#####
+# UI
+#####
+
+aldeed:autoform
+
+yogiben:autoform-modals
+yogiben:autoform-map
 
 twbs:bootstrap
 ian:accounts-ui-bootstrap-3
@@ -32,7 +63,6 @@ ajduke:bootstrap-tagsinput
 
 sacha:spin
 
-npm-container
 meteorhacks:npm
 momentjs:moment
 
@@ -51,3 +81,20 @@ tsega:skrollr
 
 d3
 mrt:nvd3js
+
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
+
+npm-container

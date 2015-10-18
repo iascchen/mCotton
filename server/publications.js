@@ -2,24 +2,24 @@
  * Created by chenhao on 15/4/7.
  */
 
-Meteor.publish('appkits', function () {
-    return AppKits.find();
+Meteor.publish("images", function() {
+    return Collections.Images.find();
+});
+
+Meteor.publish("files", function() {
+    return Collections.Files.find();
 });
 
 Meteor.publish('modules', function () {
-    return Modules.find();
+    return Collections.Modules.find();
 });
 
-Meteor.publish('datapoints', function () {
-    return DataPoints.find();
+Meteor.publish('projects', function () {
+    return Collections.Projects.find();
 });
 
-Meteor.publish('controlpoints', function () {
-    return ControlPoints.find();
-});
-
-Meteor.publish('myappkits', function (userid) {
-    return MyAppKits.find({owner_user_id: userid});
+Meteor.publish('devices', function (userid) {
+    return Collections.Devices.find({owner_user_id: userid});
 });
 
 Meteor.publish('mymodules', function (userid) {
@@ -27,17 +27,30 @@ Meteor.publish('mymodules', function (userid) {
 });
 
 Meteor.publish('dataevents', function (userid) {
-    return DataEvents.find({owner_user_id: userid});
+    return Collections.DataEvents.find({owner_user_id: userid});
 });
 
 Meteor.publish('controlevents', function (userid) {
-    return ControlEvents.find({owner_user_id: userid});
+    return Collections.ControlEvents.find({owner_user_id: userid});
 });
 
 Meteor.publish('datamessages', function (userid) {
-    return DataMessages.find({owner_user_id: userid});
+    return Collections.DataMessages.find({owner_user_id: userid});
 });
 
 //Meteor.publish('gen_dev_id_reqs', function () {
 //    return GenDeviceIDReqs.find();
+//});
+
+//Meteor.publish('messages', function (userid) {
+//    // return DataMessages.find({owner_user_id: userid});
+//    var self = this;
+//    mqttClient.on("message", function (topic, message) {
+//        var msg = {
+//            message: message, topic: topic, ts: new Date()
+//        };
+//        self.added("messages", new Date().toString(), msg);
+//    });
+//    self.ready();
+//    ready = true;
 //});

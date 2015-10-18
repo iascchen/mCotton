@@ -1,0 +1,17 @@
+<template name="deviceSubmit">
+
+    {{#autoForm id="deviceEdit" collection=Collections.Devices class="main form project-detail"}}
+        <h3>Create My New Device</h3>
+
+        {{> projectItemSimple _id=project_id}}
+
+        {{> afQuickField name='project_id' value=project_id type='hidden'}}
+        {{> afQuickField name='name'}}
+        {{> afQuickField name='desc' type="textarea"}}
+
+        <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save
+        </button>
+    {{/autoForm}}
+
+</template>

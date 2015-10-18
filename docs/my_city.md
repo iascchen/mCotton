@@ -45,7 +45,7 @@ Headers:
 Post Bodys:
 
 	{
-	  "my_app_kit_id": "TcWLAo99MRtxNYKRk",
+	  "device_id": "TcWLAo99MRtxNYKRk",
 	  "sid": 1430820844877,
 	  "Cell" : {
 	    "N": "3",
@@ -61,12 +61,12 @@ Post Bodys:
 	}
 
 
-#### my_app_kit_id
+#### device_id
 
 After logined, user can generate a Smart City instance from mcotton server. 
 Select menu AppKit, click the "Assemble" button of "Smart City", fill the name of you device.
 Refresh "My Devices" tab, you can find new device had been added.  
-The ID value is "my_app_kit_id"
+The ID value is "device_id"
 
 #### sid
 
@@ -103,7 +103,7 @@ D : Other Cell id of east, west, south, north.
 修改以下内容跟你的服务器和 DeviceID 一致：
 
 	var host = "localhost", port = 3000;
-	var my_app_kit_id_city = "D9hvcj9oZh2Ao5dog";
+	var device_id_city = "D9hvcj9oZh2Ao5dog";
 	
 ![city_04.png](city_04.png)
 ![city_05.png](city_05.png)
@@ -129,8 +129,8 @@ D : Other Cell id of east, west, south, north.
 	
 ![city_07.png](city_07.png)
 
-	getCityDataEvents(my_app_kit_id); // 获得最近一次城市状态上传数据
-    getCityVisualization(my_app_kit_id);	// 讲最近一次城市状态上传数据处理成二元图形式，用于在 Web 端用力导向图显示
+	getCityDataEvents(device_id); // 获得最近一次城市状态上传数据
+    getCityVisualization(device_id);	// 讲最近一次城市状态上传数据处理成二元图形式，用于在 Web 端用力导向图显示
      
 返回数据示例：
 [city_api_resp.text](https://github.com/iascchen/mCotton_client/tree/master/my_city/city_api_resp.text)

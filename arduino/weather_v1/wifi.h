@@ -127,8 +127,8 @@ bool voCC3000_ping(int a) {
     www.println("*");
 
 
-    dataToSend="{\"my_app_kit_id\":";
-    dataToSend+="\""+my_app_kit_id+"\"";
+    dataToSend="{\"device_id\":";
+    dataToSend+="\""+device_id+"\"";
     dataToSend+=",\"Temperature\":";
     dtostrf(sensor_tem,1,2,buf); 
     dataToSend+="\""+String(buf)+"\"";
@@ -177,8 +177,8 @@ bool voCC3000_buttonPost(int a) {
     www.print("/");
     www.println("*");
 
-    dataToSend="{\"my_app_kit_id\":";
-    dataToSend+="\""+my_app_kit_id+"\"";
+    dataToSend="{\"device_id\":";
+    dataToSend+="\""+device_id+"\"";
     dataToSend+=",\"control_name\":";
     dataToSend+="\"Status\"";
     dataToSend+=",\"control_value\":";
