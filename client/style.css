@@ -152,15 +152,15 @@ body {
     max-width: 300px;
 }
 
-.scorll-item {
-    height: auto;
-    margin: 0 auto;
-    width: 100%;
-    position: relative;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
-    padding: 80px 0 150px 0;
-    background-size: 100% auto;
-}
+/*.scorll-item {*/
+    /*height: auto;*/
+    /*margin: 0 auto;*/
+    /*width: 100%;*/
+    /*position: relative;*/
+    /*box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);*/
+    /*padding: 80px 0 150px 0;*/
+    /*background-size: 100% auto;*/
+/*}*/
 
 .mtitle {
     font-size: 18px;
@@ -170,7 +170,7 @@ body {
 .mdesc {
     font-size: 16px;
     color: #000;
-    padding: 10px 80px 0 80px;
+    padding: 10px 20px 0 20px;
     text-align: left;
 }
 

@@ -18,10 +18,11 @@
                     </div>
                 </div>
 
-                <!--<div class="text-center">-->
-                <!--<a class="btn btn-success btn-large" href="/devices">Play My Devices &raquo;</a>-->
-                <!--<a class="btn btn-success btn-large" href="/projects">Something Cool &raquo;</a>-->
-                <!--</div>-->
+                <div class="text-center">
+                    {{#each buttons}}
+                        <a class="btn btn-success btn-large" href="{{href}}">{{label}}</a>
+                    {{/each}}
+                </div>
 
                 <div class="mdesc text-center">
                     <p>{{description}}</p>
