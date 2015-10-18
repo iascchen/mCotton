@@ -2,6 +2,17 @@
  * Created by chenhao on 15/4/7.
  */
 
+Meteor.publish('secrets', function (group) {
+    if (Roles.userIsInRole(this.userId, ['view-secrets','admin'], group)) {
+        return Meteor.secrets.find({group: group});
+    } else {
+        // user not authorized. do not publish secrets
+        this.stop();
+        return;
+
+    }
+});
+
 Meteor.publish("images", function() {
     return Collections.Images.find();
 });

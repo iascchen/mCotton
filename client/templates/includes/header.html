@@ -17,27 +17,22 @@
                     <a class="navbar-brand" href="{{pathFor 'devicesList'}}">
                         <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span> My Devices </a>
                     <!--<a class="navbar-brand" href="{{pathFor 'myModulesList'}}">-->
-                        <!--<span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> My Modules </a>-->
+                    <!--<span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> My Modules </a>-->
+                {{/if}}
+
+
+                {{#if isInRole 'admin'}}
+                    <a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        Admin <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu navbar-nav pull-right">
+                        <li><a href="{{pathFor 'manageRoles'}}"> Manage Users</a></li>
+                        <li><a href="{{pathFor 'modulesList'}}"> Modules </a></li>
+                        <li><a href="{{pathFor 'imageStore'}}"> Image Store </a></li>
+                    </ul>
                 {{/if}}
             </div>
-
-            {{#if isGranted 'admin'}}
-                <div class="dropdown">
-                    <button class="navbar-brand dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Admin
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="{{pathFor 'modulesList'}}">
-                            <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span> Modules </a>
-                        </li>
-                        <li><a href="{{pathFor 'imageStore'}}">
-                            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Image Store </a>
-                        </li>
-                    </ul>
-                </div>
-            {{/if}}
-
             <div class="collapse navbar-collapse" id="navigation">
                 <ul class="nav navbar-nav navbar-right">
                     {{> loginButtons}}

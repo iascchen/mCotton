@@ -9,6 +9,29 @@ underscore
 iron:router
 
 #####
+# Account
+#####
+
+accounts-password
+# accounts-facebook
+# accounts-twitter
+# accounts-weibo
+accounts-github
+# accounts-google
+accounts-base
+
+alanning:roles
+twbs:bootstrap
+
+ian:accounts-ui-bootstrap-3
+
+# fortawesome:fontawesome
+# yogiben:admin
+
+jparker:crypto-hmac
+jparker:crypto-sha256
+
+#####
 # RESTful API
 #####
 nimble:restivus
@@ -17,21 +40,20 @@ nimble:restivus
 # MQTT
 #####
 
-mkarliner:mqtt
-mkarliner:mosca
+# mkarliner:mqtt
+# mkarliner:mosca
 
 #####
 # CoAP
 #####
 # enteye:coap
 
-alanning:roles
-
 #####
 # schemas
 #####
 
 aldeed:collection2
+dburles:collection-helpers
 
 #####
 # File & images uplaod
@@ -54,8 +76,6 @@ aldeed:autoform
 yogiben:autoform-modals
 yogiben:autoform-map
 
-twbs:bootstrap
-ian:accounts-ui-bootstrap-3
 pcuci:bootcards
 copleykj:livestamp
 ajduke:bootstrap-tagsinput
@@ -65,17 +85,6 @@ sacha:spin
 
 meteorhacks:npm
 momentjs:moment
-
-accounts-password
-# accounts-facebook
-# accounts-twitter
-# accounts-weibo
-# accounts-github
-# accounts-google
-accounts-base
-
-jparker:crypto-hmac
-jparker:crypto-sha256
 
 tsega:skrollr
 

@@ -1,0 +1,10 @@
+<template name="manageRoles">
+    <h3>User Roles</h3>
+    {{#each users}}
+        {{> user_row }}
+    {{/each}}
+</template>
+
+<template name="user_row">
+    {{json}}
+</template>
