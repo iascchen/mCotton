@@ -13,26 +13,30 @@
                 <a class="navbar-brand" href="{{pathFor 'projectsList'}}">
                     <span class="glyphicon glyphicon-ice-lolly" aria-hidden="true"></span> Projects </a>
 
-                {{#if isGranted 'admin'}}
-                    <a class="navbar-brand" href="{{pathFor 'modulesList'}}">
-                        <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span> Modules </a>
-                {{/if}}
-
                 {{#if currentUser}}
                     <a class="navbar-brand" href="{{pathFor 'devicesList'}}">
                         <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span> My Devices </a>
-                    <a class="navbar-brand" href="{{pathFor 'myModulesList'}}">
-                        <span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> My Modules </a>
-                {{/if}}
-
-                {{#if isGranted 'admin'}}
-                    <a type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Admin </a>
-                    <a type="button" href="{{pathFor 'imageStore'}}">
-                        <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Image Store </a>
-
+                    <!--<a class="navbar-brand" href="{{pathFor 'myModulesList'}}">-->
+                        <!--<span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> My Modules </a>-->
                 {{/if}}
             </div>
+
+            {{#if isGranted 'admin'}}
+                <div class="dropdown">
+                    <button class="navbar-brand dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Admin
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="{{pathFor 'modulesList'}}">
+                            <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span> Modules </a>
+                        </li>
+                        <li><a href="{{pathFor 'imageStore'}}">
+                            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Image Store </a>
+                        </li>
+                    </ul>
+                </div>
+            {{/if}}
 
             <div class="collapse navbar-collapse" id="navigation">
                 <ul class="nav navbar-nav navbar-right">

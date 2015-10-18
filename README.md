@@ -1,5 +1,15 @@
 # README (V0.2)
 
+# What's New
+
+1. Support MQTT
+2. Admin can edit Modules, Projects, and Devices.
+3. Add mCotton introduce in Home page.
+
+# To DO
+
+
+
 # mCotton 安装使用方法
 
 mCotton 是 server ， httpclient*.js 是访问他的Node.js客户端
