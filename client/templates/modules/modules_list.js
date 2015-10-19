@@ -18,12 +18,6 @@ Template.modulesList.helpers({
  * moduleSummary
  ************/
 
-Template.moduleSummary.helpers({
-    image: function(){
-        return Collections.Images.findOne({_id: this.img_id});
-    }
-});
-
 Template.moduleSummary.events({
     'click .have': function (e) {
         e.preventDefault();

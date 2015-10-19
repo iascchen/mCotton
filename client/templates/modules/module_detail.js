@@ -1,11 +1,6 @@
 /**
  * Created by chenhao on 15/4/8.
  */
-Template.moduleDetail.helpers({
-    image: function(){
-        return Collections.Images.findOne({_id: this.img_id});
-    }
-});
 
 Template.moduleDetail.events({
     'click .have': function (e) {

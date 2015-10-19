@@ -5,10 +5,10 @@
 Meteor.subscribe('projects');
 
 Template.projectDetail.helpers({
-    images: function () {
-        if(this.img_ids)
-            return Collections.Images.find({_id: {"$in": this.img_ids}}); // Where Images is an FS.Collection instance
-    },
+    //images: function () {
+    //    if(this.img_ids)
+    //        return Collections.Images.find({_id: {"$in": this.img_ids}}); // Where Images is an FS.Collection instance
+    //},
 });
 
 Template.projectDetail.events({

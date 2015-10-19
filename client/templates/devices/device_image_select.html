@@ -1,29 +1,33 @@
-<template name="projectModulesSelect">
+<template name="deviceImagesSelect">
     <div class="col-sm-12">
-        <div class="bootcards-cards entity-item project-border">
-            <a href="{{pathFor 'projectDetail'}}" class="btn btn-info">
+        <div class="bootcards-cards entity-item device-border">
+            <a href="{{pathFor 'deviceDetail'}}" class="btn btn-info">
                 <h3><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> {{name}} </h3>
             </a>
 
-            <h3>Selected Modules</h3>
+            <h3>Selected Images</h3>
 
             <div>
                 <div class="col-md-6">
-                    {{#each module_ids}}
+                    {{#each img_ids}}
+                        <!--{{this}}-->
                         <div class="col-md-6">
                             <div class="entity-item">
-                                {{> projectModulesSelected id=this}}
+                                {{> deviceImagesSelected id=this}}
                             </div>
                         </div>
                     {{/each}}
                 </div>
 
                 <div class="col-md-6 array-editor">
-                    <h4>Modules</h4>
-                    {{#each all_module_ids}}
+                    <h4>Images</h4>
+                    {{> imagesArea multi=true}}
+
+                    {{#each all_images_ids}}
+                        <!--{{this._id}}-->
                         <div class="col-md-6">
                             <div class="entity-item">
-                                {{> projectModulesAll id=this._id}}
+                                {{> deviceImagesAll id=this._id}}
                             </div>
                         </div>
                     {{/each}}
@@ -33,36 +37,28 @@
     </div>
 </template>
 
-<template name="projectModulesAll">
+<template name="deviceImagesAll">
     <div>
         <b>{{_.name}}</b>
         <span class="pull-right">
             <a href="#" name="{{../../_id}}" class="btn btn-success select">
-                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-            </a>
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> </a>
         </span>
     </div>
-    <div class="pull-left">
-        {{desc}}
-    </div>
     <div style="text-align: center">
-        {{> thumbnail id=_.img_id }}
+        {{> thumbnail id=_._id }}
     </div>
 </template>
 
-<template name="projectModulesSelected">
-    <div>
+<template name="deviceImagesSelected">
+    <div class="bootcards-cards">
         <b>{{_.name}}</b>
         <span class="pull-right">
             <a href="#" name="{{../../_id}}" class="btn btn-info delete">
-                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-            </a>
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </a>
         </span>
     </div>
-    <div class="pull-left">
-        {{desc}}
-    </div>
     <div style="text-align: center">
-        {{> thumbnail id=_.img_id }}
+        {{> thumbnail id=_._id }}
     </div>
 </template>

@@ -1,11 +1,15 @@
 <template name="projectModule">
-    <div class="col-sm-3 bootcards-cards project-module">
-        <div class="module-title">
-            <b>{{_.name}}</b>
-        </div>
-        <div class="module-desc">
-            <!--{{_.desc}}-->
-            {{> thumbnail id=_.img_id }}
+    <div class="col-sm-4">
+        <div class="bootcards-cards entity-item module-item">
+            <div>
+                <b>{{_.name}}</b>
+            </div>
+            <div>
+                <!--{{_.desc}}-->
+            </div>
+            <div style="text-align: center">
+                {{> thumbnail id=_.img_id }}
+            </div>
         </div>
     </div>
 </template>

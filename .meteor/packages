@@ -8,9 +8,9 @@ underscore
 
 iron:router
 
-#####
+##############################
 # Account
-#####
+##############################
 
 accounts-password
 # accounts-facebook
@@ -31,33 +31,33 @@ ian:accounts-ui-bootstrap-3
 jparker:crypto-hmac
 jparker:crypto-sha256
 
-#####
+##############################
 # RESTful API
-#####
+##############################
 nimble:restivus
 
-#####
+##############################
 # MQTT
-#####
+##############################
 
 # mkarliner:mqtt
 # mkarliner:mosca
 
-#####
+##############################
 # CoAP
-#####
+##############################
 # enteye:coap
 
-#####
+##############################
 # schemas
-#####
+##############################
 
 aldeed:collection2
 dburles:collection-helpers
 
-#####
+##############################
 # File & images uplaod
-#####
+##############################
 
 cfs:standard-packages
 cfs:gridfs
@@ -67,9 +67,9 @@ raix:ui-dropped-event
 cfs:graphicsmagick
 mrt:numeral
 
-#####
+##############################
 # UI
-#####
+##############################
 
 aldeed:autoform
 
@@ -84,12 +84,22 @@ ajduke:bootstrap-tagsinput
 sacha:spin
 
 meteorhacks:npm
+npm-container
 momentjs:moment
 
-tsega:skrollr
+# tsega:skrollr
+
+##############################
+# Visualization
+##############################
 
 d3
 mrt:nvd3js
+limemakers:three
+
+##############################
+# Base
+##############################
 
 standard-minifiers
 meteor-base
@@ -105,5 +115,3 @@ random
 ejson
 spacebars
 check
-
-npm-container

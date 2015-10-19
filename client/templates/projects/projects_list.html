@@ -1,7 +1,7 @@
 <template name="projectsList">
     <h3><span class="glyphicon glyphicon-ice-lolly" aria-hidden="true"></span> Projects </h3>
 
-    <div class="projects">
+    <div>
         {{#each projects}}
             {{> projectSummary}}
         {{/each}}
@@ -13,40 +13,44 @@
 </template>
 
 <template name="projectSummary">
-    <div class="col-sm-3 project-summary bootcards-cards">
-        <div class="project-title">
-            <h3>{{name}}</h3>
-        </div>
-        <div class="project-desc">
-            <a href="{{pathFor 'projectDetail'}}" class="btn btn-info detail">
-                <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span> Details </a>
+    <div class="col-sm-4">
+        <div class="bootcards-cards entity-box project-border">
+            <div class="entity-sub">
+                <h3>{{name}}</h3>
+            </div>
+            <div class="entity-sub">
+                <a href="{{pathFor 'projectDetail'}}" class="btn btn-info detail">
+                    <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span> Details </a>
 
-            {{#if currentUser}}
-                <a href="{{pathFor 'deviceSubmit'}}" class="btn btn-primary assemble">
-                    <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span> Made It </a>
-            {{/if}}
-            <!--<a href="{{pathFor 'buyProject'}}" class="discuss btn btn-primary buy">Buy</a>-->
+                {{#if currentUser}}
+                    <a href="{{pathFor 'deviceSubmit'}}" class="btn btn-primary assemble">
+                        <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span> Made It </a>
+                {{/if}}
+                <!--<a href="{{pathFor 'buyProject'}}" class="discuss btn btn-primary buy">Buy</a>-->
 
-            <!--<h4>ID : {{_id}}</h4>-->
+                <!--<h4>ID : {{_id}}</h4>-->
 
-            <p>{{desc}}</p>
+                <p>{{desc}}</p>
 
-            {{#with firstIamge}}
-                <img src="{{this.url store='thumbs'}}" class="thumbnail" />
-            {{/with}}
+                {{#with firstIamge}}
+                    <img src="{{this.url store='thumbs'}}" class="thumbnail"/>
+                {{/with}}
+            </div>
         </div>
     </div>
 </template>
 
 <template name="projectAdd">
-    <div class="col-sm-3 project-summary bootcards-cards">
-        <div class="project-title">
-            <h3>Create New Project</h3>
-        </div>
-        <div class="project-desc">
-            <p>Create A New Project</p>
-            <a href="{{pathFor 'projectSubmit'}}" class="btn btn-success create">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create </a>
+    <div class="col-sm-4">
+        <div class="bootcards-cards entity-box project-border">
+            <div class="entity-sub">
+                <h3>Create New Project</h3>
+            </div>
+            <div class="entity-sub">
+                <p>Create A New Project</p>
+                <a href="{{pathFor 'projectSubmit'}}" class="btn btn-success create">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create </a>
+            </div>
         </div>
     </div>
 </template>

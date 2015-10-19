@@ -1,7 +1,7 @@
 <template name="modulesList">
-    <h3> <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span> Modules </h3>
+    <h3><span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span> Modules </h3>
 
-    <div class="modules">
+    <div>
         {{#each modules}}
             {{> moduleSummary}}
         {{/each}}
@@ -13,41 +13,43 @@
 </template>
 
 <template name="moduleSummary">
-    <div class="col-sm-3 bootcards-cards module">
-        <div class="module-title">
-            <h3>{{name}}</h3>
-        </div>
-        <div class="module-desc">
-            <!--<h4>ID : {{_id}}</h4>-->
+    <div class="col-sm-4">
+        <div class="bootcards-cards entity-box module-border">
+            <div class="entity-sub">
+                <h3>{{name}}</h3>
+            </div>
+            <div class="entity-sub">
+                <!--<h4>ID : {{_id}}</h4>-->
 
-            <a href="{{pathFor 'moduleDetail'}}" class="btn btn-info detail">
-                <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span> Details </a>
+                <a href="{{pathFor 'moduleDetail'}}" class="btn btn-info detail">
+                    <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span> Details </a>
 
-            {{#if currentUser}}
-                <a href="{{pathFor 'myModuleSubmit'}}" class="btn btn-primary have">
-                    <span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> Have It </a>
-            {{/if}}
-
-            <p>{{desc}}</p>
-
-            <div class="imageView">
-                {{# if image}}
-                    <img src="{{image.url store='thumbs'}}" alt="" class="thumbnail" width="100%"/>
+                {{#if currentUser}}
+                    <a href="{{pathFor 'myModuleSubmit'}}" class="btn btn-primary have">
+                        <span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> Have It </a>
                 {{/if}}
+
+                <p>{{desc}}</p>
+
+                <div style="text-align: center">
+                    {{> thumbnail id=img_id}}
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <template name="moduleAdd">
-    <div class="col-sm-3 bootcards-cards module">
-        <div class="module-title">
-            <h3>Create New Module</h3>
-        </div>
-        <div class="module-desc">
-            <p>Create A New Module</p>
-            <a href="{{pathFor 'moduleSubmit'}}" class="btn btn-success create">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create </a>
+    <div class="col-sm-4">
+        <div class="bootcards-cards entity-box module-border">
+            <div class="entity-sub">
+                <h3>Create New Module</h3>
+            </div>
+            <div class="entity-sub">
+                <p>Create A New Module</p>
+                <a href="{{pathFor 'moduleSubmit'}}" class="btn btn-success create">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create </a>
+            </div>
         </div>
     </div>
 </template>

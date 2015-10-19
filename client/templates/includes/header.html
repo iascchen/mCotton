@@ -22,11 +22,12 @@
 
 
                 {{#if isInRole 'admin'}}
-                    <a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown">
+                    <a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown"
+                       role="button" aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                         Admin <b class="caret"></b>
                     </a>
-                    <ul class="dropdown-menu navbar-nav pull-right">
+                    <ul class="dropdown-menu navbar-nav">
                         <li><a href="/admin"> Admin </a></li>
                         <li><a href="{{pathFor 'modulesList'}}"> Modules </a></li>
                         <li><a href="{{pathFor 'imageStore'}}"> Image Store </a></li>

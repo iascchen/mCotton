@@ -3,10 +3,8 @@
  */
 
 Template.deviceDetail.helpers({
-    gray: function () {
-        if (this.status >= STATUS_DISABLE) {
-            return "gray";
-        }
+    share_label: function () {
+        return SHARES[this.share].label;
     },
 });
 

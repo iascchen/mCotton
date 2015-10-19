@@ -1,50 +1,58 @@
 <template name="controlNone">
-    <p><img src='{{ showControlTypeIcon control_type control_value}}' alt='{{ control_type }}'/>
-        <b>{{control_name}}</b>
-    </p>
+    <div>
+        <p><img src='{{ showControlTypeIcon control_type control_value}}' alt='{{ control_type }}'/>
+            <b>{{control_name}}</b>
+        </p>
 
-    <p>On Building</p>
+        <p>On Building</p>
+    </div>
 </template>
 
 <template name="controlBoardChange">
-    <p><img src='{{ showControlTypeIcon control_type control_value}}' alt='{{ control_type }}'/>
-        <b>{{control_name}}</b>
-    </p>
+    <div>
+        <p><img src='{{ showControlTypeIcon control_type control_value}}' alt='{{ control_type }}'/>
+            <b>{{control_name}}</b>
+        </p>
 
-    <p><a href="" class="btn btn-info changeBtn">
-        <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Switch </a></p>
+        <p><a href="" class="btn btn-info changeBtn">
+            <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Switch </a></p>
 
-    {{#with control_submit_time}}
-        <p> {{formatDate control_submit_time}} </p>
-    {{/with}}
+        {{#with control_submit_time}}
+            <div class="pull-right"><i>{{ formatDate control_submit_time }}</i></div>
+        {{/with}}
+    </div>
 </template>
 
 <template name="controlBoardClick">
-    <p><img src='{{ showControlTypeIcon control_type control_value }}' alt='{{ control_type }}'/>
-        <b>{{control_name}}</b></p>
+    <div>
+        <p><img src='{{ showControlTypeIcon control_type control_value }}' alt='{{ control_type }}'/>
+            <b>{{control_name}}</b></p>
 
-    <p><a href="" class="btn btn-info clickBtn">
-        <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span> Click </a></p>
+        <p><a href="" class="btn btn-info clickBtn">
+            <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span> Click </a></p>
 
-    {{#with control_submit_time}}
-        <p> {{formatDate control_submit_time}} </p>
-    {{/with}}
+        {{#with control_submit_time}}
+            <div class="pull-right"><i>{{ formatDate control_submit_time }}</i></div>
+        {{/with}}
+    </div>
 </template>
 
 <template name="controlBoardInput">
-    <p><img src='{{ showControlTypeIcon control_type control_value }}' alt='{{ control_type }}'/>
-        <b>{{control_name}}</b></p>
+    <div>
+        <p><img src='{{ showControlTypeIcon control_type control_value }}' alt='{{ control_type }}'/>
+            <b>{{control_name}}</b></p>
 
-    <p>
+        <p>
 
-    <form className="sendText">
-        <input type="text" name="text" value="{{control_value}}"/>
-        <a href="" class="btn btn-info sendBtn">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Send
-        </a>
-        {{#with control_submit_time}}
-            <p> {{formatDate control_submit_time}} </p>
-        {{/with}}
-    </form>
-    </p>
+        <form className="sendText">
+            <input type="text" name="text" value="{{control_value}}"/>
+            <a href="" class="btn btn-info sendBtn">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Send
+            </a>
+            {{#with control_submit_time}}
+                <div class="pull-right"><i>{{ formatDate control_submit_time }}</i></div>
+            {{/with}}
+        </form>
+        </p>
+    </div>
 </template>

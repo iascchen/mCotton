@@ -1,12 +1,16 @@
 <template name="dataPoint">
-    <div class="col-sm-3 bootcards-cards project-data">
-        <p><img src='{{ showDataTypeIcon data_type }}' alt='{{ data_type }}'/> <b>{{data_name}} </b></p>
+    <div class="col-sm-4">
+        <div class="bootcards-cards entity-item data-item">
+            <p><img src='{{ showDataTypeIcon data_type }}' alt='{{ data_type }}' width="60px"/> <b>{{data_name}} </b></p>
 
-        <p>
-            <b>Unit : </b>{{ unit }}
-            {{#if show_list}}
-                <b>Listshow : </b>{{ show_list }}
-            {{/if}}
-        </p>
+            <p>
+                {{#if unit}}
+                    <b> Unit : </b>{{ unit }}
+                {{/if}}
+                {{#if show_list}}
+                    <b> Listshow : </b>{{ show_list }}
+                {{/if}}
+            </p>
+        </div>
     </div>
 </template>
