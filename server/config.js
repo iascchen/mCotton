@@ -25,14 +25,11 @@ Azure_SB_Uri = 'https://' + Azure_SB_Namespace + Azure_SB_Path;
 
 MQTT_ENABLE = true;
 
-MQTT_DB_HOST = Meteor.settings.mqttDbHost ? Meteor.settings.mqttDbHost : "localhost";
-MQTT_DB_PORT = Meteor.settings.mqttDbPort ? Meteor.settings.mqttDbPort : "3001";
-
 MQTT_API_VER = "v1.0";
 
 MQTT_HOST = "localhost";
 MQTT_PORT = 1883;
-MQTT_DB_URL = 'mongodb://' + MQTT_DB_HOST + ':' + MQTT_DB_PORT + '/mqtt';
+MQTT_DB_URL = Meteor.settings.mqttDbUrl ? Meteor.settings.mqttDbUrl : 'mongodb://localhost:3001/mqtt';
 
 MQTT_STORE = {
     type: 'mongo',

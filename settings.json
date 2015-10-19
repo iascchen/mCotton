@@ -1,4 +1,3 @@
 {
-    "mqttDbHost": "mongodb",
-    "mqttDbPort": "3001"
+    "mqttDbUrl": "mongodb://mongodb:3001/mqtt"
 }
