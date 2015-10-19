@@ -34,12 +34,12 @@ Template.controlBoardClick.events({
         var device_id = this.device_id;
         var device = Collections.Devices.findOne({_id: device_id});
 
-        var value = this.control_value;
+        var value = "1";
 
         var entity = {
             control_name: this.control_name, control_type: this.control_type,
             device_id: this.device_id, owner_user_id: device.owner_user_id,
-            control_value: value.toString(), control_submit_time: new Date(),
+            control_value: value, control_submit_time: new Date(),
         };
 
         // console.log("ControlEvents.insert", entity);

@@ -1,9 +1,9 @@
 /**
  * Created by chenhao on 15/10/17.
  */
-/**
- * Created by chenhao on 15/4/8.
- */
+
+Meteor.subscribe('devices', Meteor.userId());
+
 Template.deviceEdit.events({
     'submit form': function (e) {
         e.preventDefault();
@@ -18,7 +18,7 @@ Template.deviceEdit.events({
 
         console.log("deviceEdit", properties);
 
-        var errors = validateProject(properties);
+        var errors = validateDevice(properties);
         if (errors.name || errors.desc)
             return Session.set('deviceSubmitErrors', errors);
 
@@ -29,7 +29,7 @@ Template.deviceEdit.events({
 
         console.log("deviceEdit", entity);
 
-        Collections.Projects.update(currentId, {$set: entity}, function (error) {
+        Collections.Devices.update(currentId, {$set: entity}, function (error) {
             if (error) {
                 throwError(error.reason);
             } else {
