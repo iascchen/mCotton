@@ -48,11 +48,19 @@ var authorizeSubscribe = function (client, topic, callback) {
 };
 
 Meteor.startup(function () {
+    var mqttDbUrl = getEnv("mqttDbUrl", "mongodb://localhost:3001/mqtt");
+
     var settings = {
         port: MQTT_PORT,
-        backend: MQTT_STORE
+        backend: {
+            type: 'mongo',
+            url: mqttDbUrl,
+            pubsubCollection: 'ascoltatori',
+            mongo: {}
+        }
     };
-    console.log("settings" ,settings);
+
+    console.log("mqtt mosca settings", settings);
 
     var server = new mosca.Server(settings);
 

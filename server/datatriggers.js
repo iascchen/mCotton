@@ -65,17 +65,21 @@ var send_to_event_hub = function (jsonmsg) {
 
 var contorl_cmd = "c";
 
-var settings = {
-    // keepalive: 10,
-    // clean: false,
-    // protocolId: 'MQIsdp',
-    // protocolVersion: 3,
-    // clientId: 'client-b',
-    host: MQTT_HOST,
-    port: MQTT_PORT
-};
-
 publishControl = function (event) {
+    var mqttHost = getEnv("mqttHost", "localhost");
+    var mqttPort = getEnv("mqttPort", "1883");
+
+    var settings = {
+        // keepalive: 10,
+        // clean: false,
+        // protocolId: 'MQIsdp',
+        // protocolVersion: 3,
+        // clientId: 'client-b',
+        host: mqttHost,
+        port: MQTT_PORT
+    };
+    console.log("mqtt client settings", settings);
+
     var controls = [MQTT_API_VER, contorl_cmd, event.owner_user_id, event.device_id];
     var control_topic = controls.join("/");
 

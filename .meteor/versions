@@ -105,6 +105,7 @@ oauth@1.1.6
 oauth2@1.1.5
 observe-sequence@1.0.7
 ordered-dict@1.0.4
+pauldowman:dotenv@1.0.1
 pcuci:bootcards@1.0.0_6
 promise@0.5.0
 raix:eventemitter@0.1.3
