@@ -17,9 +17,9 @@
         <p><a href="" class="btn btn-info changeBtn">
             <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Switch </a></p>
 
-        {{#with control_submit_time}}
+        {{#if control_submit_time}}
             <div class="pull-right"><i>{{ formatDate control_submit_time }}</i></div>
-        {{/with}}
+        {{/if}}
     </div>
 </template>
 
@@ -31,9 +31,9 @@
         <p><a href="" class="btn btn-info clickBtn">
             <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span> Click </a></p>
 
-        {{#with control_submit_time}}
+        {{#if control_submit_time}}
             <div class="pull-right"><i>{{ formatDate control_submit_time }}</i></div>
-        {{/with}}
+        {{/if}}
     </div>
 </template>
 
@@ -49,9 +49,9 @@
             <a href="" class="btn btn-info sendBtn">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Send
             </a>
-            {{#with control_submit_time}}
+            {{#if control_submit_time}}
                 <div class="pull-right"><i>{{ formatDate control_submit_time }}</i></div>
-            {{/with}}
+            {{/if}}
         </form>
         </p>
     </div>

@@ -42,7 +42,7 @@ Template.controlBoardClick.events({
             control_value: value, control_submit_time: new Date(),
         };
 
-        // console.log("ControlEvents.insert", entity);
+        console.log("ControlEvents.insert", entity);
         Collections.ControlEvents.insert(entity);
     }
 });
