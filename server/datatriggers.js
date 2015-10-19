@@ -2,6 +2,10 @@
  * Created by chenhao on 15/4/16.
  */
 
+/*
+
+TODO , Porting buffalo to Linux
+
 ////////////////////////
 // AZURE Event Hub
 
@@ -59,6 +63,7 @@ var send_to_event_hub = function (jsonmsg) {
         console.error(e);
     });
 };
+*/
 
 ////////////////////////
 // MQTT
@@ -166,6 +171,7 @@ Meteor.startup(
                         Collections.DataEvents.insert(_event);
                     }
 
+                    /*
                     //////////////////////////////////
                     //// send to Azure Event Hubs
 
@@ -175,6 +181,7 @@ Meteor.startup(
                         });
                         send_to_event_hub(message);
                     }
+                    */
                 }
             }
         });
@@ -202,27 +209,6 @@ Meteor.startup(
                 }
             }
         });
-
-        //Images.find().observe({
-        //    added: function (item) {
-        //        if (!initializing) {
-        //            console.log('-- Images added --');
-        //            console.log(item);
-        //        }
-        //    },
-        //    changed: function (item) {
-        //        if (!initializing) {
-        //            console.log('-- Images changed --');
-        //            console.log(item);
-        //        }
-        //    },
-        //    removed: function (item) {
-        //        if (!initializing) {
-        //            console.log('-- Images removed --');
-        //            console.log(item);
-        //        }
-        //    }
-        //});
 
         initializing = false;
     });

@@ -60,9 +60,9 @@ Template.home.helpers({
     }
 });
 
-Template.home.rendered = function () {
-    var s = skrollr.init();
-};
+//Template.home.rendered = function () {
+//    var s = skrollr.init();
+//};
 
 Template.scroll_item.helpers({
     background: function () {
