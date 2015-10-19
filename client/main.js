@@ -25,6 +25,10 @@ Meteor.startup(function () {
         return dataTypeIcon(data_type);
     });
 
+    Handlebars.registerHelper('isAdminUser', function() {
+        return Roles.userIsInRole(Meteor.user(), ['admin']);
+    });
+
     UI.registerHelper('equals', function (a, b) {
         return a == b;
     });
@@ -39,22 +43,26 @@ Meteor.startup(function () {
     UI.registerHelper('isAutherOrGrantedRole', function (role) {
         var user = Meteor.user();
         var isAuthor = this && this.author_user_id === user._Id;
-        var isGranted = (user && role) ? _.contains(user.roles, role) : false;
+       //var isGranted = (user && role) ? _.contains(user.roles, role) : false;
+        var isGranted = Roles.userIsInRole(Meteor.user(), [role]);
 
         return isAuthor || isGranted;
     });
 
     UI.registerHelper('isOwnerOrGrantedRole', function (role) {
         var user = Meteor.user();
-        var isAuthor = this && this.owner_user_id === user._Id;
-        var isGranted = (user && role) ? _.contains(user.roles, role) : false;
+        var isOwner = this && this.owner_user_id === user._Id;
 
-        return isAuthor || isGranted;
+        //var isGranted = (user && role) ? _.contains(user.roles, role) : false;
+        var isGranted = Roles.userIsInRole(Meteor.user(), [role]);
+
+        return isOwner || isGranted;
     });
 
     UI.registerHelper('isGranted', function (role) {
-        var user = Meteor.user();
-        return (user && role) ? _.contains(user.roles, role) : false;
+        // var user = Meteor.user();
+        // return (user && role) ? _.contains(user.roles, role) : false;
+        return Roles.userIsInRole(Meteor.user(), [role]);
     });
 
     Template.registerHelper('log', function () {

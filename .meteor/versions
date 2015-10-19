@@ -82,6 +82,7 @@ localstorage@1.0.5
 logging@1.0.8
 meteor@1.1.9
 meteor-base@1.0.1
+meteor-platform@1.2.3
 meteorhacks:async@1.0.0
 meteorhacks:npm@1.5.0
 minifiers@1.1.7
@@ -93,6 +94,7 @@ momentjs:moment@2.10.6
 mongo@1.1.2
 mongo-id@1.0.1
 mongo-livedata@1.0.9
+mrt:accounts-admin-ui-bootstrap-3@0.2.7
 mrt:numeral@1.5.3
 mrt:nvd3js@0.1.0
 nemo64:bootstrap@3.3.5_2
@@ -125,6 +127,7 @@ simple:json-routes@1.0.4
 spacebars@1.0.7
 spacebars-compiler@1.0.7
 srp@1.0.4
+standard-app-packages@1.0.6
 standard-minifiers@1.0.1
 stylus@2.511.0_2
 templating@1.1.4
