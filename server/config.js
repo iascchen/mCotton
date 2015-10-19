@@ -27,8 +27,10 @@ MQTT_ENABLE = true;
 
 MQTT_API_VER = "v1.0";
 
-//MQTT_HOST = "localhost";
 MQTT_PORT = 1883;
+
+//MQTT_HOST = "localhost";
+
 //MQTT_DB_URL = Meteor.settings.mqttDbUrl || ? Meteor.settings.mqttDbUrl : 'mongodb://localhost:3001/mqtt';
 //
 //MQTT_STORE = {
