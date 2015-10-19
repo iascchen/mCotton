@@ -1,4 +1,4 @@
-# README (V0.2)
+# README (V0.3)
 
 # What's New
 
@@ -8,13 +8,23 @@
 
 # To DO
 
+## Data Visualization 
 
+* Integrate WebGL
+* Integrate Map and GIS
 
-# mCotton 安装使用方法
+## IOT Control
+
+* Extends control board
+* Devices communication on Clouds 
+
+# How to Start
+
+## mCotton 安装使用方法
 
 mCotton 是 server ， httpclient*.js 是访问他的Node.js客户端
 
-## 快速安装 mCotton Server（Develop Mode）
+### 快速安装 mCotton Server（Develop Mode）
 
 1. 安装 meteor， 命令为： 
 
@@ -29,7 +39,7 @@ mCotton 是 server ， httpclient*.js 是访问他的Node.js客户端
 
 		meteor
 
-## 创建 mCotton 的账号
+### 创建 mCotton 的账号
 
 1. 访问 http://localhost:3000 , 用你的邮箱注册一个账号。此账号后面还需要使用。
 2. 使用此账号登陆
@@ -39,6 +49,8 @@ mCotton 是 server ， httpclient*.js 是访问他的Node.js客户端
     var useremail = "iasc@163.com", pwd = "123456";
 
 ![docs/mcotton_01.png](docs/mcotton_01.png)
+
+# Projects
 
 ## Wifi气象站
 

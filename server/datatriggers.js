@@ -4,7 +4,7 @@
 
 /*
 
-TODO , Porting buffalo to Linux
+// TODO , Porting buffalo to Linux
 
 ////////////////////////
 // AZURE Event Hub
