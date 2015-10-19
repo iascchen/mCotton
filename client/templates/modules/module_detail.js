@@ -2,6 +2,8 @@
  * Created by chenhao on 15/4/8.
  */
 
+Meteor.subscribe('modules');
+
 Template.moduleDetail.events({
     'click .have': function (e) {
         e.preventDefault();

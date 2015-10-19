@@ -2,6 +2,8 @@
  * Created by chenhao on 15/4/29.
  */
 
+Meteor.subscribe('devices', Meteor.userId());
+
 Template.deviceDetail.helpers({
     share_label: function () {
         return SHARES[this.share].label;

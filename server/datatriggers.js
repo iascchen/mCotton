@@ -2,10 +2,6 @@
  * Created by chenhao on 15/4/16.
  */
 
-/*
-
-// TODO , Porting buffalo to Linux
-
 ////////////////////////
 // AZURE Event Hub
 
@@ -63,7 +59,6 @@ var send_to_event_hub = function (jsonmsg) {
         console.error(e);
     });
 };
-*/
 
 ////////////////////////
 // MQTT

@@ -5,7 +5,7 @@
 # but you can also edit it by hand.
 
 underscore
-
+# pauldowman:dotenv
 iron:router
 
 ##############################
@@ -40,7 +40,7 @@ nimble:restivus
 # MQTT
 ##############################
 
-# mkarliner:mqtt
+mkarliner:mqtt
 # mkarliner:mosca
 
 ##############################
@@ -73,12 +73,12 @@ mrt:numeral
 
 aldeed:autoform
 
-yogiben:autoform-modals
-yogiben:autoform-map
+# yogiben:autoform-modals
+# yogiben:autoform-map
 
 pcuci:bootcards
 copleykj:livestamp
-ajduke:bootstrap-tagsinput
+# ajduke:bootstrap-tagsinput
 # materialize:materialize
 
 sacha:spin

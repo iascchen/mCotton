@@ -1,0 +1,4 @@
+{
+    "mqttDbHost": "mongodb",
+    "mqttDbPort": "3001"
+}
