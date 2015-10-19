@@ -20,7 +20,7 @@ Template.moduleSubmit.events({
             img_id: $(e.target).find('[name=img_id]').val(),
         };
 
-        console.log("moduleSubmit", module);
+        // console.log("moduleSubmit", module);
 
         var errors = validateModule(module);
         if (errors.name || errors.desc)
