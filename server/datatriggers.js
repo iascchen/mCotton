@@ -122,22 +122,24 @@ Meteor.startup(
 
                     var _event;
                     for (var prop in datas) {
-                        //console.log("datas[prop]: ", prop, datas[prop]);
+                        // console.log("datas[prop]: ", prop, datas[prop]);
                         var data_name = prop;
 
                         var data_value = datas[data_name];
                         if ((typeof data_value) === 'object') {
                             data_value = JSON.stringify(data_value);
                         }
-                        // console.log("data_value", data_name, data_value);
+
+                        console.log("data_value", data_name, data_value);
 
                         var data_point = _.filter(data_points, function (point) {
                             return point.data_name == data_name;
                         });
                         // console.log("data_point", data_name, data_point);
 
-                        if (!data_point)
-                            return;
+                        if (!data_point || data_point.length == 0)
+                            continue;
+                        //console.log("data_point", data_point);
 
                         var dp = data_point[0];
                         // console.log("data_point", dp, DATA_POINTS[dp.data_type]);
@@ -170,7 +172,6 @@ Meteor.startup(
                         Collections.DataEvents.insert(_event);
                     }
 
-                    /*
                     //////////////////////////////////
                     //// send to Azure Event Hubs
 
@@ -180,7 +181,6 @@ Meteor.startup(
                         });
                         send_to_event_hub(message);
                     }
-                    */
                 }
             }
         });
