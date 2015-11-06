@@ -1,0 +1,57 @@
+<template name="dataVisualEgg">
+    <div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="entity-item">
+                    <h4>Visualization</h4>
+
+                    <div class="col-md-12">
+                        <div>
+                            <input type="checkbox" name="isRotate" class="isRotate"/>
+                            Camera Rotate
+                        </div>
+                        <div>
+                            <input type="checkbox" name="isInside" class="isInside" checked/>
+                            Show Inside Temperatures
+                        </div>
+                    </div>
+                    <h4> Color Map </h4>
+
+                    <div class="col-md-12">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item colormap">Rainbow</a>
+                            <a href="#" class="list-group-item colormap">CoolToWarm</a>
+                            <a href="#" class="list-group-item colormap">BlackBody</a>
+                            <a href="#" class="list-group-item colormap">Grayscale</a>
+                        </div>
+
+                        <div>
+                            <div id="slider"></div>
+                            <p>Green Temperature: {{slider.[0]}}, Red Temperature: {{slider.[1]}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="entity-item">
+                    <p>{{json_data}}</p>
+
+                    {{#each data_events}}
+                        {{> eggEventValue }}
+                    {{/each }}
+                </div>
+            </div>
+            <div class="col-md-8 array-editor">
+                <div id="visual" class="col-md-12 entity-item"></div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="eggEventValue">
+    <div class="col-md-6">
+        <div class="bootcards-cards mouse-on" id="{{ data_name }}">
+            <p>
+                <!--<img src='{{ showDataTypeIcon data_type }}' alt='{{ data_type }}'/>-->
+                <b>{{ data_name }}</b>,   {{ data_value }} {{ data_unit }}</p>
+        </div>
+    </div>
+</template>

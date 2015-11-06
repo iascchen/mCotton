@@ -1,0 +1,14 @@
+<template name="deviceData">
+    <div class="bootcards-cards entity-box device-border">
+        <div class="entity-sub">
+            <h4>Data
+                <a href="{{pathFor 'deviceDataVisual'}}" class="btn btn-info history">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></a></h4>
+        </div>
+        <div class="entity-sub">
+            {{#each data_events}}
+                {{> dataEvent }}
+            {{/each }}
+        </div>
+    </div>
+</template>
