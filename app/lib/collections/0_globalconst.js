@@ -155,9 +155,11 @@ CHARTS = {
     LINE: {label: "NVD3 - Line Chart"},
     MY_CITY: {label: "D3 - My City"},
     EGG: {label: "WebGL - Smart Egg"},
-    MPP: {label: "Map - Point (Leaflet)"},
-    MPT: {label: "Map - Trace (Leaflet)"},
-    MPH: {label: "Map - Heat Map (Leaflet)"},
+
+    MPH: {label: "Map - Heat Map"},
+    MPM: {label: "Map - Marker Cluster"},
+    MPP: {label: "Map - Point"},
+    MPT: {label: "Map - Trace"}
 };
 
 CHART_TYPES = _.keys(CHARTS);

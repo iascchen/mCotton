@@ -26,8 +26,15 @@ Template.dataVisual.helpers({
                 return Template.dataVisualLine;
             case "EGG" :
                 return Template.dataVisualEgg;
+
+            case "MPH" :
+                return Template.dataVisualMapHeatmap;
+            case "MPM" :
+                return Template.dataVisualMapMarkers;
             case "MPP" :
                 return Template.dataVisualMapPoint;
+            case "MPT" :
+                return Template.dataVisualMapTrace;
         }
         return Template.dataVisualLine;
     }

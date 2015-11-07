@@ -21,6 +21,10 @@
 
                 <p>{{desc}}</p>
 
+                {{#if show_chart}}
+                <p>Visualization : {{show_chart}}</p>
+                {{/if}}
+
                 <p>Author : {{ author_user_id}}</p>
 
                 <p>Create at : {{ formatDate create_time}} , Update at : {{ formatDate last_update_time}}</p>

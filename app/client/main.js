@@ -70,4 +70,6 @@ Meteor.startup(function () {
     });
 
     //Uploader.uploadUrl = Meteor.absoluteUrl("upload"); // Cordova needs absolute URL
+
+    MAPBOX_TOKEN = 'pk.eyJ1IjoicGF1bG9ib3JnZXMiLCJhIjoicFQ1Sll5ZyJ9.alPGD574u3NOBi2iiIh--g';
 });

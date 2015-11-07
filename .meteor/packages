@@ -15,9 +15,6 @@ standard-minifiers
 mongo
 random
 
-# autopublish
-# insecure
-
 ##############################
 # Basic
 ##############################
@@ -121,8 +118,7 @@ d3
 mrt:nvd3js
 limemakers:three
 
-webapp
-bevanhunt:leaflet
+pauloborges:mapbox
 browser-policy
 
 ##############################
