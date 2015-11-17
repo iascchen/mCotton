@@ -4,7 +4,7 @@
 
 // Meteor.subscribe('devices');
 
-Template.devicesList.onCreated(function () {
+Template.devicesListPublic.onCreated(function () {
 
     // 1. Initialization
 
@@ -40,40 +40,31 @@ Template.devicesList.onCreated(function () {
 
     // 3. Cursor
 
-    instance.myDevices = function () {
-        return Collections.Devices.find({owner_user_id: Meteor.userId(), 'status': {$lt: STATUS_DISABLE}},
-            {limit: instance.loaded.get(), sort: {last_update_time: -1}});
-    };
-
     instance.publicDevices = function () {
         return Collections.Devices.find({
-                owner_user_id: {$ne: Meteor.userId()},
+                // $ne: {owner_user_id: Meteor.userId()},
                 share: SHARE_PUBLIC,
                 'status': {$lt: STATUS_DISABLE}
             },
-            {limit: RECOMMENDED_ITEMS, sort: {last_update_time: -1}});
+            {limit: instance.loaded.get(), sort: {last_update_time: -1}});
     };
 });
 
-Template.devicesList.helpers({
-    myDevices: function () {
-        // return Collections.Devices.find({'status': {$lt : STATUS_DISABLE}}, {sort: {last_update_time: -1}});
-        return Template.instance().myDevices();
-    },
+Template.devicesListPublic.helpers({
     publicDevices: function () {
         // return Collections.Devices.find({'status': {$lt : STATUS_DISABLE}}, {sort: {last_update_time: -1}});
         return Template.instance().publicDevices();
     },
     // are there more posts to show?
     hasMoreEntities: function () {
-        return Template.instance().myDevices().count() >= Template.instance().limit.get();
+        return Template.instance().publicDevices().count() >= Template.instance().limit.get();
     },
     owner: function () {
         return JSON.stringify(Meteor.user());
     }
 });
 
-Template.devicesList.events({
+Template.devicesListPublic.events({
     'click .load-more': function (event, instance) {
         event.preventDefault();
 

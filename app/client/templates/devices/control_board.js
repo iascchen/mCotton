@@ -2,7 +2,7 @@
  * Created by chenhao on 15/4/14.
  */
 
-Meteor.subscribe("controlevents", Meteor.userId());
+Meteor.subscribe("controlevents");
 
 Template.controlBoard.helpers({
     controlBoardTemplate: function() {

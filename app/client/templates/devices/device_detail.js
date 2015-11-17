@@ -2,7 +2,7 @@
  * Created by chenhao on 15/4/29.
  */
 
-Meteor.subscribe('devices', Meteor.userId());
+// Meteor.subscribe('device');
 
 Template.deviceDetail.helpers({
     share_label: function () {
@@ -11,6 +11,9 @@ Template.deviceDetail.helpers({
         else
             return SHARES[SHARE_PRIVATE].label;
     },
+    project: function () {
+        return Collections.Projects.findOne({_id: this.project_id});
+    }
 });
 
 Template.deviceDetail.events({

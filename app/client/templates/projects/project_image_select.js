@@ -12,9 +12,9 @@ Template.projectImagesSelect.helpers({
     },
     all_images_ids: function () {
         if (this.img_ids)
-            return Collections.Images.find({_id: {$nin: this.img_ids}}, {fields: {_id: 1}, sort: {uploadedAt: -1}});
+            return Collections.Images.find({_id: {$nin: this.img_ids}}, {fields: {_id: true}, sort: {uploadedAt: -1}});
         else {
-            return Collections.Images.find({}, {fields: {_id: 1}, sort: {uploadedAt: -1}});
+            return Collections.Images.find({}, {fields: {_id: true}, sort: {uploadedAt: -1}});
         }
     },
 });

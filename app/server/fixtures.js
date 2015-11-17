@@ -262,9 +262,6 @@ if (Meteor.users.find().count() === 0) {
 
                 {data_name: "Humidity", data_type: "HUM", data_desc: "Egg Info"},
 
-                {data_name: "Acc X", data_type: "DOF", data_desc: "Egg Info"},
-                {data_name: "Acc Y", data_type: "DOF", data_desc: "Egg Info"},
-                {data_name: "Acc Z", data_type: "DOF", data_desc: "Egg Info"},
                 {data_name: "Quaternion 1", data_type: "DOF", data_desc: "Egg Info"},
                 {data_name: "Quaternion 2", data_type: "DOF", data_desc: "Egg Info"},
                 {data_name: "Quaternion 3", data_type: "DOF", data_desc: "Egg Info"},
@@ -281,8 +278,10 @@ if (Meteor.users.find().count() === 0) {
                 {data_name: "Env Humidity", data_type: "HUM", data_desc: "Environment Info"},
                 {data_name: "Env Lightness", data_type: "LUX", data_desc: "Environment Info"},
                 {data_name: "Env Air Pressure", data_type: "APR", data_desc: "Environment Info"},
+                {data_name: "PM 10", data_type: "P10", data_desc: "Environment Info"},
+                {data_name: "Air Pollution", data_type: "APL", data_desc: "Environment Info"},
 
-                {data_name: "Location", data_type: "GPS", data_desc: "Environment Info"}
+                {data_name: "Location", data_type: "GPS"}
             ]
         },
         {
@@ -291,14 +290,17 @@ if (Meteor.users.find().count() === 0) {
                 Collections.Modules.findOne({name: 'Microduino-Core+'})._id,
             ],
             data_points: [
-                {data_name: "Temperature", data_type: "TEM", data_desc: "Environment Info"},
-                {data_name: "Humidity", data_type: "HUM", data_desc: "Environment Info"},
-                {data_name: "Lightness", data_type: "LUX", data_desc: "Environment Info"},
-                {data_name: "Air Pressure", data_type: "APR", data_desc: "Environment Info"},
+                {data_name: "Temperature 01", data_type: "TEM", data_desc: "Egg Info"},
+                {data_name: "Temperature 02", data_type: "TEM", data_desc: "Egg Info"},
+                {data_name: "Temperature 03", data_type: "TEM", data_desc: "Egg Info"},
+                {data_name: "Temperature 04", data_type: "TEM", data_desc: "Egg Info"},
+                {data_name: "Temperature 05", data_type: "TEM", data_desc: "Egg Info"},
+                {data_name: "Temperature 06", data_type: "TEM", data_desc: "Egg Info"},
+                {data_name: "Temperature 07", data_type: "TEM", data_desc: "Egg Info"},
+                {data_name: "Temperature 08", data_type: "TEM", data_desc: "Egg Info"},
 
-                {data_name: "Acc X", data_type: "DOF", data_desc: "Egg Info"},
-                {data_name: "Acc Y", data_type: "DOF", data_desc: "Egg Info"},
-                {data_name: "Acc Z", data_type: "DOF", data_desc: "Egg Info"},
+                {data_name: "Humidity", data_type: "HUM", data_desc: "Egg Info"},
+
                 {data_name: "Quaternion 1", data_type: "DOF", data_desc: "Egg Info"},
                 {data_name: "Quaternion 2", data_type: "DOF", data_desc: "Egg Info"},
                 {data_name: "Quaternion 3", data_type: "DOF", data_desc: "Egg Info"},

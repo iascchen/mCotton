@@ -19,6 +19,7 @@ random
 # Basic
 ##############################
 
+reactive-var
 underscore
 pauldowman:dotenv
 iron:router
@@ -30,6 +31,13 @@ check
 #reload
 #ejson
 #spacebars
+
+##############################
+# Performance
+##############################
+
+meteorhacks:aggregate
+meteorhacks:fast-render
 
 ##############################
 # Account
@@ -97,12 +105,9 @@ rcy:nouislider
 sacha:spin
 
 # yogiben:autoform-modals
-# yogiben:autoform-map
 
 # ajduke:bootstrap-tagsinput
 # materialize:materialize
-
-copleykj:livestamp
 
 meteorhacks:npm
 npm-container

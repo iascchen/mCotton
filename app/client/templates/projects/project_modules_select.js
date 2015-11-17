@@ -12,9 +12,9 @@ Template.projectModulesSelect.helpers({
     },
     all_module_ids: function () {
         if (this.module_ids)
-            return Collections.Modules.find({_id: {$nin: this.module_ids}}, {fields: {_id: 1}, sort: {name: 1}});
+            return Collections.Modules.find({_id: {$nin: this.module_ids}}, {fields: {_id: true}, sort: {name: 1}});
         else {
-            return Collections.Modules.find({}, {fields: {_id: 1}, sort: {name: 1}});
+            return Collections.Modules.find({}, {fields: {_id: true}, sort: {name: 1}});
         }
     },
 });

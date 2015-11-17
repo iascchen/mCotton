@@ -1,5 +1,5 @@
 <template name="deviceDetail">
-    <div class="col-sm-12">
+    <div class="col-sm-9">
         <div class="bootcards-cards entity-box device-border">
             <div class="entity-sub">
                 <h3>{{name}}</h3>
@@ -57,6 +57,18 @@
                 <a href="" class="btn btn-danger align-right remove">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Remove </a>
             {{/if}}
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="bootcards-cards entity-box project-border">
+            <div class="entity-sub">
+
+                <h3>Project</h3>
+                <!--{{> projectDevicesListPublic }}-->
+                {{#with project}}
+                    {{> projectSummary }}
+                {{/with}}
+            </div>
         </div>
     </div>
 </template>

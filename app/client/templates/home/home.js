@@ -50,7 +50,10 @@ _data = [
     },
     {}, {
         "title": "<strong> Data Visualization </strong>",
-        "description": "Data visualized by SVG, D3.js, WebGL, GIS, ..."
+        "description": "Data visualized by SVG, D3.js, WebGL, GIS, ...",
+        "buttons":[
+            {label:"Devices Map", href:"/pdmap"}
+        ]
     }
 ];
 

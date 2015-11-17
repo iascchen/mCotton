@@ -2,7 +2,7 @@
  * Created by chenhao on 15/10/17.
  */
 
-Meteor.subscribe('devices', Meteor.userId());
+// Meteor.subscribe('devices');
 
 Template.deviceEdit.events({
     'submit form': function (e) {

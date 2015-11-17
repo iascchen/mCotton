@@ -1,6 +1,15 @@
-# README (V0.3)
+# README (V0.3.1)
 
 # What's New
+
+v 0.3.1, 20151117
+
+1. Share device to public
+2. Integration Map for all public device, and for project
+3. WebGL snart Egg
+4. Update UX of devices and projects
+
+v 0.3
 
 1. Support MQTT
 2. Admin can edit Modules, Projects, and Devices.
@@ -8,15 +17,7 @@
 
 # To DO
 
-## Data Visualization 
-
-* Integrate WebGL
-* Integrate Map and GIS
-
-## IOT Control
-
-* Extends control board
-* Devices communication on Clouds 
+[todo.md](todo.md)
 
 # How to Start
 
@@ -59,3 +60,7 @@ mCotton 是 server ， httpclient*.js 是访问他的Node.js客户端
 ## 我的城市
 
 详情参见 [my_city.md](docs/my_city.md)
+
+## 智能鸟蛋
+
+详情参见 [egg.md](docs/egg.md)

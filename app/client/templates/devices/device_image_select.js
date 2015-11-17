@@ -12,9 +12,9 @@ Template.deviceImagesSelect.helpers({
     },
     all_images_ids: function () {
         if (this.img_ids)
-            return Collections.Images.find({owner: Meteor.userId(), _id: {$nin: this.img_ids}}, {fields: {_id: 1}, sort: {uploadedAt: -1}});
+            return Collections.Images.find({owner: Meteor.userId(), _id: {$nin: this.img_ids}}, {fields: {_id: true}, sort: {uploadedAt: -1}});
         else {
-            return Collections.Images.find({owner: Meteor.userId() }, {fields: {_id: 1}, sort: {uploadedAt: -1}});
+            return Collections.Images.find({owner: Meteor.userId() }, {fields: {_id: true}, sort: {uploadedAt: -1}});
         }
     },
 });

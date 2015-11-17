@@ -324,9 +324,13 @@ Template.dataVisualEgg.rendered = function () {
             {'x': -r_adjust_1_r * 0.5, 'y': r_adjust_1, 'z': r_adjust_1_r * 0.87},
             {'x': -r_adjust_1_r * 0.5, 'y': r_adjust_1, 'z': -r_adjust_1_r * 0.87},
 
-            {'x': r_adjust_2_r, 'y': r_adjust_2, 'z': 0.0},
-            {'x': -r_adjust_2_r * 0.5, 'y': r_adjust_2, 'z': r_adjust_2_r * 0.87},
-            {'x': -r_adjust_2_r * 0.5, 'y': r_adjust_2, 'z': -r_adjust_2_r * 0.87},
+            //{'x': r_adjust_2_r, 'y': r_adjust_2, 'z': 0.0},
+            //{'x': -r_adjust_2_r * 0.5, 'y': r_adjust_2, 'z': r_adjust_2_r * 0.87},
+            //{'x': -r_adjust_2_r * 0.5, 'y': r_adjust_2, 'z': -r_adjust_2_r * 0.87},
+
+            {'x': r_adjust_2_r * 0.5, 'y': r_adjust_2, 'z': r_adjust_2_r * 0.87},
+            {'x': -r_adjust_2_r , 'y': r_adjust_2, 'z': 0},
+            {'x': r_adjust_2_r * 0.5, 'y': r_adjust_2, 'z': -r_adjust_2_r * 0.87},
 
             {'x': 0.0, 'y': r_adjust_3, 'z': 0.0}
         ];
@@ -489,10 +493,15 @@ Template.dataVisualEgg.rendered = function () {
                     _light = lights[j];
 
                     _sensor_name = "Temperature " + String("00" + (j + 1)).slice(-2);
-                    _sensor_value = temperature_values[_sensor_name];
-                    _color = lut.getColor(_sensor_value);
 
-                    _light.color = _color;
+                    try {
+                        _sensor_value = temperature_values[_sensor_name];
+                        _color = lut.getColor(_sensor_value);
+
+                        _light.color = _color;
+                    } catch (error) {
+                        // ignore
+                    }
                 }
             }
             else {

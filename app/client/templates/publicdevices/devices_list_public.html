@@ -1,0 +1,24 @@
+<template name="devicesListPublic">
+    <div class="col-sm-12">
+        <h3><span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span> Public Devices </h3>
+    </div>
+    <div>
+        {{#each publicDevices}}
+            <div class="col-sm-4">
+                {{> deviceSummary}}
+            </div>
+        {{/each}}
+
+        {{#if Template.subscriptionsReady}}
+            {{#if hasMoreEntities}}
+                <div class="col-sm-12">
+                    <a class="load-more" href="#">Load More</a>
+                </div>
+            {{/if}}
+        {{else}}
+            <div class="col-sm-12">
+                <div class="loading">{{>spinner}}</div>
+            </div>
+        {{/if}}
+    </div>
+</template>
