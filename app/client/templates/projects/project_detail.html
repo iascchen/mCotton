@@ -2,14 +2,14 @@
     <div class="col-sm-9">
         <div class="bootcards-cards entity-box project-border">
             <div class="entity-sub">
-                <h3>{{name}}</h3>
+                <h3>{{name}}
+                    {{#if isAutherOrGrantedRole 'admin'}}
+                        <a href="{{pathFor 'projectEdit'}}" class="btn btn-info edit">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit </a>
+                    {{/if}}
+                </h3>
             </div>
             <div class="entity-sub">
-                {{#if isAutherOrGrantedRole 'admin'}}
-                    <a href="{{pathFor 'projectEdit'}}" class="btn btn-info edit">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit </a>
-                {{/if}}
-
                 <!--<a href="{{pathFor 'buyProject'}}" class="discuss btn btn-primary buy">Buy</a>-->
 
                 <!--<h4>ID : {{_id}}</h4>-->
@@ -25,7 +25,7 @@
                 <p>Create at : {{ formatDate create_time}} , Update at : {{ formatDate last_update_time}}</p>
             </div>
 
-            <div class="entity-box project-border">
+            <div class="entity-box sub-border">
                 <div class="col-sm-12 bootcards-cards">
                     <h4>Images
                         {{#if isAutherOrGrantedRole 'admin'}}
@@ -40,33 +40,33 @@
                 </div>
             </div>
 
-            <div class="entity-box project-border">
-                <div class="col-sm-12 bootcards-cards">
-                    <h4>Used Modules
-                        {{#if isAutherOrGrantedRole 'admin'}}
-                            <a href="{{pathFor 'projectModulesSelect'}}" class="btn btn-info select">
-                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit </a>
-                        {{/if}}
-                    </h4>
-                    {{#each module_ids}}
-                        {{> projectModule id=this}}
-                    {{/each}}
-                </div>
-            </div>
-            <!--<div class="entity-box project-border">-->
+            <!--<div class="entity-box sub-border">-->
                 <!--<div class="col-sm-12 bootcards-cards">-->
-                    <!--<h4>Source Code-->
+                    <!--<h4>Used Modules-->
                         <!--{{#if isAutherOrGrantedRole 'admin'}}-->
-                            <!--<a href="{{pathFor 'projectSourcesSelect'}}" class="btn btn-info select">-->
+                            <!--<a href="{{pathFor 'projectModulesSelect'}}" class="btn btn-info select">-->
                                 <!--<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit </a>-->
                         <!--{{/if}}-->
                     <!--</h4>-->
-                    <!--{{#each source_ids}}-->
-                        <!--{{> projectSource id=this}}-->
+                    <!--{{#each module_ids}}-->
+                        <!--{{> projectModule id=this}}-->
                     <!--{{/each}}-->
                 <!--</div>-->
             <!--</div>-->
-            <div class="entity-box project-border">
+            <!--<div class="entity-box sub-border">-->
+            <!--<div class="col-sm-12 bootcards-cards">-->
+            <!--<h4>Source Code-->
+                <!--{{#if isAutherOrGrantedRole 'admin'}}-->
+            <!--<a href="{{pathFor 'projectSourcesSelect'}}" class="btn btn-info select">-->
+            <!--<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit </a>-->
+                <!--{{/if}}-->
+            <!--</h4>-->
+                <!--{{#each source_ids}}-->
+            <!--{{> projectSource id=this}}-->
+                <!--{{/each}}-->
+            <!--</div>-->
+            <!--</div>-->
+            <div class="entity-box sub-border">
                 <div class="col-sm-12 bootcards-cards">
                     <h4>Data Points
                         {{#if isAutherOrGrantedRole 'admin'}}
@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="entity-box project-border">
+            <div class="entity-box sub-border">
                 <div class="col-sm-12 bootcards-cards">
                     <h4>Control Points
                         {{#if isAutherOrGrantedRole 'admin'}}
@@ -107,16 +107,17 @@
         </div>
     </div>
 
-    <div class="col-sm-3">
+    <div class="col-sm-3 array-editor">
         {{#if currentUser}}
-            <div class="bootcards-cards entity-box device-border">
-                <div class="entity-sub">
+            <div class="entity-box device-border">
+                <div class="entity-title">
                     <h3>My Devices</h3>
-
+                </div>
+                <div class="entity-sub">
                     <div>
                         {{#each myDevices}}
-                            <div class="col-sm-12">
-                                {{> deviceSummary}}
+                            <div class="row">
+                                {{> deviceSummarySimple}}
                             </div>
                         {{/each}}
 
@@ -146,11 +147,11 @@
 
         <div class="bootcards-cards entity-box device-border">
             <div class="entity-sub">
-                <h3>Pubilc Devices</h3>
+                <h3>Other's Devices</h3>
 
                 {{#each publicDevices}}
                     <div class="col-sm-12">
-                        {{> deviceSummary}}
+                        {{> deviceSummarySimple}}
                     </div>
                 {{/each}}
             </div>
@@ -164,14 +165,6 @@
                         <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span> Map </a>
                 </div>
             {{/if}}
-        </div>
-    </div>
-</template>
-
-<template name="deviceAdd">
-    <div class="bootcards-cards">
-        <div class="entity-sub">
-
         </div>
     </div>
 </template>

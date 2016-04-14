@@ -85,9 +85,18 @@ Template.dataVisualLine.helpers({
         console.log("retjson", retjson);
         Session.set(VIAUSL_JSON_DATA, retjson);
 
-        // return JSON.stringify(retjson);
+        //return JSON.stringify(retjson);
         return;
     },
+    //from_time: function () {
+    //    return getDateFromSession(VIAUSL_FROM_TIME);
+    //},
+    //to_time: function () {
+    //    return getDateFromSession(VIAUSL_TO_TIME);
+    //},
+});
+
+Template.dataVisualRange.helpers({
     from_time: function () {
         return getDateFromSession(VIAUSL_FROM_TIME);
     },
@@ -96,7 +105,7 @@ Template.dataVisualLine.helpers({
     },
 });
 
-Template.dataVisualLine.events({
+Template.dataVisualRange.events({
     "click .showHour": function () {
         console.log("click .showHour");
         var timeinfo = moment().hour();

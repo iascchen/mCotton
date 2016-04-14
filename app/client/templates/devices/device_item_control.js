@@ -2,7 +2,7 @@
  * Created by chenhao on 15/4/14.
  */
 
-Meteor.subscribe('controlevents');
+//Meteor.subscribe('controlevents');
 
 Template.deviceControl.helpers({
     gray: function () {
@@ -19,6 +19,10 @@ Template.deviceControl.helpers({
         var device = Collections.Devices.findOne({_id: device_id});
         var project = Collections.Projects.findOne({_id: device.project_id});
         var ctrl_points = project.control_points;
+
+        ctrl_points = _.sortBy(ctrl_points, function (point) {
+            return point.control_name;
+        });
 
         var ret = new Mongo.Collection(null);
 

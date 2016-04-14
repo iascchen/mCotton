@@ -24,8 +24,9 @@ Meteor.publish('modules', function () {
     return Collections.Modules.find();
 });
 
-Meteor.publish('projects', function (limit) {
-    var _limit = limit ? limit : PROJECT_1ST_PAGEN;
+Meteor.publish('projects', function (limit, sorter) {
+    var _limit = limit ? limit : PROJECT_PAGINATION;
+    var _sorter = sorter ? sorter : {name: 1};
 
     if (Roles.userIsInRole(this.userId, ['admin', 'project-approval'])) {
         return Collections.Projects.find({}, {limit: _limit, sort: {name: 1}});
@@ -35,7 +36,7 @@ Meteor.publish('projects', function (limit) {
                     {status: STATUS_NORMAL},
                     {status: STATUS_READONLY}]
             },
-            {limit: _limit, sort: {name: 1}}
+            {limit: _limit, sort: _sorter}
         );
     }
 });
@@ -46,8 +47,6 @@ Meteor.publish('project', function (id) {
 
 Meteor.publish('projectDevices', function (id, limit) {
     var project = Collections.Projects.findOne({_id: id});
-    //return Collections.Projects.find({project_id: project._id});
-
     var _limit = limit ? limit : RECOMMENDED_ITEMS;
 
     if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
@@ -81,8 +80,9 @@ Meteor.publish('projectDevices', function (id, limit) {
 //    return Collections.Projects.find({}, options);
 //});
 
-Meteor.publish("devices", function (limit) {
-    var _limit = limit ? limit : DEVICE_1ST_PAGEN;
+Meteor.publish("devices", function (limit, sorter) {
+    var _limit = limit ? limit : DEVICE_PAGINATION;
+    var _sorter = sorter ? sorter : {last_update_time: -1};
 
     if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
         return Collections.Devices.find({}, {limit: _limit, sort: {last_update_time: -1}});
@@ -91,24 +91,25 @@ Meteor.publish("devices", function (limit) {
                 $or: [{owner_user_id: this.userId},
                     {share: SHARE_PUBLIC, $or: [{status: STATUS_NORMAL}, {status: STATUS_READONLY}]}]
             },
-            {limit: _limit, sort: {last_update_time: -1}});
+            {limit: _limit, sort: _sorter});
     }
 });
 
-Meteor.publish('allPublicDevices', function () {
-    return Collections.Devices.find({
-        share: SHARE_PUBLIC,
-        $or: [{status: STATUS_NORMAL}, {status: STATUS_READONLY}]
-    });
-});
+//Meteor.publish('allGpsPublicDevices', function () {
+//    return Collections.Devices.find({
+//            share: SHARE_PUBLIC,
+//            $or: [{status: STATUS_NORMAL}, {status: STATUS_READONLY}]
+//        });
+//});
 
-Meteor.publish('devicesPublic', function (limit) {
-    var _limit = limit ? limit : DEVICE_1ST_PAGEN;
+Meteor.publish('devicesPublic', function (limit, sorter) {
+    var _limit = limit ? limit : DEVICE_PAGINATION;
+    var _sorter = sorter ? sorter : {last_update_time: -1};
 
     return Collections.Devices.find({
             share: SHARE_PUBLIC, $or: [{status: STATUS_NORMAL}, {status: STATUS_READONLY}]
         },
-        {limit: _limit, sort: {last_update_time: -1}});
+        {limit: _limit, sort: _sorter});
 });
 
 Meteor.publish('device', function (id) {
@@ -121,39 +122,42 @@ Meteor.publish('deviceProject', function (id) {
 });
 
 Meteor.publish('deviceDataEvents', function (id, limit) {
-    var _limit = limit ? limit : 500;
+    var _limit = limit ? limit : 200;
 
     return Collections.DataEvents.find({
         device_id: id
     }, {limit: _limit, sort: {data_submit_time: -1}});
 });
 
-Meteor.publish('devicesControlEvents', function (id, limit) {
-    var _limit = limit ? limit : 100;
+Meteor.publish('deviceControlEvents', function (id, limit) {
+    var _limit = limit ? limit : 50;
 
     return Collections.ControlEvents.find({
         device_id: id
     }, {limit: _limit, sort: {control_submit_time: -1}});
 });
 
-//Meteor.publish('deviceDataEvents', function (id, limit_from) {
-//    var _limit_from = limit_from ? limit_from : moment(moment().hour() - 1, "HH").toDate();
-//
-//    return Collections.DataEvents.find({
-//        device_id: id,
-//        $or: [ { data_submit_time: {$gte: _limit_from}} ,
-//
-//    ]
-//    }, {sort: {data_submit_time: -1}});
-//});
-//
-//Meteor.publish('devicesControlEvents', function (id, limit_from) {
-//    var _limit_from = limit_from ? limit_from : moment(moment().hour() - 1, "HH").toDate();
-//    return Collections.ControlEvents.find({
-//        device_id: id,
-//        control_submit_time: {$gte: _limit_from}
-//    }, {sort: {control_submit_time: -1}});
-//});
+Meteor.publish('devicesDataEventsLater', function (ids, limit) {
+    var _limit = limit ? limit : 200;
+    var now = moment();
+    // console.log(now.toDate());
+
+    return Collections.DataEvents.find({
+        device_id: {$in: ids},
+        data_submit_time: {$gte: now.toDate()}
+    }, {limit: _limit, sort: {data_submit_time: -1}});
+});
+
+Meteor.publish('devicesControlEventsLater', function (ids, limit) {
+    var _limit = limit ? limit : 50;
+    var now = moment();
+    // console.log(now.toDate());
+
+    return Collections.ControlEvents.find({
+        device_id: {$in: ids},
+        control_submit_time: {$gte: now.toDate()},
+    }, {limit: _limit, sort: {control_submit_time: -1}});
+});
 
 Meteor.publish('mymodules', function () {
     if (Roles.userIsInRole(this.userId, ['admin', 'customer-care'])) {
@@ -163,33 +167,33 @@ Meteor.publish('mymodules', function () {
     }
 });
 
-Meteor.publish('dataevents', function () {
-    if (Roles.userIsInRole(this.userId, ['admin', 'customer-care'])) {
-        return Collections.DataEvents.find();
-    } else {
-        return Collections.DataEvents.find({owner_user_id: this.userId});
-    }
-});
+//Meteor.publish('dataevents', function () {
+//    if (Roles.userIsInRole(this.userId, ['admin', 'customer-care'])) {
+//        return Collections.DataEvents.find();
+//    } else {
+//        return Collections.DataEvents.find({owner_user_id: this.userId});
+//    }
+//});
 
 Meteor.publish('dataeventsWithGPS', function () {
     return Collections.DataEvents.find({data_type: 'GPS'});
 });
 
-Meteor.publish('controlevents', function () {
-    if (Roles.userIsInRole(this.userId, ['admin', 'customer-care'])) {
-        return Collections.ControlEvents.find();
-    } else {
-        return Collections.ControlEvents.find({owner_user_id: this.userId});
-    }
-});
+//Meteor.publish('controlevents', function () {
+//    if (Roles.userIsInRole(this.userId, ['admin', 'customer-care'])) {
+//        return Collections.ControlEvents.find();
+//    } else {
+//        return Collections.ControlEvents.find({owner_user_id: this.userId});
+//    }
+//});
 
-Meteor.publish('datamessages', function () {
-    if (Roles.userIsInRole(this.userId, ['admin', 'customer-care'])) {
-        return Collections.DataMessages.find();
-    } else {
-        return Collections.DataMessages.find({owner_user_id: this.userId});
-    }
-});
+//Meteor.publish('datamessages', function () {
+//    if (Roles.userIsInRole(this.userId, ['admin', 'customer-care'])) {
+//        return Collections.DataMessages.find();
+//    } else {
+//        return Collections.DataMessages.find({owner_user_id: this.userId});
+//    }
+//});
 
 //Meteor.publish('gen_dev_id_reqs', function () {
 //    return GenDeviceIDReqs.find();
@@ -207,3 +211,4 @@ Meteor.publish('datamessages', function () {
 //    self.ready();
 //    ready = true;
 //});
+

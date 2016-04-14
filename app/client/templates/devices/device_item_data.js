@@ -2,8 +2,6 @@
  * Created by chenhao on 15/4/14.
  */
 
-// Meteor.subscribe('dataevents');
-
 Template.deviceData.helpers({
     gray: function () {
         var device_id = this.device_id;
@@ -19,6 +17,10 @@ Template.deviceData.helpers({
         var device = Collections.Devices.findOne({_id: device_id});
         var project = Collections.Projects.findOne({_id: device.project_id});
         var data_points = project.data_points;
+
+        data_points = _.sortBy(data_points, function (point) {
+            return point.data_name;
+        });
 
         var ret = new Mongo.Collection(null);
         _.forEach(data_points, function (point) {

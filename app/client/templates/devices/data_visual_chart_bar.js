@@ -12,7 +12,6 @@ Template.dataVisualBar.helpers({
         var hour = moment().hour();
         Session.setDefault(VIAUSL_FROM_TIME, moment(hour - 1, "HH").valueOf());
         Session.setDefault(VIAUSL_TO_TIME, moment(hour + 1, "HH").valueOf());
-        //Session.setDefault(VIAUSL_TIME_FORMAT, "%H:%M");
         Session.setDefault(VIAUSL_TIME_FORMAT, "HH:mm");
 
         var timeStart = getDateFromSession(VIAUSL_FROM_TIME);
@@ -33,37 +32,37 @@ Template.dataVisualBar.helpers({
         // return JSON.stringify(retjson);
         return;
     },
-    from_time: function () {
-        return getDateFromSession(VIAUSL_FROM_TIME);
-    },
-    to_time: function () {
-        return getDateFromSession(VIAUSL_TO_TIME);
-    },
+    //from_time: function () {
+    //    return getDateFromSession(VIAUSL_FROM_TIME);
+    //},
+    //to_time: function () {
+    //    return getDateFromSession(VIAUSL_TO_TIME);
+    //},
 });
 
-Template.dataVisualBar.events({
-    "click .showHour": function () {
-        console.log("click .showHour");
-        var timeinfo = moment().hour();
-        addDateToSession(VIAUSL_FROM_TIME, moment(timeinfo - 1, "HH"));
-        addDateToSession(VIAUSL_TO_TIME, moment(timeinfo + 1, "HH"));
-        Session.set(VIAUSL_TIME_FORMAT, "HH:mm");
-    },
-    "click .showDay": function () {
-        console.log("click .showDay");
-        var timeinfo = moment().date();
-        addDateToSession(VIAUSL_FROM_TIME, moment(timeinfo - 1, "DD"));
-        addDateToSession(VIAUSL_TO_TIME, moment(timeinfo + 1, "DD"));
-        Session.set(VIAUSL_TIME_FORMAT, "MM/DD HH:00");
-    },
-    "click .showWeek": function () {
-        console.log("click .showWeek");
-        var timeinfo = moment().week();
-        addDateToSession(VIAUSL_FROM_TIME, moment(timeinfo - 1, "WW"));
-        addDateToSession(VIAUSL_TO_TIME, moment(timeinfo + 1, "WW"));
-        Session.set(VIAUSL_TIME_FORMAT, "MM/DD");
-    }
-});
+//Template.dataVisualBar.events({
+//    "click .showHour": function () {
+//        console.log("click .showHour");
+//        var timeinfo = moment().hour();
+//        addDateToSession(VIAUSL_FROM_TIME, moment(timeinfo - 1, "HH"));
+//        addDateToSession(VIAUSL_TO_TIME, moment(timeinfo + 1, "HH"));
+//        Session.set(VIAUSL_TIME_FORMAT, "HH:mm");
+//    },
+//    "click .showDay": function () {
+//        console.log("click .showDay");
+//        var timeinfo = moment().date();
+//        addDateToSession(VIAUSL_FROM_TIME, moment(timeinfo - 1, "DD"));
+//        addDateToSession(VIAUSL_TO_TIME, moment(timeinfo + 1, "DD"));
+//        Session.set(VIAUSL_TIME_FORMAT, "MM/DD HH:00");
+//    },
+//    "click .showWeek": function () {
+//        console.log("click .showWeek");
+//        var timeinfo = moment().week();
+//        addDateToSession(VIAUSL_FROM_TIME, moment(timeinfo - 1, "WW"));
+//        addDateToSession(VIAUSL_TO_TIME, moment(timeinfo + 1, "WW"));
+//        Session.set(VIAUSL_TIME_FORMAT, "MM/DD");
+//    }
+//});
 
 Template.dataVisualBar.rendered = function () {
 

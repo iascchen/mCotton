@@ -28,6 +28,7 @@ MQTT_ENABLE = true;
 MQTT_API_VER = "v1.0";
 
 MQTT_PORT = 1883;
+MQTT_SSL_PORT = 8883;
 
 //MQTT_HOST = "localhost";
 

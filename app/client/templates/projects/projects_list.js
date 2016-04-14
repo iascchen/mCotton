@@ -16,7 +16,7 @@ Template.projectsList.onCreated(function () {
 
     // initialize the reactive variables
     instance.loaded = new ReactiveVar(0);
-    instance.limit = new ReactiveVar(PROJECT_1ST_PAGEN);
+    instance.limit = new ReactiveVar(PROJECT_PAGINATION);
 
     // 2. Autorun
 

@@ -2,8 +2,8 @@
  * Created by chenhao on 15/4/16.
  */
 
-var mosca = Meteor.npmRequire('mosca');
 var Fiber = Npm.require('fibers');
+var mosca = Meteor.npmRequire('mosca');
 
 // Accepts the connection if the user_id and device_id are valid
 var authenticate = function (client, user_id, device_id, callback) {
@@ -117,3 +117,87 @@ Meteor.startup(function () {
         }
     });
 });
+
+// TODO : MQTT SSL Demo Code, not tested
+//
+//Meteor.startup(function () {
+//    var mqttDbUrl = getEnv("mqttDbUrl", "mongodb://localhost:3001/mqtt");
+//
+//    var SECURE_KEY = __dirname + '/../../test/secure/tls-key.pem';
+//    var SECURE_CERT = __dirname + '/../../test/secure/tls-cert.pem';
+//
+//    var settings = {
+//        port: MQTT_SSL_PORT,
+//        logger: {
+//            name: "secureMqtt",
+//            level: 40,
+//        },
+//        secure : {
+//            keyPath: SECURE_KEY,
+//            certPath: SECURE_CERT,
+//        },
+//        backend: {
+//            type: 'mongo',
+//            url: mqttDbUrl,
+//            pubsubCollection: 'ascoltatori',
+//            mongo: {}
+//        }
+//    };
+//
+//    console.log("mqtt mosca settings", settings);
+//
+//    var server = new mosca.Server(settings);
+//
+//    // fired when the mqtt server is ready
+//    function setup() {
+//        server.authenticate = authenticate;
+//        server.authorizePublish = authorizePublish;
+//        server.authorizeSubscribe = authorizeSubscribe;
+//
+//        console.log('mCotton mqtt server is up and running');
+//    }
+//
+//    server.on('ready', setup);
+//
+//    server.on('clientConnected', function (client) {
+//        console.log('mqtt client connected', client.id);
+//    });
+//
+//// fired when a message is received
+//    server.on('published', function (packet, client) {
+//        var topic = packet.topic;
+//        var payload = packet.payload;
+//
+//        if (topic.indexOf("$SYS") > -1)
+//            return;
+//
+//        // console.log('Published', topic, payload.toString());
+//
+//        var mqttcmd = topic.split("/")[1];
+//
+//        switch (mqttcmd) {
+//            case 'c':
+//                Fiber(function () {
+//                    var message = payload.toString();
+//                    var event = JSON.parse(message);
+//
+//                    if (event.device_id) {
+//                        var ret = Meteor.call('controlEventInsert', event);
+//                        console.log('mqtt controlEventInsert', ret);
+//                    }
+//                }).run();
+//                break;
+//            case 'd':
+//                Fiber(function () {
+//                    var message = payload.toString();
+//                    var event = JSON.parse(message);
+//
+//                    if (event.device_id) {
+//                        var ret = Meteor.call('dataMessageInsert', event);
+//                        console.log('mqtt dataMessageInsert', ret);
+//                    }
+//                }).run();
+//                break;
+//        }
+//    });
+//});

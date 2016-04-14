@@ -1,15 +1,16 @@
 <template name="projectsList">
-    <h3><span class="glyphicon glyphicon-ice-lolly" aria-hidden="true"></span> Projects </h3>
-
-    {{#if currentUser}}
-        <div class="col-sm-4">
-            {{> projectAdd}}
-        </div>
-    {{/if}}
+    <div class="col-sm-12">
+        <h3><span class="glyphicon glyphicon-ice-lolly" aria-hidden="true"></span> Projects
+            {{#if currentUser}}
+                <a href="{{pathFor 'projectSubmit'}}" class="btn btn-success create">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create </a>
+            {{/if}}
+        </h3>
+    </div>
 
     <div>
         {{#each projects}}
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 {{> projectSummary}}
             </div>
         {{/each}}
@@ -30,8 +31,8 @@
 
 <template name="projectSummary">
 
-    <div class="bootcards-cards entity-box project-border">
-        <div class="entity-sub">
+    <div class="bootcards-cards entity-card project-border">
+        <div class="entity-title">
             <h3>{{name}}</h3>
         </div>
         <div class="entity-sub">
@@ -43,20 +44,24 @@
                     <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span> Made It </a>
             {{/if}}
             <!--<a href="{{pathFor 'buyProject'}}" class="discuss btn btn-primary buy">Buy</a>-->
-
-            <!--<h4>ID : {{_id}}</h4>-->
-
-            <p>{{desc}}</p>
-
+        </div>
+        <div class="entity-desc">
+            {{desc}}
+        </div>
+        <div class="entity-sub">
             {{#with firstIamge}}
                 <img src="{{this.url store='thumbs'}}" class="thumbnail"/>
             {{/with}}
+
+            {{#unless firstIamge}}
+                <img src="/project.png" class="thumbnail"/>
+            {{/unless}}
         </div>
     </div>
 </template>
 
 <template name="projectAdd">
-    <div class="bootcards-cards entity-box project-border">
+    <div class="bootcards-cards entity-card project-border">
         <div class="entity-sub">
             <h3>Create New Project</h3>
         </div>

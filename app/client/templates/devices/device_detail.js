@@ -13,6 +13,17 @@ Template.deviceDetail.helpers({
     },
     project: function () {
         return Collections.Projects.findOne({_id: this.project_id});
+    },
+    publicDevices: function () {
+    //console.log("Project ID ", this.data._id);
+
+    return Collections.Devices.find({
+            project_id: this.project_id,
+            owner_user_id: {$ne: Meteor.userId()},
+            share: SHARE_PUBLIC,
+            'status': {$lt: STATUS_DISABLE}
+        },
+        {limit: RECOMMENDED_ITEMS, sort: {last_update_time: -1}});
     }
 });
 

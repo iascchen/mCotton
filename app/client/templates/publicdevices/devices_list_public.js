@@ -14,7 +14,7 @@ Template.devicesListPublic.onCreated(function () {
 
     // initialize the reactive variables
     instance.loaded = new ReactiveVar(0);
-    instance.limit = new ReactiveVar(DEVICE_1ST_PAGEN);
+    instance.limit = new ReactiveVar(DEVICE_PAGINATION);
 
     // 2. Autorun
 

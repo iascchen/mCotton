@@ -14,7 +14,7 @@ Template.devicesList.onCreated(function () {
 
     // initialize the reactive variables
     instance.loaded = new ReactiveVar(0);
-    instance.limit = new ReactiveVar(DEVICE_1ST_PAGEN);
+    instance.limit = new ReactiveVar(DEVICE_PAGINATION);
 
     // 2. Autorun
 
@@ -51,7 +51,7 @@ Template.devicesList.onCreated(function () {
                 share: SHARE_PUBLIC,
                 'status': {$lt: STATUS_DISABLE}
             },
-            {limit: RECOMMENDED_ITEMS, sort: {last_update_time: -1}});
+            {limit: DEVICE_PAGINATION, sort: {last_update_time: -1}});
     };
 });
 

@@ -1,0 +1,18 @@
+<template name="deviceSummarySimple">
+    <div class="col-sm-12">
+        <a href="{{pathFor 'deviceDetail'}}">
+            <div class="col-sm-4">
+                {{#with firstIamge}}
+                    <img src="{{this.url store='thumbs'}}" class="thumbnail"/>
+                {{/with}}
+
+                {{#unless firstIamge}}
+                    <img src="/device.png" class="thumbnail"/>
+                {{/unless}}
+            </div>
+            <div>
+                {{name}}
+            </div>
+        </a>
+    </div>
+</template>

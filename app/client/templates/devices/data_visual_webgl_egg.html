@@ -2,6 +2,14 @@
     <div>
         <div class="row">
             <div class="col-md-4">
+
+                <div class="entity-item">
+                    <!--<p>{{json_data}}</p>-->
+
+                    {{#each data_events}}
+                        {{> eggEventValue }}
+                    {{/each }}
+                </div>
                 <div class="entity-item">
                     <h4>Visualization</h4>
 
@@ -18,29 +26,21 @@
                     <h4> Color Map </h4>
 
                     <div class="col-md-12">
+                        <div>
+                            <div id="slider"></div>
+                            <p>Green Temperature: {{slider.[0]}}, Red Temperature: {{slider.[1]}}</p>
+                        </div>
                         <div class="list-group">
                             <a href="#" class="list-group-item colormap">Rainbow</a>
                             <a href="#" class="list-group-item colormap">CoolToWarm</a>
                             <a href="#" class="list-group-item colormap">BlackBody</a>
                             <a href="#" class="list-group-item colormap">Grayscale</a>
                         </div>
-
-                        <div>
-                            <div id="slider"></div>
-                            <p>Green Temperature: {{slider.[0]}}, Red Temperature: {{slider.[1]}}</p>
-                        </div>
                     </div>
-                </div>
-                <div class="entity-item">
-                    <!--<p>{{json_data}}</p>-->
-
-                    {{#each data_events}}
-                        {{> eggEventValue }}
-                    {{/each }}
                 </div>
             </div>
             <div class="col-md-8 array-editor">
-                <div id="visual" class="col-md-12 entity-item"></div>
+                <div id="visual" class="col-md-12 entity-item "></div>
             </div>
         </div>
     </div>

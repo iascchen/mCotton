@@ -3,7 +3,7 @@
  */
 // dataVisual My City
 
-EVENTS_DATA = "events_data";
+var EVENTS_DATA = "events_data";
 
 Template.dataVisualEgg.created = function () {
     Session.setDefault("slider", [40, 42]);
@@ -21,6 +21,10 @@ Template.dataVisualEgg.helpers({
 
         var project = Collections.Projects.findOne({_id: this.project_id});
         var data_points = project.data_points;
+
+        //data_points = _.sortBy(data_points, function (point) {
+        //    return point.data_name;
+        //});
 
         var result = new Mongo.Collection(null);
         _.forEach(data_points, function (point) {
@@ -140,9 +144,7 @@ Template.dataVisualEgg.rendered = function () {
 
     var isInside = true;
 
-    // ANGLE_LAYOUT = "Angle";
     HEIGHT_LAYOUT = "Height";
-    // AREA_LAYOUT = "Area";
     var sensors_layout = HEIGHT_LAYOUT;
 
     // Calc this object center from obj file
@@ -306,34 +308,43 @@ Template.dataVisualEgg.rendered = function () {
     var env_lights = [];
     var light_points = [];
 
-    var get_height_lights_location = function (radius) {
-        var delta = radius - MAX_Y;
+    var get_sensors_position = function (radius, height, count, offset) {
+        var ret = [];
+        var point;
+
+        for (let i = 0; i < count; i++) {
+            point = {
+                'x': 0.0 + radius * Math.cos(Math.PI * (2 * i + offset) / count),
+                'y': height,
+                'z': 0.0 + radius * Math.sin(Math.PI * (2 * i + offset) / count)
+            };
+            ret.push(point);
+        }
+
+        return ret;
+    };
+
+    let get_height_lights_location = function (radius) {
+        let delta = radius - MAX_Y;
         var height = HEIGHT_Y + 2 * delta;
 
-        var r_adjust_1 = radius - 0.33 * height,
-            r_adjust_2 = radius - 0.67 * height,
-            r_adjust_3 = radius - height;
+        var r_adjust_1 = radius - 0.2 * height,
+            r_adjust_2 = radius - 0.4 * height,
+            r_adjust_3 = radius - 0.6 * height,
+            r_adjust_4 = radius - 0.85 * height;
 
-        var r_adjust_1_r = radius * 0.5,
-            r_adjust_2_r = radius * 0.57;
+        var r_adjust_1_r = radius * 0.41,
+            r_adjust_2_r = radius * 0.53,
+            r_adjust_3_r = radius * 0.57,
+            r_adjust_4_r = radius * 0.45;
 
-        var lights_location = [
-            {'x': 0.0, 'y': radius, 'z': 0.0},
+        var eachRow = 4;
+        var lights_location = [];
 
-            {'x': r_adjust_1_r, 'y': r_adjust_1, 'z': 0.0},
-            {'x': -r_adjust_1_r * 0.5, 'y': r_adjust_1, 'z': r_adjust_1_r * 0.87},
-            {'x': -r_adjust_1_r * 0.5, 'y': r_adjust_1, 'z': -r_adjust_1_r * 0.87},
-
-            //{'x': r_adjust_2_r, 'y': r_adjust_2, 'z': 0.0},
-            //{'x': -r_adjust_2_r * 0.5, 'y': r_adjust_2, 'z': r_adjust_2_r * 0.87},
-            //{'x': -r_adjust_2_r * 0.5, 'y': r_adjust_2, 'z': -r_adjust_2_r * 0.87},
-
-            {'x': r_adjust_2_r * 0.5, 'y': r_adjust_2, 'z': r_adjust_2_r * 0.87},
-            {'x': -r_adjust_2_r , 'y': r_adjust_2, 'z': 0},
-            {'x': r_adjust_2_r * 0.5, 'y': r_adjust_2, 'z': -r_adjust_2_r * 0.87},
-
-            {'x': 0.0, 'y': r_adjust_3, 'z': 0.0}
-        ];
+        lights_location = _.union(lights_location, get_sensors_position(r_adjust_1_r, r_adjust_1, eachRow, 0));
+        lights_location = _.union(lights_location, get_sensors_position(r_adjust_2_r, r_adjust_2, eachRow, 1));
+        lights_location = _.union(lights_location, get_sensors_position(r_adjust_3_r, r_adjust_3, eachRow, 0));
+        lights_location = _.union(lights_location, get_sensors_position(r_adjust_4_r, r_adjust_4, eachRow, 1));
 
         return lights_location;
     };
@@ -346,61 +357,69 @@ Template.dataVisualEgg.rendered = function () {
 
     var LIGHT_POINTS_LOC = get_lights_location(1.48, sensors_layout);
 
-    var texture = THREE.ImageUtils.loadTexture("/smartegg/texture.png");
-    texture.minFilter = THREE.NearestFilter;
-
     var loadModel = function (scene, render_type, face_inverse, sensors_layout, light_radius, light_intensity, light_type) {
 
         THREE.Loader.Handlers.add(/\.dds$/i, new THREE.DDSLoader());
 
         THREE.Texture.minFilter = THREE.LinearFilter;
 
-        var loader = new THREE.OBJMTLLoader();
-        loader.load('/smartegg/egg.obj', '/smartegg/egg.mtl', function (object) {
-            // loader.load('/smartegg/egg.obj', '', function (object) {
+        var texloader = new THREE.TextureLoader();
+        texloader.load("/smartegg/texture.png", function (texture) {
 
-            // set the axis shapes
-            var axis_arrow = new THREE.AxisHelper();
-            axis_arrow.position.set(0, 0, 0);
-            axis_arrow.scale.x = axis_arrow.scale.y = axis_arrow.scale.z = 1.7;
-            object.add(axis_arrow);
+            var mtlLoader = new THREE.MTLLoader();
+            mtlLoader.load('/smartegg/egg.mtl', function (materials) {
+                materials.preload();
+                materials.side = THREE.DoubleSide;
+                var objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.load('/smartegg/egg.obj', function (object) {
 
-            if (render_type == RENDER_LIGHT) {
-                var lights_location = get_lights_location(light_radius, sensors_layout);
-                addBlackLights(object, lights_location, light_intensity, light_type, face_inverse);
-            }
-
-            object.traverse(function (child) {
-                if (child instanceof THREE.Mesh) {
+                    // set the axis shapes
+                    var axis_arrow = new THREE.AxisHelper();
+                    axis_arrow.position.set(0, 0, 0);
+                    axis_arrow.scale.x = axis_arrow.scale.y = axis_arrow.scale.z = 1.7;
+                    object.add(axis_arrow);
 
                     if (render_type == RENDER_LIGHT) {
-                        changeFaceOrientation(child.geometry);
-                    }
-                    else {
-                        child.material.map = texture;
-                        child.material.map.needsUpdate = true;
-
-                        child.geometry.computeFaceNormals();
-                        child.geometry.computeVertexNormals();
+                        var lights_location = get_lights_location(light_radius, sensors_layout);
+                        addBlackLights(object, lights_location, light_intensity, light_type, face_inverse);
                     }
 
-                    m_mesh = child;
-                }
+                    object.traverse(function (child) {
+                        if (child instanceof THREE.Mesh) {
+                            var geometry = new THREE.Geometry().fromBufferGeometry(child.geometry);
+                            child.geometry = geometry;
+
+                            if (render_type == RENDER_LIGHT) {
+                                changeFaceOrientation(child.geometry);
+                            }
+                            else {
+                                child.material.map = texture;
+                                child.material.map.needsUpdate = true;
+
+                                child.geometry.computeFaceNormals();
+                                child.geometry.computeVertexNormals();
+                            }
+
+                            m_mesh = child;
+                        }
+                    });
+
+                    addLightPoints(object, LIGHT_POINTS_LOC);
+
+                    object.position.x = -OBJ_CENTER.x;
+                    object.position.y = -OBJ_CENTER.y;
+                    object.position.z = -OBJ_CENTER.z;
+
+                    object.reflectivity = 0;
+                    object.refractionRatio = 0;
+
+                    m_object = object;
+                    scene.add(object);
+
+                    update_temperature(current_temperatures, render_type);
+                });
             });
-
-            addLightPoints(object, LIGHT_POINTS_LOC);
-
-            object.position.x = -OBJ_CENTER.x;
-            object.position.y = -OBJ_CENTER.y;
-            object.position.z = -OBJ_CENTER.z;
-
-            object.reflectivity = 0;
-            object.refractionRatio = 0;
-
-            m_object = object;
-            scene.add(object);
-
-            update_temperature(current_temperatures, render_type);
         });
     };
 
@@ -452,8 +471,8 @@ Template.dataVisualEgg.rendered = function () {
         }
     };
 
-    var LIGHT_POINTS_MAT_RED = new THREE.MeshPhongMaterial({color: 0xff0000, doubleSided: true});
-    var LIGHT_POINTS_MAT_WHITE = new THREE.MeshPhongMaterial({color: 0xffffff, doubleSided: true});
+    var LIGHT_POINTS_MAT_RED = new THREE.MeshPhongMaterial({color: 0xff0000, side: THREE.DoubleSide});
+    var LIGHT_POINTS_MAT_WHITE = new THREE.MeshPhongMaterial({color: 0xffffff, side: THREE.DoubleSide});
     var LIGHT_POINTS_GEO = new THREE.SphereGeometry(0.05);
 
     var addLightPoints = function (obj, lights_location) {
@@ -549,7 +568,7 @@ Template.dataVisualEgg.rendered = function () {
         camera.lookAt(target);
     };
 
-    // Utils
+// Utils
 
     var calc_angle = function (vex) {
         var _x = vex.x - OBJ_CENTER.x;
@@ -565,6 +584,9 @@ Template.dataVisualEgg.rendered = function () {
     };
 
     var changeFaceOrientation = function (geometry) {
+
+        //console.log(geometry);
+
         for (var i = 0; i < geometry.faces.length; i++) {
             var face = geometry.faces[i];
             if (face instanceof THREE.Face3) {

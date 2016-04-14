@@ -191,20 +191,21 @@ Router.onBeforeAction(requireLogin, {only: 'projectEdit'});
 Router.route('/devices', {
     name: 'devicesList',
     waitOn: function () {
-        return Meteor.subscribe('devices');
+        return [Meteor.subscribe('devices', DEVICE_PAGINATION, {name: 1}),
+            Meteor.subscribe('devicesPublic', RECOMMENDED_ITEMS)
+        ];
     },
     fastRender: true
 });
 
-Router.route('/pdmap', {
-    name: 'allPublicDeviceMapMarkers',
-    waitOn: function () {
-        return [ Meteor.subscribe('allPublicDevices') ,
-            Meteor.subscribe('dataeventsWithGPS')
-            ];
-    },
-    fastRender: true
-});
+//Router.route('/pdmap', {
+//    name: 'allPublicDeviceMapMarkers',
+//    waitOn: function () {
+//        return [Meteor.subscribe('allGpsPublicDevices'),
+//            Meteor.subscribe('dataeventsWithGPS')];
+//    },
+//    fastRender: true
+//});
 
 Router.route('/publicdevices', {
     name: 'devicesListPublic',
@@ -268,7 +269,7 @@ Router.route('/devices/:_id', {
             Meteor.subscribe('deviceProject', this.params._id),
             Meteor.subscribe('device', this.params._id),
             Meteor.subscribe('deviceDataEvents', this.params._id),
-            Meteor.subscribe('devicesControlEvents', this.params._id)
+            Meteor.subscribe('deviceControlEvents', this.params._id)
         ];
     },
     data: function () {
@@ -315,28 +316,28 @@ Router.onBeforeAction(requireLogin, {only: 'myModuleSubmit'});
 
 // TODO
 
-Router.route('/buyappkit/:project_id', {name: 'buyAppKit'}).get(function () {
-    this.response.writeHead(302, {
-        'Location': "https://www.microduino.cc/store#q=" + this.params.project_id
-    });
-    this.response.end();
-});
-
-Router.route('/buymodule/:module_id', {name: 'buyModule'}).get(function () {
-    this.response.writeHead(302, {
-        'Location': "https://www.microduino.cc/store#q=" + this.params.module_id
-    });
-    this.response.end();
-});
+//Router.route('/buyappkit/:project_id', {name: 'buyAppKit'}).get(function () {
+//    this.response.writeHead(302, {
+//        'Location': "https://www.microduino.cc/store#q=" + this.params.project_id
+//    });
+//    this.response.end();
+//});
+//
+//Router.route('/buymodule/:module_id', {name: 'buyModule'}).get(function () {
+//    this.response.writeHead(302, {
+//        'Location': "https://www.microduino.cc/store#q=" + this.params.module_id
+//    });
+//    this.response.end();
+//});
 
 //// Router.onBeforeAction('dataNotFound', {only: 'modulePage'});
 
-Router.route('/video', {
-    name: 'vidoePlayer',
-    data: function () {
-        // console.log(this.params);
-        return {
-            video_url: "https://www.microduino.cc/store"
-        };
-    }
-});
+//Router.route('/video', {
+//    name: 'vidoePlayer',
+//    data: function () {
+//        // console.log(this.params);
+//        return {
+//            video_url: "https://www.microduino.cc/store"
+//        };
+//    }
+//});

@@ -2,12 +2,9 @@
     bar
     <p>{{json_data}}</p>
 
-    <p>[ {{formatDateHour from_time}} --> {{ formatDateHour to_time}} ]
-        <a href="" class="btn btn-default showHour">2 Hour</a>
-        <a href="" class="btn btn-default showDay">2 Day</a>
-        <a href="" class="btn btn-default showWeek">2 Week</a></p>
+    {{> dataVisualRange}}
 
-    <div id='visual'>
+    <div id='visual' class="entity-item">
         <svg></svg>
     </div>
 

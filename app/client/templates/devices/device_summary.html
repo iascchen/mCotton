@@ -1,23 +1,34 @@
 <template name="deviceSummary">
-    <div class="bootcards-cards entity-box device-border">
-        <div class="entity-sub">
+    <div class="bootcards-cards entity-card device-border">
+        <div class="entity-title">
             <h3>{{name}}</h3>
-            <h4>ID : {{_id}}</h4>
+        </div>
+        <div class="entity-id">
+            ID : {{_id}}
         </div>
         <div class="entity-sub">
             <a href="{{pathFor 'deviceDetail'}}" class="btn btn-info detail">
                 <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span> Details </a>
 
-            <p>Project ID : {{project_id}}</p>
 
-            <p>{{desc}}</p>
+            <!--{{#if status }}-->
+                <!--<p>Status : {{status}}</p>-->
+            <!--{{/if}}-->
+            <!--&lt;!&ndash;<p>owner : {{ owner_user_id}}</p>&ndash;&gt;-->
+            <!--<p>Create at : {{ formatDate create_time}} , Update at : {{ formatDate last_update_time}}</p>-->
+        </div>
+        <div class="entity-desc">
+            <!--<p>Project ID : {{project_id}}</p>-->
+            {{desc}}
+        </div>
+        <div class="entity-sub">
+            {{#with firstIamge}}
+                <img src="{{this.url store='thumbs'}}" class="thumbnail"/>
+            {{/with}}
 
-            {{#if status }}
-                <p>Status : {{status}}</p>
-            {{/if}}
-
-            <!--<p>owner : {{ owner_user_id}}</p>-->
-            <p>Create at : {{ formatDate create_time}} , Update at : {{ formatDate last_update_time}}</p>
+            {{#unless firstIamge}}
+                <img src="/device.png" class="thumbnail"/>
+            {{/unless}}
         </div>
     </div>
 </template>

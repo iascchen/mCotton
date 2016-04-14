@@ -23,17 +23,18 @@
         </div>
     </div>
     <div class="col-sm-3 array-editor">
-        <h3><span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span> Public Devices </h3>
+        <h3><span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span> Other's Devices </h3>
 
         <div>
             {{#each publicDevices}}
                 <div class="col-sm-12">
-                    {{> deviceSummary}}
+                    {{> deviceSummarySimple}}
                 </div>
             {{/each}}
 
             <div class="col-sm-12">
-                <a class="btn btn-info" href="{{pathFor 'devicesListPublic'}}"> All </a>
+                <a class="btn btn-info" href="{{pathFor 'devicesListPublic'}}">
+                    <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span> All </a>
             </div>
         </div>
     </div>

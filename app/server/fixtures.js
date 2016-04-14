@@ -238,7 +238,7 @@ if (Meteor.users.find().count() === 0) {
             ]
         },
         {
-            name: 'Smart Egg', desc: 'Smart vulture egg',
+            name: 'Vulture Egg', desc: 'Smart vulture egg',
             module_ids: [
                 Collections.Modules.findOne({name: 'Microduino-Core+'})._id,
             ],
@@ -266,6 +266,11 @@ if (Meteor.users.find().count() === 0) {
                 {data_name: "Quaternion 2", data_type: "DOF", data_desc: "Egg Info"},
                 {data_name: "Quaternion 3", data_type: "DOF", data_desc: "Egg Info"},
                 {data_name: "Quaternion 4", data_type: "DOF", data_desc: "Egg Info"}
+            ],
+            control_points: [
+                {control_name: "HumInterval", control_type: "TXT", control_desc: "Data collecting interval of humidity"},
+                {control_name: "TemInterval", control_type: "TXT", control_desc: "Data collecting interval of temperature"},
+                {control_name: "QuaInterval", control_type: "TXT", control_desc: "Data collecting interval of mpu6050"},
             ]
         },
         {
@@ -282,29 +287,6 @@ if (Meteor.users.find().count() === 0) {
                 {data_name: "Air Pollution", data_type: "APL", data_desc: "Environment Info"},
 
                 {data_name: "Location", data_type: "GPS"}
-            ]
-        },
-        {
-            name: 'Smart Egg Lite', desc: 'Smart vulture egg lite version',
-            module_ids: [
-                Collections.Modules.findOne({name: 'Microduino-Core+'})._id,
-            ],
-            data_points: [
-                {data_name: "Temperature 01", data_type: "TEM", data_desc: "Egg Info"},
-                {data_name: "Temperature 02", data_type: "TEM", data_desc: "Egg Info"},
-                {data_name: "Temperature 03", data_type: "TEM", data_desc: "Egg Info"},
-                {data_name: "Temperature 04", data_type: "TEM", data_desc: "Egg Info"},
-                {data_name: "Temperature 05", data_type: "TEM", data_desc: "Egg Info"},
-                {data_name: "Temperature 06", data_type: "TEM", data_desc: "Egg Info"},
-                {data_name: "Temperature 07", data_type: "TEM", data_desc: "Egg Info"},
-                {data_name: "Temperature 08", data_type: "TEM", data_desc: "Egg Info"},
-
-                {data_name: "Humidity", data_type: "HUM", data_desc: "Egg Info"},
-
-                {data_name: "Quaternion 1", data_type: "DOF", data_desc: "Egg Info"},
-                {data_name: "Quaternion 2", data_type: "DOF", data_desc: "Egg Info"},
-                {data_name: "Quaternion 3", data_type: "DOF", data_desc: "Egg Info"},
-                {data_name: "Quaternion 4", data_type: "DOF", data_desc: "Egg Info"}
             ]
         }
     ];
