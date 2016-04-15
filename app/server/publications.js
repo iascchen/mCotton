@@ -64,15 +64,15 @@ Meteor.publish('projects', function (limit, sorter) {
     var _sorter = sorter ? sorter : {name: 1};
 
     if (Roles.userIsInRole(this.userId, ['admin', 'project-approval'])) {
-        return Collections.Projects.find({}, {limit: _limit, sort: {name: 1}});
+        return Collections.Projects.find({},
+            {limit: _limit, sort: _sorter});
     } else {
         return Collections.Projects.find({
                 $or: [{author_user_id: this.userId},
                     {status: STATUS_NORMAL},
                     {status: STATUS_READONLY}]
             },
-            {limit: _limit, sort: _sorter, fields: {name: 1, desc: 1, author_user_id: 1, img_ids: 1}}
-        );
+            {limit: _limit, sort: _sorter});
     }
 });
 
@@ -87,12 +87,39 @@ Meteor.publish("projectImages", function (id) {
     return Collections.Images.find({_id: {$in: imgs}});
 });
 
-Meteor.publish('projectDevices', function (id, limit) {
-    var project = Collections.Projects.findOne({_id: id});
+Meteor.publish('projectDevices', function (projectId, limit) {
+    // var project = Collections.Projects.findOne({_id: id});
     var _limit = limit ? limit : RECOMMENDED_ITEMS;
 
     if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
-        return Collections.Devices.find({project_id: project._id}, {limit: _limit, sort: {last_update_time: -1}});
+        return Collections.Devices.find({project_id: projectId},
+            {
+                limit: _limit, sort: {last_update_time: -1}
+            });
+    } else {
+        return Collections.Devices.find({
+                $or: [{owner_user_id: this.userId, project_id: projectId},
+                    {
+                        share: SHARE_PUBLIC,
+                        project_id: projectId,
+                        $or: [{status: STATUS_NORMAL}, {status: STATUS_READONLY}]
+                    }]
+            },
+            {
+                limit: _limit, sort: {last_update_time: -1}
+            });
+    }
+});
+
+Meteor.publish('projectDevicesByName', function (projectName, limit) {
+    var project = Collections.Projects.findOne({name: projectName});
+    var _limit = limit ? limit : RECOMMENDED_ITEMS;
+
+    if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+        return Collections.Devices.find({project_id: project._id},
+            {
+                limit: _limit, sort: {last_update_time: -1}
+            });
     } else {
         return Collections.Devices.find({
                 $or: [{owner_user_id: this.userId, project_id: project._id},
@@ -102,7 +129,9 @@ Meteor.publish('projectDevices', function (id, limit) {
                         $or: [{status: STATUS_NORMAL}, {status: STATUS_READONLY}]
                     }]
             },
-            {limit: _limit, sort: {last_update_time: -1}});
+            {
+                limit: _limit, sort: {last_update_time: -1}
+            });
     }
 });
 
@@ -117,15 +146,16 @@ Meteor.publish("devices", function (limit, sorter) {
     var _sorter = sorter ? sorter : {last_update_time: -1};
 
     if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
-        return Collections.Devices.find({}, {limit: _limit, sort: {last_update_time: -1}});
+        return Collections.Devices.find({}, {
+            limit: _limit, sort: _sorter
+        });
     } else {
         return Collections.Devices.find({
                 $or: [{owner_user_id: this.userId},
                     {share: SHARE_PUBLIC, $or: [{status: STATUS_NORMAL}, {status: STATUS_READONLY}]}]
             },
             {
-                limit: _limit, sort: _sorter,
-                fields: {name: 1, desc: 1, project_id: 1, owner_user_id: 1, img_ids: 1, share: 1}
+                limit: _limit, sort: _sorter
             });
     }
 });
@@ -138,8 +168,7 @@ Meteor.publish('devicesPublic', function (limit, sorter) {
             share: SHARE_PUBLIC, $or: [{status: STATUS_NORMAL}, {status: STATUS_READONLY}]
         },
         {
-            limit: _limit, sort: _sorter,
-            fields: {name: 1, desc: 1, project_id: 1, owner_user_id: 1, img_ids: 1, share: 1}
+            limit: _limit, sort: _sorter
         });
 });
 

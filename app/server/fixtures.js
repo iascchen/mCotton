@@ -44,7 +44,7 @@ if (Meteor.users.find().count() === 0) {
         id = Accounts.createUser({
             email: user.email,
             password: user.password,
-            profile: {name: user.name, photp: user.photo}
+            profile: {name: user.name, photo: user.photo}
         });
 
         if (user.roles.length > 0) {
@@ -274,7 +274,7 @@ if (Meteor.users.find().count() === 0) {
             ]
         },
         {
-            name: 'Smart Egg Station', desc: 'Smart vulture egg Station',
+            name: 'Vulture Egg Station', desc: 'Smart vulture egg Station',
             module_ids: [
                 Collections.Modules.findOne({name: 'Microduino-Core+'})._id,
             ],
