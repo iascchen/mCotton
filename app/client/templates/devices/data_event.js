@@ -2,8 +2,6 @@
  * Created by chenhao on 15/4/14.
  */
 
-Meteor.subscribe("dataevents");
-
 Template.dataEvent.helpers({
     json: function(){
         return JSON.stringify(this);

@@ -44,7 +44,9 @@
                     </h4>
 
                     {{#each img_ids}}
-                        {{> thumbnail id=this}}
+                        <div class="col-sm-4">
+                            {{> thumbnail id=this}}
+                        </div>
                     {{/each}}
                 </div>
             </div>

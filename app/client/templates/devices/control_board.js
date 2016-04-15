@@ -2,8 +2,6 @@
  * Created by chenhao on 15/4/14.
  */
 
-Meteor.subscribe("controlevents");
-
 Template.controlBoard.helpers({
     controlBoardTemplate: function() {
         switch(this.control_type){

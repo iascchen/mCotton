@@ -6,8 +6,8 @@
 
 * [ ] Requirement Survey
 * [ ] Requirement Donate
-* [ ] Device Counter
-* [ ] Package Counter
+* [x] Device Counter
+* [x] Project Counter
 
 ### Features
 
@@ -27,7 +27,8 @@ Open Data & Data Storage as a service
 * [x] Share your device to public
 * [ ] Data volume limitation 
 * [ ] Data Submit Limitation 
-* [ ] Data Dump
+* [x] Device Data Dump
+* [ ] Project Data Dump
 * [ ] Data Service Integration
 
 Hardware App Store
@@ -62,7 +63,7 @@ More Device Type Support
 ### Quality
 
 * [ ] Add unit test and continues integrate, jasmin
-* [ ] Refine UI & UX
+* [x] Refine UI & UX
 * [ ] Mobile
 * [ ] Add 
 

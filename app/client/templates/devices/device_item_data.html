@@ -3,7 +3,15 @@
         <div class="entity-sub">
             <h4>Data
                 <a href="{{pathFor 'deviceDataVisual'}}" class="btn btn-info history">
-                    <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></a></h4>
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Visulization </a>
+                <a href="" class="btn btn-primary dump" style="float: right">
+                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Dump Data </a>
+            </h4>
+            {{#if dumping}}
+                <div class="col-sm-12">
+                    <div class="loading">{{>spinner}}</div>
+                </div>
+            {{/if}}
         </div>
         <div class="entity-sub">
             {{#each data_events}}

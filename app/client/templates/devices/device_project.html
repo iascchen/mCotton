@@ -1,16 +1,22 @@
 <template name="projectItemSimple">
     <div>
-        <div class="entity-sub">
+        <div class="entity-title">
             <h4>{{project.name}}</h4>
         </div>
         <div class="entity-sub">
-            <p>ID : {{project._id}}</p>
+            <div class="col-sm-6">
+                <p>ID : {{project._id}}</p>
 
-            <p>{{project.desc}}</p>
+                <p>{{project.desc}}</p>
+            </div>
 
-            {{#each project.img_ids}}
-                {{> thumbnail id=this}}
-            {{/each}}
+            <div class="col-sm-6">
+                {{#each project.img_ids}}
+                    <div class="col-sm-4">
+                        {{> thumbnail id=this}}
+                    </div>
+                {{/each}}
+            </div>
         </div>
     </div>
 </template>

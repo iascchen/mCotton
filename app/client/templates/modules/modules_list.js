@@ -2,8 +2,6 @@
  * Created by chenhao on 15/4/7.
  */
 
-Meteor.subscribe('modules');
-
 /************
  * modulesList
  ************/

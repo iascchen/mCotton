@@ -35,23 +35,25 @@
                     </h4>
 
                     {{#each img_ids}}
-                        {{> thumbnail id=this}}
+                        <div class="col-sm-4">
+                            {{> thumbnail id=this}}
+                        </div>
                     {{/each}}
                 </div>
             </div>
 
             <!--<div class="entity-box sub-border">-->
-                <!--<div class="col-sm-12 bootcards-cards">-->
-                    <!--<h4>Used Modules-->
-                        <!--{{#if isAutherOrGrantedRole 'admin'}}-->
-                            <!--<a href="{{pathFor 'projectModulesSelect'}}" class="btn btn-info select">-->
-                                <!--<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit </a>-->
-                        <!--{{/if}}-->
-                    <!--</h4>-->
-                    <!--{{#each module_ids}}-->
-                        <!--{{> projectModule id=this}}-->
-                    <!--{{/each}}-->
-                <!--</div>-->
+            <!--<div class="col-sm-12 bootcards-cards">-->
+            <!--<h4>Used Modules-->
+                <!--{{#if isAutherOrGrantedRole 'admin'}}-->
+            <!--<a href="{{pathFor 'projectModulesSelect'}}" class="btn btn-info select">-->
+            <!--<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit </a>-->
+                <!--{{/if}}-->
+            <!--</h4>-->
+                <!--{{#each module_ids}}-->
+            <!--{{> projectModule id=this}}-->
+                <!--{{/each}}-->
+            <!--</div>-->
             <!--</div>-->
             <!--<div class="entity-box sub-border">-->
             <!--<div class="col-sm-12 bootcards-cards">-->

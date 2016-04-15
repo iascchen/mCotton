@@ -3,14 +3,14 @@
         <a href="{{pathFor 'projectDetail'}}">
             <div class="col-sm-4">
                 {{#with firstIamge}}
-                    <img src="{{this.url store='thumbs'}}" class="thumbnail"/>
+                    <img src="{{this.url store='thumbs'}}" class="thumbnail-simple"/>
                 {{/with}}
 
                 {{#unless firstIamge}}
-                    <img src="/project.png" class="thumbnail"/>
+                    <img src="/project.png" class="thumbnail-simple"/>
                 {{/unless}}
             </div>
-            <div>
+            <div class="col-sm-8">
                 {{name}}
             </div>
         </a>

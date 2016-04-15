@@ -50,27 +50,31 @@ Router.onBeforeAction(requireLogin, {only: 'imageStore'});
 // User Profile
 
 Router.route('/profile', {
-    name: 'profile',
-    waitOn: function () {
-        return Meteor.subscribe('images');
-    }
+    name: 'profile'
 });
 
 // Module
 
-Router.route('/modules', {name: 'modulesList'});
+Router.route('/modules', {
+    name: 'modulesList',
+    waitOn: function () {
+        return Meteor.subscribe('modules');
+    }
+});
 
 Router.route('/modules/submit', {
     name: 'moduleSubmit',
     waitOn: function () {
-        return Meteor.subscribe('images');
+        return [Meteor.subscribe('modules'),
+            Meteor.subscribe('images')];
     },
 });
 
 Router.route('/modules/:_id/edit', {
     name: 'moduleEdit',
     waitOn: function () {
-        return Meteor.subscribe('images');
+        return [Meteor.subscribe('modules'),
+            Meteor.subscribe('images')];
     },
     data: function () {
         return Collections.Modules.findOne(this.params._id);
@@ -79,6 +83,10 @@ Router.route('/modules/:_id/edit', {
 
 Router.route('/modules/:_id', {
     name: 'moduleDetail',
+    waitOn: function () {
+        return [Meteor.subscribe('modules'),
+            Meteor.subscribe('images')];
+    },
     data: function () {
         return Collections.Modules.findOne(this.params._id);
     }
@@ -92,7 +100,8 @@ Router.onBeforeAction(requireLogin, {only: 'moduleEdit'});
 Router.route('/projects', {
     name: 'projectsList',
     waitOn: function () {
-        return Meteor.subscribe('projects');
+        return [Meteor.subscribe('projects'),
+            Meteor.subscribe('images')];
     },
     fastRender: true
 });
@@ -104,7 +113,8 @@ Router.route('/projects/submit', {
 Router.route('/projects/:_id/edit', {
     name: 'projectEdit',
     waitOn: function () {
-        return Meteor.subscribe('project', this.params._id);
+        return [Meteor.subscribe('project', this.params._id),
+            Meteor.subscribe('projectImages', this.params._id)];
     },
     data: function () {
         return Collections.Projects.findOne(this.params._id);
@@ -144,7 +154,8 @@ Router.route('/projects/:_id/md_select', {
 Router.route('/projects/:_id/img_select', {
     name: 'projectImagesSelect',
     waitOn: function () {
-        return Meteor.subscribe('project', this.params._id);
+        return [Meteor.subscribe('project', this.params._id),
+            Meteor.subscribe('images')];
     },
     data: function () {
         return Collections.Projects.findOne(this.params._id);
@@ -155,8 +166,8 @@ Router.route('/projects/:_id', {
     name: 'projectDetail',
     waitOn: function () {
         return [Meteor.subscribe('project', this.params._id),
-            Meteor.subscribe('projectDevices', this.params._id, RECOMMENDED_ITEMS)
-        ];
+            Meteor.subscribe('projectDevices', this.params._id, RECOMMENDED_ITEMS),
+            Meteor.subscribe('projectImages', this.params._id)];
     },
     data: function () {
         return Collections.Projects.findOne(this.params._id);
@@ -192,8 +203,8 @@ Router.route('/devices', {
     name: 'devicesList',
     waitOn: function () {
         return [Meteor.subscribe('devices', DEVICE_PAGINATION, {name: 1}),
-            Meteor.subscribe('devicesPublic', RECOMMENDED_ITEMS)
-        ];
+            Meteor.subscribe('devicesPublic', RECOMMENDED_ITEMS),
+            Meteor.subscribe('images')];
     },
     fastRender: true
 });
@@ -210,7 +221,7 @@ Router.route('/devices', {
 Router.route('/publicdevices', {
     name: 'devicesListPublic',
     waitOn: function () {
-        return Meteor.subscribe('devicesPublic');
+        return [Meteor.subscribe('devicesPublic'), Meteor.subscribe('images')];
     },
     fastRender: true
 });
@@ -218,7 +229,8 @@ Router.route('/publicdevices', {
 Router.route('/devices/submit', {
     name: 'deviceSubmit',
     waitOn: function () {
-        return Meteor.subscribe('project', this.params.query.project_id);
+        return [Meteor.subscribe('project', this.params.query.project_id),
+            Meteor.subscribe('projectImages', this.params.query.project_id)];
     },
     data: function () {
         // console.log(this.params);
@@ -231,7 +243,8 @@ Router.route('/devices/submit', {
 Router.route('/devices/:_id/edit', {
     name: 'deviceEdit',
     waitOn: function () {
-        return Meteor.subscribe('device', this.params._id);
+        return [Meteor.subscribe('device', this.params._id),
+            Meteor.subscribe('deviceImages', this.params.query.project_id)];
     },
     data: function () {
         return Collections.Devices.findOne(this.params._id);
@@ -255,7 +268,8 @@ Router.route('/devices/:_id/vis', {
 Router.route('/devices/:_id/img_select', {
     name: 'deviceImagesSelect',
     waitOn: function () {
-        return Meteor.subscribe('device', this.params._id);
+        return [Meteor.subscribe('device', this.params._id),
+            Meteor.subscribe('images')];
     },
     data: function () {
         return Collections.Devices.findOne(this.params._id);
@@ -269,7 +283,8 @@ Router.route('/devices/:_id', {
             Meteor.subscribe('deviceProject', this.params._id),
             Meteor.subscribe('device', this.params._id),
             Meteor.subscribe('deviceDataEvents', this.params._id),
-            Meteor.subscribe('deviceControlEvents', this.params._id)
+            Meteor.subscribe('deviceControlEvents', this.params._id),
+            Meteor.subscribe('deviceImages', this.params._id)
         ];
     },
     data: function () {

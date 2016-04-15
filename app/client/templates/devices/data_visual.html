@@ -1,7 +1,9 @@
 <template name="dataVisual">
     <div class="entity-box sub-border">
-        <h4>Data <a href="{{pathFor 'deviceDetail'}}" class="btn btn-info history">
-            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></a></h4>
+        <h4> Data
+            <a href="{{pathFor 'deviceDetail'}}" class="btn btn-info history">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Back</a>
+            </h4>
         <div class="col-sm-12 bootcards-cards">
             {{> dataVisualTemplate this}}
         </div>

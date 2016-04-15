@@ -1,12 +1,20 @@
-# README (V0.3.1)
+# README (V0.3.2)
 
 # What's New
+
+v 0.3.2, 20160415
+
+1. Better UI
+2. Update to meteor 1.3.1
+3. Update Vulture Egg to latest Webgl
+4. Better Performance
+5. Device data dump.
 
 v 0.3.1, 20151117
 
 1. Share device to public
 2. Integration Map for all public device, and for project
-3. WebGL snart Egg
+3. WebGL smart Egg
 4. Update UX of devices and projects
 
 v 0.3
@@ -32,11 +40,17 @@ mCotton 是 server ， httpclient*.js 是访问他的Node.js客户端
 		curl https://install.meteor.com | sh
 
 2. 展开 mCotton.zip ，并 进入 mCotton 目录
-3. 更新meteor， 执行:  
+
+3. 更新 .env 文件
+
+        Please make sure this folder is NOT under project, because new file generated will let server refresh.
+        You should make another folder can be mapped as "/datadump" on http proxy.
+
+4. 更新meteor， 执行:
 
 		meteor update
 
-4. 启动Server， 命令为 ： 
+5. 启动Server， 命令为 ：
 
 		meteor
 
@@ -61,6 +75,6 @@ mCotton 是 server ， httpclient*.js 是访问他的Node.js客户端
 
 详情参见 [my_city.md](docs/my_city.md)
 
-## 智能鸟蛋
+## Smart Vulture Egg
 
 详情参见 [egg.md](docs/egg.md)
