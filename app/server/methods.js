@@ -10,7 +10,7 @@ var fs = Npm.require('fs');
 // Please make sure this folder is NOT under project, because new file generated will let server refresh.
 // You should make another folder can be mapped as "/datadump" on http proxy.
 
-DATA_DOWNLOAD_SERVER = getEnv("dataDumpLocation", "/Users/chenhao/ttt" + DATA_DOWNLOAD_PATH);
+DATA_DOWNLOAD_SERVER = SYS_BASE + DATA_DOWNLOAD_PATH;
 
 Meteor.methods({
     "projectsCount": function () {

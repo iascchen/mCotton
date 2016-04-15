@@ -53,7 +53,7 @@ Stores = {};
 // FS System base
 /////////////////
 
-SYS_BASE = "/data/file_store/mcotton";     // all upload images and files will be stored in this folder, please make sure you have access rights.
+SYS_BASE = "/data";     // all upload images and files will be stored in this folder, please make sure you have access rights.
 // SYS_BASE = "~/";
 
 Stores.images = new FS.Store.FileSystem("images", {

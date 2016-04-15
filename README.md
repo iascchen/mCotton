@@ -41,16 +41,11 @@ mCotton 是 server ， httpclient*.js 是访问他的Node.js客户端
 
 2. 展开 mCotton.zip ，并 进入 mCotton 目录
 
-3. 更新 .env 文件
-
-        Please make sure this folder is NOT under project, because new file generated will let server refresh.
-        You should make another folder can be mapped as "/datadump" on http proxy.
-
-4. 更新meteor， 执行:
+3. 更新meteor， 执行:
 
 		meteor update
 
-5. 启动Server， 命令为 ：
+4. 启动Server， 命令为 ：
 
 		meteor
 
