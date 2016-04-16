@@ -93,7 +93,6 @@ Meteor.publish("projectImages", function (id) {
 });
 
 Meteor.publish('projectDevices', function (projectId, limit) {
-    // var project = Collections.Projects.findOne({_id: id});
     var _limit = limit ? limit : RECOMMENDED_ITEMS;
 
     if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
