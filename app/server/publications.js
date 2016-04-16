@@ -59,20 +59,25 @@ Meteor.publish('mymodules', function () {
 //
 ///////////////////
 
+var PROJECT_FIRLDS_FILTER = {name: 1, desc: 1, author_user_id: 1, img_ids: 1, status: 1};
+var DEVICE_FIRLDS_FILTER = {
+    name: 1, desc: 1, project_id: 1, owner_user_id: 1, img_ids: 1, share: 1, last_update_time: 1, status: 1
+};
+
 Meteor.publish('projects', function (limit, sorter) {
     var _limit = limit ? limit : PROJECT_PAGINATION;
     var _sorter = sorter ? sorter : {name: 1};
 
     if (Roles.userIsInRole(this.userId, ['admin', 'project-approval'])) {
         return Collections.Projects.find({},
-            {limit: _limit, sort: _sorter});
+            {limit: _limit, sort: _sorter, fields: PROJECT_FIRLDS_FILTER});
     } else {
         return Collections.Projects.find({
                 $or: [{author_user_id: this.userId},
                     {status: STATUS_NORMAL},
                     {status: STATUS_READONLY}]
             },
-            {limit: _limit, sort: _sorter});
+            {limit: _limit, sort: _sorter, fields: PROJECT_FIRLDS_FILTER});
     }
 });
 
@@ -93,9 +98,7 @@ Meteor.publish('projectDevices', function (projectId, limit) {
 
     if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
         return Collections.Devices.find({project_id: projectId},
-            {
-                limit: _limit, sort: {last_update_time: -1}
-            });
+            {limit: _limit, sort: {last_update_time: -1}, fields: DEVICE_FIRLDS_FILTER});
     } else {
         return Collections.Devices.find({
                 $or: [{owner_user_id: this.userId, project_id: projectId},
@@ -105,9 +108,7 @@ Meteor.publish('projectDevices', function (projectId, limit) {
                         $or: [{status: STATUS_NORMAL}, {status: STATUS_READONLY}]
                     }]
             },
-            {
-                limit: _limit, sort: {last_update_time: -1}
-            });
+            {limit: _limit, sort: {last_update_time: -1}, fields: DEVICE_FIRLDS_FILTER});
     }
 });
 
@@ -117,9 +118,7 @@ Meteor.publish('projectDevicesByName', function (projectName, limit) {
 
     if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
         return Collections.Devices.find({project_id: project._id},
-            {
-                limit: _limit, sort: {last_update_time: -1}
-            });
+            {limit: _limit, sort: {last_update_time: -1}, fields: DEVICE_FIRLDS_FILTER});
     } else {
         return Collections.Devices.find({
                 $or: [{owner_user_id: this.userId, project_id: project._id},
@@ -129,9 +128,7 @@ Meteor.publish('projectDevicesByName', function (projectName, limit) {
                         $or: [{status: STATUS_NORMAL}, {status: STATUS_READONLY}]
                     }]
             },
-            {
-                limit: _limit, sort: {last_update_time: -1}
-            });
+            {limit: _limit, sort: {last_update_time: -1}, fields: DEVICE_FIRLDS_FILTER});
     }
 });
 
@@ -146,17 +143,14 @@ Meteor.publish("devices", function (limit, sorter) {
     var _sorter = sorter ? sorter : {last_update_time: -1};
 
     if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
-        return Collections.Devices.find({}, {
-            limit: _limit, sort: _sorter
-        });
+        return Collections.Devices.find({},
+            {limit: _limit, sort: _sorter, fields: DEVICE_FIRLDS_FILTER});
     } else {
         return Collections.Devices.find({
                 $or: [{owner_user_id: this.userId},
                     {share: SHARE_PUBLIC, $or: [{status: STATUS_NORMAL}, {status: STATUS_READONLY}]}]
             },
-            {
-                limit: _limit, sort: _sorter
-            });
+            {limit: _limit, sort: _sorter, fields: DEVICE_FIRLDS_FILTER});
     }
 });
 
@@ -167,9 +161,7 @@ Meteor.publish('devicesPublic', function (limit, sorter) {
     return Collections.Devices.find({
             share: SHARE_PUBLIC, $or: [{status: STATUS_NORMAL}, {status: STATUS_READONLY}]
         },
-        {
-            limit: _limit, sort: _sorter
-        });
+        {limit: _limit, sort: _sorter, fields: DEVICE_FIRLDS_FILTER});
 });
 
 Meteor.publish('device', function (id) {
@@ -217,12 +209,10 @@ Meteor.publish('devicesDataEventsLater', function (ids, limit) {
 
 Meteor.publish('devicesControlEventsLater', function (ids, limit) {
     var _limit = limit ? limit : 50;
-    var now = moment();
-    // console.log(now.toDate());
 
     return Collections.ControlEvents.find({
         device_id: {$in: ids},
-        control_submit_time: {$gte: now.toDate()},
+        control_submit_time: {$gte: moment().toDate()},
     }, {limit: _limit, sort: {control_submit_time: -1}});
 });
 
