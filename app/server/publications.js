@@ -111,17 +111,15 @@ Meteor.publish('projectDevices', function (projectId, limit) {
     }
 });
 
-Meteor.publish('projectDevicesOfUser', function (projectName, limit) {
-    var project = Collections.Projects.findOne({name: projectName});
-    var _limit = limit ? limit : RECOMMENDED_ITEMS;
+// This is publish added for Vulture Egg App
+Meteor.publish('projectDevicesOfMine', function (projectNames, sorter) {
+    var projects = Collections.Projects.find({name: {$in: projectNames}}).fetch();
+    var pids = _.pluck(projects, "_id");
+    //console.log("projectDevicesOfMine", pids);
 
-    if (Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
-        return Collections.Devices.find({project_id: project._id},
-            {limit: _limit, sort: {last_update_time: -1}, fields: DEVICE_FIRLDS_FILTER});
-    } else {
-        return Collections.Devices.find({owner_user_id: this.userId, project_id: project._id},
-            {limit: _limit, sort: {last_update_time: -1}, fields: DEVICE_FIRLDS_FILTER});
-    }
+    var _sorter = sorter ? sorter : {last_update_time: -1};
+    return Collections.Devices.find({owner_user_id: this.userId, project_id: {$in: pids}},
+        {sort: _sorter, fields: DEVICE_FIRLDS_FILTER});
 });
 
 ///////////////////
