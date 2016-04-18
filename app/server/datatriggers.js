@@ -2,11 +2,12 @@
  * Created by chenhao on 15/4/16.
  */
 
+
 ////////////////////////
 // AZURE Event Hub
 
-var BSON = Meteor.npmRequire('buffalo');
-var https = Meteor.npmRequire('https');
+var BSON = Npm.require('buffalo');
+var https = Npm.require('https');
 
 var create_sas_token = function (uri, key_name, key) {
     // Token expires in one hour

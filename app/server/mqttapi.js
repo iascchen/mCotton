@@ -3,7 +3,7 @@
  */
 
 var Fiber = Npm.require('fibers');
-var mosca = Meteor.npmRequire('mosca');
+var mosca = Npm.require('mosca');
 
 // Accepts the connection if the user_id and device_id are valid
 var authenticate = function (client, user_id, device_id, callback) {

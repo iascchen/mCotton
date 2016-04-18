@@ -111,9 +111,10 @@ less
 # ajduke:bootstrap-tagsinput
 # materialize:materialize
 
-meteorhacks:npm
-npm-container
+# meteorhacks:npm
+# npm-container
 momentjs:moment
+meteorhacks:async
 
 ##############################
 # Visualization
@@ -140,5 +141,6 @@ udondan:jszip
 # velocity:html-reporter
 
 # meteorhacks:kadira
-standard-minifier-css
-standard-minifier-js
+
+# standard-minifier-css
+# standard-minifier-js
