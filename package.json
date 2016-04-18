@@ -8,6 +8,6 @@
     "meteor-node-stubs": "~0.2.0",
     "mosca": "0.32.1",
     "buffalo": "0.1.3",
-    "bcrypt":"0.8.5"
+    "bcrypt": "0.8.5"
   }
 }
