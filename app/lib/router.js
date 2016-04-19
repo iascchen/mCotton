@@ -244,7 +244,7 @@ Router.route('/devices/:_id/edit', {
     name: 'deviceEdit',
     waitOn: function () {
         return [Meteor.subscribe('device', this.params._id),
-            Meteor.subscribe('deviceImages', this.params.query.project_id)];
+            Meteor.subscribe('deviceImages', this.params._id)];
     },
     data: function () {
         return Collections.Devices.findOne(this.params._id);
