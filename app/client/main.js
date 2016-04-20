@@ -42,7 +42,7 @@ Meteor.startup(function () {
 
     UI.registerHelper('isAutherOrGrantedRole', function (role) {
         var user = Meteor.user();
-        var isAuthor = this && this.author_user_id === user._Id;
+        var isAuthor = this && this.author_user_id === user._id;
        //var isGranted = (user && role) ? _.contains(user.roles, role) : false;
         var isGranted = Roles.userIsInRole(Meteor.user(), [role]);
 
@@ -51,7 +51,7 @@ Meteor.startup(function () {
 
     UI.registerHelper('isOwnerOrGrantedRole', function (role) {
         var user = Meteor.user();
-        var isOwner = this && this.owner_user_id === user._Id;
+        var isOwner = this && this.owner_user_id === user._id;
 
         //var isGranted = (user && role) ? _.contains(user.roles, role) : false;
         var isGranted = Roles.userIsInRole(Meteor.user(), [role]);

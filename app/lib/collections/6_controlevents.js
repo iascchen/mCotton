@@ -53,10 +53,10 @@ Collections.ControlEvents.attachSchema(Schemas.ControlEvent);
 
 Collections.ControlEvents.allow({
     insert: function (userId, entity) {
-        return autherEntity(userId, entity) || grantedEntity(userId, 'admin');
+        return ownsEntity(userId, entity) || grantedEntity(userId, 'admin');
     },
     remove: function (userId, entity) {
-        return autherEntity(userId, entity) || grantedEntity(userId, 'admin');
+        return ownsEntity(userId, entity) || grantedEntity(userId, 'admin');
     }
 });
 
