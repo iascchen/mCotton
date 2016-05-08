@@ -11,7 +11,7 @@ Template.deviceData.created = function () {
     Template.deviceData.helpers({
         gray: function () {
             var device_id = this.device_id;
-            var device = Collections.Devices.findOne({_id: device_id});
+            var device = Collections.Devices.findOne({ _id: device_id });
 
             if (device.status >= STATUS_DISABLE) {
                 return "gray";
@@ -20,8 +20,8 @@ Template.deviceData.created = function () {
         data_events: function () {
             var device_id = this.device_id;
 
-            var device = Collections.Devices.findOne({_id: device_id});
-            var project = Collections.Projects.findOne({_id: device.project_id});
+            var device = Collections.Devices.findOne({ _id: device_id });
+            var project = Collections.Projects.findOne({ _id: device.project_id });
             var data_points = project.data_points;
 
             data_points = _.sortBy(data_points, function (point) {
@@ -31,8 +31,8 @@ Template.deviceData.created = function () {
             var ret = new Mongo.Collection(null);
             _.forEach(data_points, function (point) {
                 //console.log("event.datapoint", point;
-                var event = Collections.DataEvents.findOne({device_id: device_id, data_name: point.data_name},
-                    {sort: {data_submit_time: -1}});
+                var event = Collections.DataEvents.findOne({ device_id: device_id, data_name: point.data_name },
+                    { sort: { data_submit_time: -1 } });
                 if (event) {
                     //console.log("event.dataevent", event);
                     if (point.data_show_list) {
@@ -52,7 +52,7 @@ Template.deviceData.created = function () {
 Template.deviceData.events({
     "click .history": function () {
         //console.log("history" , this.device_id);
-        Router.go('deviceDataVisual', {_id: this.device_id});
+        Router.go('deviceDataVisual', { _id: this.device_id });
     },
 
     "click .dump": function () {
@@ -61,25 +61,20 @@ Template.deviceData.events({
         var date_str = moment().format(DATA_TIME_FORMAT);
         rVarDumping.set(true);
 
+        var link = null;
         Meteor.call("dumpDeviceData", this.device_id, date_str, function (error, result) {
             rVarDumping.set(false);
 
-            if (result !== "Failed") {
-                var link = DATA_DOWNLOAD_PATH + "/" + result;
-                console.log("link", link);
+            console.log("dumpDeviceData", result);
 
-                return {
-                    statusCode: 302,
-                    headers: {
-                        'Location': link
-                    },
-                    body: 'There is nothing here!'
-                };
-            } else {
-                alert("Dump Failed" + error);
+            if (result != "Failed") {
+                link = DATA_DOWNLOAD_PATH + "/" + result;
+                window.open(link, '_blank');
+            }
+            else {
+                alert("Dump Failed : " + error);
             }
         });
-
     }
 });
 

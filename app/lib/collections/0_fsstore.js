@@ -53,8 +53,8 @@ Stores = {};
 // FS System base
 /////////////////
 
-SYS_BASE = "/data";     // all upload images and files will be stored in this folder, please make sure you have access rights.
-// SYS_BASE = "~/";
+// SYS_BASE = "/data";     // all upload images and files will be stored in this folder, please make sure you have access rights.
+SYS_BASE = "/Users/chenhao";
 
 Stores.images = new FS.Store.FileSystem("images", {
     path: SYS_BASE + "/uploads/images",
