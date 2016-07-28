@@ -7,7 +7,7 @@ According Meteor is hard to support the pressure from
 
 The new project will be stored on mCottonExp.
 
-因为 meteor 在大数据压力下表现不太好,所以计划重写 mCotton , 新的服务器会放在 mCottonV2 中.
+因为 meteor 在大数据压力下表现不太好,所以计划重写 mCotton , 新的服务器会放在 mCottonExp 中.
 
 # What's New
 
@@ -68,8 +68,8 @@ mCotton 是 server ， httpclient*.js 是访问他的Node.js客户端
 
 5. 修改 /app/lib/collections/0_fsstore.js, 修改 SYS_BASE 为您本地可以访问的一个目录,用于存储上传的图片文件.
 
-    // SYS_BASE = "/data";     // all upload images and files will be stored in this folder, please make sure you have access rights.
-    SYS_BASE = "/Users/yourhome/folder";
+        // SYS_BASE = "/data";     // all upload images and files will be stored in this folder, please make sure you have access rights.
+        SYS_BASE = "/Users/yourhome/folder";
 
 6. 启动Server， 命令为 ：
 
