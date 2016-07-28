@@ -8,22 +8,22 @@
 # Base
 ##############################
 
-meteor-base@1.0.4
-session@1.1.6
-blaze-html-templates@1.0.4
-mongo@1.1.10
-random@1.0.10
+meteor-base
+session
+blaze-html-templates
+mongo
+random
 
 ##############################
 # Basic
 ##############################
 
-reactive-var@1.0.10
-underscore@1.0.9
+reactive-var
+underscore
 pauldowman:dotenv
 iron:router
-jquery@1.11.9
-check@1.2.3
+jquery
+check
 
 # tracker
 # logging
@@ -42,13 +42,13 @@ meteorhacks:fast-render
 # Account
 ##############################
 
-accounts-password@1.2.12
+accounts-password
 # accounts-facebook
 # accounts-twitter
 # accounts-weibo
 # accounts-github
 # accounts-google
-accounts-base@1.2.9
+accounts-base
 
 alanning:roles
 twbs:bootstrap
@@ -124,7 +124,7 @@ mrt:nvd3js
 limemakers:three
 
 pauloborges:mapbox
-browser-policy@1.0.9
+browser-policy
 
 ##############################
 # Data Dump
@@ -138,6 +138,5 @@ udondan:jszip
 
 # meteorhacks:kadira
 
-standard-minifier-css@1.1.8
-# standard-minifier-js
-standard-minifier-js@1.1.8
+standard-minifier-css
+standard-minifier-js
