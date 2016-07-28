@@ -1,6 +1,6 @@
 # README (V0.3.3)
 
-This project is deprecated.
+# This project is deprecated.
 
 According Meteor is hard to support the pressure from
  IoT devices, I will rewrite it with Express and React, and add more awesome features.
